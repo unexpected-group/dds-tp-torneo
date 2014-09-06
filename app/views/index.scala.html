@@ -1,0 +1,32 @@
+@(title: String)
+
+<!DOCTYPE html>
+
+<html ng-app="app">
+    <head>
+        <title>@title</title>
+        <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/main.css")">
+        <link rel="shortcut icon" type="image/png" href="@routes.Assets.at("images/favicon.png")">
+        <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.15/angular.min.js"></script>
+        <script src="@routes.Assets.at("javascripts/app.js")" type="text/javascript"></script>
+    </head>
+    <body ng-controller="DetallesController as dc">
+        <h2>Jugadores Inscriptos</h2>
+        Filtro: <input ng-model="search">
+        <ul ng-controller="JugadoresController as jc">
+	        <div ng-repeat="jugador in jc.jugadores | filter: search | orderBy:'-edad'">
+	        	<li>
+		        	<p><a href="/jugadores/{{jugador.nombre}}">{{jugador.nombre}}</a> - {{jugador.edad}}</p>
+	        		<button ng-click="dc.activar(jugador.nombre)">Mas Informacion</button>
+	        	</li>
+	        </div>
+        </ul>
+        <hr/>
+    	<p ng-show="dc.estaActivado()">{{dc.nombre}}</p>
+    	<button ng-click="dc.desactivar()">Ocultar Informacion</button>
+    	<div ng-controller="JugadorController as jc">
+	        <p>Nombre: {{jc.jugador.nombre}}</p>
+	        <p>Edad: {{jc.jugador.edad}}</p>
+    	</div>
+    </body>
+</html>
