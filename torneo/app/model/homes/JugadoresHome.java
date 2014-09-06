@@ -16,7 +16,6 @@ public class JugadoresHome {
 		jugadores.add(new Jugador("Agustin Pina", 23));
 		jugadores.add(new Jugador("Esteban Zignego", 24));
 		jugadores.add(new Jugador("Franco Bulgarelli", 25));
-		jugadores.add(new Jugador("Test", 30));
 		return jugadores;
 	}
 	
