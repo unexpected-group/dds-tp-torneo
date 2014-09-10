@@ -12,6 +12,8 @@ import model.homes.CriteriosArmadoHome;
 import model.homes.CriteriosOrdenamientoHome;
 import model.homes.JugadoresHome;
 import model.homes.PartidosHome;
+import model.armador.ArmadorEquipos;
+import model.ordenador.OrdenadorEquipos;
 import model.inscripcion.Estandar;
 import model.inscripcion.Inscripcion;
 import model.jugador.Jugador;
@@ -26,7 +28,8 @@ import views.html.equipos;
 
 public class Application extends Controller {
 
-	private Partido partido = PartidosHome.getPartido();
+	private static OrdenadorEquipos ordenador;
+	private static ArmadorEquipos armador;
 
 	public static Result index() {
 		return ok(index.render("Torneo de Futbol 5"));
@@ -45,6 +48,9 @@ public class Application extends Controller {
 	}
 
 	public static Result generarEquiposOpciones() {
+		Partido partido = PartidosHome.getPartido();
+		partido.setOrdenadorEquipos(ordenador);
+		partido.setArmadorEquipos(armador);
 		partido.generarEquipos();
 		return ok(toJson(partido.jugadoresPorEquipos()));
 	}
@@ -56,13 +62,13 @@ public class Application extends Controller {
 	public static Result setCriterioOrdenamiento(String id) {
 		switch (id) {
 		case "Handicap":
-			partido.setOrdenadorEquipos(new Handicap());
+			ordenador = new Handicap();
 			break;
 		case "Promedio del ultimo partido":
-			partido.setOrdenadorEquipos(new PromedioUltimoPartido(null));
+			ordenador = new PromedioUltimoPartido(null);
 			break;
 		case "Promedio de las ultimas calificaciones":
-			partido.setOrdenadorEquipos(new PromedioUltimasCalificaciones(0));
+			ordenador = new PromedioUltimasCalificaciones(0);
 			break;
 		}
 		return ok();
@@ -75,10 +81,10 @@ public class Application extends Controller {
 	public static Result setCriterioArmado(String id) {
 		switch (id) {
 		case "Posiciones pares e impares":
-			partido.setArmadorEquipos(new ParesImpares());
+			armador = new ParesImpares();
 			break;
 		case "Posiciones preestablecidas":
-			partido.setArmadorEquipos(new PosicionesDadas());
+			armador = new PosicionesDadas();
 			break;
 		}
 		return ok();
