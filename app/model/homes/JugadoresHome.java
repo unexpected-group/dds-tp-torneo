@@ -11,8 +11,18 @@ import model.jugador.Jugador;
 public class JugadoresHome {
 
 	private static List<Jugador> jugadores = new ArrayList<Jugador>();
+	private static boolean primeraVez = true;
 
 	public static List<Jugador> getJugadores() {
+		if (primeraVez) {
+			init();
+			primeraVez = false;
+		}
+		
+		return jugadores;
+	}
+
+	private static void init(){
 		Jugador juan = new Jugador("Juan Pablo Jacob", 21);
 		Jugador manuel = new Jugador("Manuel Gambino", 22);
 		Jugador agustin = new Jugador("Agustin Pina", 23);
@@ -112,8 +122,6 @@ public class JugadoresHome {
 		jugadores.add(lucas);
 		jugadores.add(nico);
 		jugadores.add(gustavo);
-		
-		return jugadores;
 	}
 
 	public static Jugador getJugador(String nombre) {
