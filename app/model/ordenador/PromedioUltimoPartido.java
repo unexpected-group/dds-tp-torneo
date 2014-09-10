@@ -1,6 +1,7 @@
-package model.partido;
+package model.ordenador;
 
 import model.jugador.Jugador;
+import model.partido.Partido;
 
 public class PromedioUltimoPartido extends OrdenadorEquipos {
 

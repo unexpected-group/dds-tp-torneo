@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html ng-app="app">
+    
+    <head>
+        <title>Generar Equipos</title>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" type="text/css" href="@routes.Assets.at("stylesheets/bootstrap.min.css")" />
+        <link rel="shortcut icon" type="image/png" href="@routes.Assets.at("images/favicon.png")">
+        <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.15/angular.min.js"></script>
+        <script src="@routes.Assets.at("javascripts/app.js")" type="text/javascript"></script>
+    </head>
+    
+    <body>
+    	<h2 class="well well-default">Generar Equipos</h2>
+        <div style="margin:10px" ng-controller="OrdenamientoController as oc">
+            <em>Ordenar jugadores por: </em>
+            <select ng-model="oc.defecto" ng-options="opcion.criterio for opcion in oc.opciones"></select>
+        </div>
+        <div style="margin:10px" ng-controller="ArmadoController as ac">
+            <em>Armar equipos por: </em>
+            <select ng-model="ac.defecto" ng-options="opcion.criterio for opcion in ac.opciones"></select>
+        </div>
+        <button style="margin:10px" type="button" class="btn btn-success">Generar Equipos</button>
+
+        <div ng-controller="EquipoController as ec">
+            <!-- Este es la lista de los jugadores del equipo A -->
+            <table>
+                <td>
+                    <p style="text-align:center">Equipo A</p>
+                    <ul style="float:left;margin-left:10px" class="list-group">
+                        <a type="button" style="margin-right:30px;margin-bottom:5px" class="btn btn-primary | list-group-item"
+                        ng-repeat="jugador in ec.jugadores | limitTo:5" >
+                            <p>{{jugador.nombre}} ({{jugador.edad}} años)</p>
+                        </a>
+                    </ul>
+                </td>
+                <!-- Este es la lista de los jugadores del equipo B -->
+                <td>
+                    <p style="text-align:center">Equipo B</p>
+                    <ul style="float:left;margin-left:10px" class="list-group">
+                        <a type="button" style="margin-right:30px;margin-bottom:5px" class="btn btn-warning | list-group-item"
+                        ng-repeat="jugador in ec.jugadores | limitTo:-5">
+                            <p>{{jugador.nombre}} ({{jugador.edad}} años)</p>
+                        </a>
+                    </ul>
+                </td>
+            </table>
+        </div>
+    </body>
+
+</html>

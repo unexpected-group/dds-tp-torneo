@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.function.Predicate;
 
+import model.armador.ArmadorEquipos;
 import model.dominio.Sistema;
 import model.excepciones.CuposCompletosException;
 import model.excepciones.JugadorInscriptoException;
@@ -15,6 +16,7 @@ import model.inscripcion.Inscripcion;
 import model.inscripcion.Prioridad;
 import model.jugador.Jugador;
 import model.jugador.Observer;
+import model.ordenador.OrdenadorEquipos;
 
 public class Partido {
 
@@ -26,7 +28,7 @@ public class Partido {
 	private List<Jugador> equipoA;
 	private List<Jugador> equipoB;
 	private OrdenadorEquipos ordenadorEquipos;
-	private SeparadorEquipos separadorEquipos;
+	private ArmadorEquipos armadorEquipos;
 
 	public Partido(LocalDate fecha, String lugar) {
 		super();
@@ -80,7 +82,16 @@ public class Partido {
 	public void generarEquipos() {
 		List<Jugador> jugadores = obtenerJugadores();
 		ordenadorEquipos.ordenarJugadores(jugadores);
-		separadorEquipos.generarEquipos(jugadores, this.equipoA, this.equipoB);
+		armadorEquipos.armarEquipos(jugadores, equipoA, equipoB);
+		
+	}
+
+	// metodo creado para mostrar los equipos en la ui web
+	public ArrayList<Jugador> jugadoresPorEquipos() {
+		ArrayList<Jugador> jugadores = new ArrayList<>();
+		equipoA.forEach(jug -> jugadores.add(jug));
+		equipoB.forEach(jug -> jugadores.add(jug));
+		return jugadores;
 	}
 
 	public void inscribir(Inscripcion inscripcion) {
@@ -201,11 +212,11 @@ public class Partido {
 		return ordenadorEquipos;
 	}
 
-	public void setOrganizadorEquipos(OrdenadorEquipos organizadorEquipos) {
+	public void setOrdenadorEquipos(OrdenadorEquipos organizadorEquipos) {
 		this.ordenadorEquipos = organizadorEquipos;
 	}
 
-	public void setGeneradorEquipos(SeparadorEquipos generadorEquipos) {
-		this.separadorEquipos = generadorEquipos;
+	public void setArmadorEquipos(ArmadorEquipos generadorEquipos) {
+		this.armadorEquipos = generadorEquipos;
 	}
 }

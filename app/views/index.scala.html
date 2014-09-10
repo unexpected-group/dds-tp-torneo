@@ -1,32 +1,62 @@
 @(title: String)
 
 <!DOCTYPE html>
-
 <html ng-app="app">
+
     <head>
         <title>@title</title>
-        <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/main.css")">
+        <meta charset="UTF-8">
+        <link rel="stylesheet" type="text/css" href="@routes.Assets.at("stylesheets/bootstrap.min.css")">
         <link rel="shortcut icon" type="image/png" href="@routes.Assets.at("images/favicon.png")">
         <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.15/angular.min.js"></script>
         <script src="@routes.Assets.at("javascripts/app.js")" type="text/javascript"></script>
     </head>
-    <body ng-controller="DetallesController as dc">
-        <h2>Jugadores Inscriptos</h2>
-        Filtro: <input ng-model="search">
-        <ul ng-controller="JugadoresController as jc">
-	        <div ng-repeat="jugador in jc.jugadores | filter: search | orderBy:'-edad'">
-	        	<li>
-		        	<p><a href="/jugadores/{{jugador.nombre}}">{{jugador.nombre}}</a> - {{jugador.edad}}</p>
-	        		<button ng-click="dc.activar(jugador.nombre)">Mas Informacion</button>
-	        	</li>
-	        </div>
-        </ul>
-        <hr/>
-    	<p ng-show="dc.estaActivado()">{{dc.nombre}}</p>
-    	<button ng-click="dc.desactivar()">Ocultar Informacion</button>
-    	<div ng-controller="JugadorController as jc">
-	        <p>Nombre: {{jc.jugador.nombre}}</p>
-	        <p>Edad: {{jc.jugador.edad}}</p>
-    	</div>
+
+    <body ng-controller="GeneralController as gc">
+        <h2 class="well well-default">Jugadores Inscriptos</h2>
+        <a type="button" class="btn btn-success pull-right" style="margin-right:30px"
+            href="/generar-equipos">Generar Equipos</a>
+        <div style="margin:20px">
+            <em>Nombre: </em><input type="text" ng-model="search.nombre">
+            <em>Edad: </em><input type="text" ng-model="search.edad">
+        </div>
+        <table>
+            <td>
+                <ul style="float:left;margin-left:10px" class="list-group" ng-controller="JugadoresController as jc">
+                	<a type="button" style="margin-right:30px;margin-bottom:5px"
+                        class="btn btn-default | list-group-item"
+                        ng-repeat="jugador in jc.jugadores | filter:search | orderBy:'nombre'"
+                        ng-click="gc.actualizar(jugador.nombre)">
+                        <h3><span style="margin-right:15px" class="label label-primary">{{jugador.nombre}}</span></h3>
+                	</a>
+                </ul>
+            </td>
+            <td ng-show="gc.estaVisible()">
+    	        <p>Nombre: {{gc.jugador.nombre}}</p>
+    	        <p>Edad: {{gc.jugador.edad}}</p>
+    	        <p>Amigos:</p>
+    	        <ul>
+    	        	<h4><span style="margin-right:5px" class="label label-info"
+                        ng-repeat="amigo in gc.jugador.amigos">{{amigo.nombre}}</span>
+                    </h4>
+    	        </ul>
+    	        <p>Infracciones:</p>
+    	        <ul>
+    	        	<h4><span style="margin-right:5px" class="label label-danger"
+                        ng-repeat="infraccion in gc.jugador.infracciones">{{infraccion.motivo}}</span>
+                    </h4>
+    	        </ul>
+    	        <p>Calificaciones:</p>
+    	        <ul>
+    	        	<h4><span style="margin-right:5px" class="label label-warning"
+                        ng-repeat="calificacion in gc.jugador.calificaciones">{{calificacion.puntaje}}</span>
+                    </h4>
+    	        </ul>
+    	        <p>Handicap: {{gc.jugador.handicap}}</p>
+    	        <button type="button" class="btn btn-default" 
+                    ng-click="gc.ocultar()">Ocultar Informacion</button>
+            </td>
+        </table>
     </body>
-</html>
+
+</html>     

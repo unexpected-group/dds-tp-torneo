@@ -12,34 +12,64 @@
         });
     }]);
     
-    app.controller('DetallesController', function() {
-
-        this.activado = 1;
-        this.nombre
-        
-        this.activar = function(nombre) {
-        	this.activado = 1;
-        	this.nombre = nombre
-        };
-        
-        this.desactivar = function() {
-        	this.activado = 0;
-        };
-        
-        this.estaActivado = function() {
-        	return this.activado === 1;
-        };
-    });
-    
-    app.controller('JugadorController', ['$http', function($http) {
+    app.controller('GeneralController', ['$http', function($http) {
 
         var store = this;
         
-        store.nombre = "Juan Pablo Jacob";
+        store.visible = 0;
+        store.nombre = "";
         store.jugador = {};
 
-        $http.get('http://localhost:9000/jugadores/' + store.nombre).success(function(data) {
-            store.jugador = data;
+		store.actualizar = function(n) {
+        	store.nombre = n;
+        	store.visible = 1;
+        	$http.get('http://localhost:9000/jugadores/' + store.nombre).success(function(data) {
+		        store.jugador = data;
+		    });
+        };
+        
+        store.ocultar = function() {
+        	store.visible = 0;
+        };
+        
+        store.estaVisible = function() {
+        	return store.visible === 1;
+        };
+    }]);
+
+    app.controller('EquipoController', ['$http', function($http) {
+
+        var store = this;
+        
+        store.jugadores = [];
+
+        $http.get('http://localhost:9000/generar-equipos/11').success(function(data) {
+            store.jugadores = data;
         });
     }]);
+
+    app.controller('OrdenamientoController', function() {
+
+        var store = this;
+        
+        store.opciones = [
+            {criterio: 'Handicap'},
+            {criterio: 'Promedio del ultimo partido'},
+            {criterio: 'Promedio de las ultimas calificaciones'}
+        ];
+
+        store.defecto = store.opciones[0];
+    });
+
+    app.controller('ArmadoController', function() {
+
+        var store = this;
+        
+        store.opciones = [
+            {criterio: 'Posiciones pares e impares'},
+            {criterio: 'Posiciones hardcodeadas'},
+        ];
+
+        store.defecto = store.opciones[0];
+    });
 })();

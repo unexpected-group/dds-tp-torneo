@@ -9,7 +9,8 @@ public class Infraccion {
 
 	public Infraccion(String motivo) {
 		super();
-		this.fecha = LocalDate.now();
+//		this.fecha = LocalDate.now();
+		this.fecha = null;
 		this.motivo = motivo;
 	}
 

@@ -1,13 +1,13 @@
-package model.partido;
+package model.armador;
 
 import java.util.List;
 
 import model.jugador.Jugador;
 
-public class PosicionesDadas implements SeparadorEquipos {
+public class PosicionesDadas implements ArmadorEquipos {
 
 	@Override
-	public void generarEquipos(List<Jugador> jugadores, List<Jugador> equipoA, List<Jugador> equipoB) {
+	public void armarEquipos(List<Jugador> jugadores, List<Jugador> equipoA, List<Jugador> equipoB) {
 
 		equipoA.add(jugadores.get(0));
 		equipoA.add(jugadores.get(3));

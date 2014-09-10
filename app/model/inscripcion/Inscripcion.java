@@ -9,7 +9,6 @@ public abstract class Inscripcion {
 	private Jugador jugador;
 
 	public Inscripcion(Jugador jugador) {
-		super();
 		this.jugador = jugador;
 	}
 

@@ -6,7 +6,7 @@ import java.util.stream.Stream;
 
 import model.jugador.Jugador;
 import model.jugador.Observer;
-import model.partido.OrdenadorEquipos;
+import model.ordenador.OrdenadorEquipos;
 import model.propuesta.Propuesta;
 
 public class Sistema implements Observer {

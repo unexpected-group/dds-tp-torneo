@@ -1,10 +1,14 @@
 # Routes
-# This file defines all application routes (Higher priority routes first)
 
-# Home Page
 GET     /                           controllers.Application.index()
+
+GET     /detalles-juan	   		    controllers.Application.detallesJuan()
+
 GET     /jugadores                  controllers.Application.obtenerJugadores()
 GET     /jugadores/:nombre          controllers.Application.detallesJugador(nombre)
 
-# Map static resources from the /public folder to the /assets URL path
+GET		/generar-equipos			controllers.Application.generarEquipos()
+GET		/generar-equipos/:cod		controllers.Application.generarEquiposOpciones(cod)
+GET		/equipo/:n					controllers.Application.obtenerEquipo(n)
+
 GET     /assets/*file               controllers.Assets.at(path="/public", file)

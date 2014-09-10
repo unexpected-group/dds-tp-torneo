@@ -10,10 +10,13 @@ public class Calificacion {
 	private Partido partido;
 
 	public Calificacion(double puntaje, String descripcion, Partido partido) {
-		super();
 		this.puntaje = puntaje;
 		this.descripcion = descripcion;
 		this.partido = partido;
+	}
+	
+	public Calificacion(double puntaje) {
+		this(puntaje, null, null);
 	}
 
 	public double getPuntaje() {

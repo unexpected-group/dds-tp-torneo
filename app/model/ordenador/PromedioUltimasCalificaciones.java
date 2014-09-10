@@ -1,4 +1,4 @@
-package model.partido;
+package model.ordenador;
 
 import model.jugador.Jugador;
 
