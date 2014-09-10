@@ -7,8 +7,8 @@
         
         store.jugadores = [];
 
-        $http.get('http://localhost:9000/jugadores').success(function(data) {
-            store.jugadores = data;
+        $http.get('/jugadores').success(function(jugadores) {
+            store.jugadores = jugadores;
         });
     }]);
     
@@ -23,8 +23,8 @@
 		store.actualizar = function(n) {
         	store.nombre = n;
         	store.visible = 1;
-        	$http.get('http://localhost:9000/jugadores/' + store.nombre).success(function(data) {
-		        store.jugador = data;
+        	$http.get('/jugadores/' + store.nombre).success(function(jugador) {
+		        store.jugador = jugador;
 		    });
         };
         
@@ -43,33 +43,42 @@
         
         store.jugadores = [];
 
-        $http.get('http://localhost:9000/generar-equipos/12').success(function(data) {
-            store.jugadores = data;
-        });
+        store.generarEquipos = function() {
+            $http.get('/generar-equipos-opciones').success(function(jugadores) {
+                console.log(jugadores);
+                store.jugadores = jugadores;
+            });
+        };
+        
     }]);
 
-    app.controller('OrdenamientoController', function() {
+    app.controller('OrdenamientoController', ['$http', function($http) {
 
         var store = this;
         
-        store.opciones = [
-            {criterio: 'Handicap'},
-            {criterio: 'Promedio del ultimo partido'},
-            {criterio: 'Promedio de las ultimas calificaciones'}
-        ];
+        store.ordenadores = [];
 
-        store.defecto = store.opciones[0];
-    });
+        $http.get('/criterios-ordenamiento').success(function(ordenadores) {
+            store.ordenadores = ordenadores;
+        });
 
-    app.controller('ArmadoController', function() {
+        store.setOrdenador = function() {
+            $http.get('/criterios-ordenamiento/' + store.seleccionado);  
+        };
+    }]);
+
+    app.controller('ArmadoController', ['$http', function($http) {
 
         var store = this;
         
-        store.opciones = [
-            {criterio: 'Posiciones pares e impares'},
-            {criterio: 'Posiciones hardcodeadas'},
-        ];
+        store.armadores = [];
 
-        store.defecto = store.opciones[0];
-    });
+        $http.get('/criterios-armado').success(function(armadores) {
+            store.armadores = armadores;
+        });
+
+        store.setArmador = function() {
+            $http.get('/criterios-armado/' + store.seleccionado);
+        };
+    }]);
 })();

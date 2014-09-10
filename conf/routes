@@ -1,14 +1,17 @@
 # Routes
 
-GET     /                           controllers.Application.index()
+GET     /                           	controllers.Application.index()
 
-GET     /jugadores                  controllers.Application.obtenerJugadores()
-GET     /jugadores/:nombre          controllers.Application.detallesJugador(nombre)
+GET     /jugadores                  	controllers.Application.obtenerJugadores()
+GET     /jugadores/:nombre          	controllers.Application.detallesJugador(nombre)
 
-GET		/generar-equipos			controllers.Application.generarEquipos()
-GET		/generar-equipos/:cod		controllers.Application.generarEquiposOpciones(cod)
+GET		/generar-equipos				controllers.Application.generarEquipos()
+GET		/generar-equipos-opciones  		controllers.Application.generarEquiposOpciones()
 
-GET		/criterios-ordenamiento		controllers.Application.obtenerCriteriosOrdenamiento()
-GET		/criterios-armado			controllers.Application.obtenerCriteriosArmado()
+GET		/criterios-ordenamiento			controllers.Application.obtenerCriteriosOrdenamiento()
+GET		/criterios-ordenamiento/:id		controllers.Application.setCriterioOrdenamiento(id)
 
-GET     /assets/*file               controllers.Assets.at(path="/public", file)
+GET		/criterios-armado				controllers.Application.obtenerCriteriosArmado()
+GET		/criterios-armado/:id			controllers.Application.setCriterioArmado(id)
+
+GET     /assets/*file               	controllers.Assets.at(path="/public", file)

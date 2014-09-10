@@ -25,6 +25,8 @@ import views.html.equipos;
 
 public class Application extends Controller {
 
+	private static Partido partido;
+
 	public static Result index() {
 		return ok(index.render("Torneo de Futbol 5"));
 	}
@@ -38,43 +40,17 @@ public class Application extends Controller {
 	}
 
 	public static Result generarEquipos() {
-		return ok(equipos.render());
-	}
-
-	public static Result generarEquiposOpciones(String cod) {
 		List<Jugador> jugadores = JugadoresHome.getJugadores();
 		List<Inscripcion> inscripciones = new ArrayList<Inscripcion>();
 		for (Jugador jug : jugadores) {
 			inscripciones.add(new Estandar(jug));
 		}
-		Partido partido = new Partido(LocalDate.now(), "Maschwitz");
+		partido = new Partido(LocalDate.now(), "Maschwitz");
 		partido.setInscripciones(inscripciones);
-		switch (cod) {
-		case "11":
-			partido.setOrdenadorEquipos(new Handicap());
-			partido.setArmadorEquipos(new ParesImpares());
-			break;
-		case "12":
-			partido.setOrdenadorEquipos(new Handicap());
-			partido.setArmadorEquipos(new PosicionesDadas());
-			break;
-		case "21":
-			partido.setOrdenadorEquipos(new PromedioUltimoPartido(null));
-			partido.setArmadorEquipos(new ParesImpares());
-			break;
-		case "22":
-			partido.setOrdenadorEquipos(new PromedioUltimoPartido(null));
-			partido.setArmadorEquipos(new PosicionesDadas());
-			break;
-		case "31":
-			partido.setOrdenadorEquipos(new PromedioUltimasCalificaciones(0));
-			partido.setArmadorEquipos(new ParesImpares());
-			break;
-		case "32":
-			partido.setOrdenadorEquipos(new PromedioUltimasCalificaciones(0));
-			partido.setArmadorEquipos(new PosicionesDadas());
-			break;
-		}
+		return ok(equipos.render());
+	}
+
+	public static Result generarEquiposOpciones() {
 		partido.generarEquipos();
 		return ok(toJson(partido.jugadoresPorEquipos()));
 	}
@@ -82,8 +58,35 @@ public class Application extends Controller {
 	public static Result obtenerCriteriosOrdenamiento() {
 		return ok(toJson(CriteriosOrdenamientoHome.getOpciones()));
 	}
+
+	public static Result setCriterioOrdenamiento(String id) {
+		switch (id) {
+		case "Handicap":
+			partido.setOrdenadorEquipos(new Handicap());
+			break;
+		case "Promedio del ultimo partido":
+			partido.setOrdenadorEquipos(new PromedioUltimoPartido(null));
+			break;
+		case "Promedio de las ultimas calificaciones":
+			partido.setOrdenadorEquipos(new PromedioUltimasCalificaciones(0));
+			break;
+		}
+		return ok();
+	}
 	
 	public static Result obtenerCriteriosArmado() {
 		return ok(toJson(CriteriosArmadoHome.getOpciones()));
+	}
+
+	public static Result setCriterioArmado(String id) {
+		switch (id) {
+		case "Posiciones pares e impares":
+			partido.setArmadorEquipos(new ParesImpares());
+			break;
+		case "Posiciones preestablecidas":
+			partido.setArmadorEquipos(new PosicionesDadas());
+			break;
+		}
+		return ok();
 	}
 }

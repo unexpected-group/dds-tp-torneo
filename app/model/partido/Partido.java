@@ -83,7 +83,6 @@ public class Partido {
 		List<Jugador> jugadores = obtenerJugadores();
 		ordenadorEquipos.ordenarJugadores(jugadores);
 		armadorEquipos.armarEquipos(jugadores, equipoA, equipoB);
-		
 	}
 
 	// metodo creado para mostrar los equipos en la ui web
