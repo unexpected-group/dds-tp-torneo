@@ -11,6 +11,7 @@ import model.armador.PosicionesDadas;
 import model.homes.CriteriosArmadoHome;
 import model.homes.CriteriosOrdenamientoHome;
 import model.homes.JugadoresHome;
+import model.homes.PartidosHome;
 import model.inscripcion.Estandar;
 import model.inscripcion.Inscripcion;
 import model.jugador.Jugador;
@@ -25,7 +26,7 @@ import views.html.equipos;
 
 public class Application extends Controller {
 
-	private static Partido partido;
+	private Partido partido = PartidosHome.getPartido();
 
 	public static Result index() {
 		return ok(index.render("Torneo de Futbol 5"));
@@ -40,13 +41,6 @@ public class Application extends Controller {
 	}
 
 	public static Result generarEquipos() {
-		List<Jugador> jugadores = JugadoresHome.getJugadores();
-		List<Inscripcion> inscripciones = new ArrayList<Inscripcion>();
-		for (Jugador jug : jugadores) {
-			inscripciones.add(new Estandar(jug));
-		}
-		partido = new Partido(LocalDate.now(), "Maschwitz");
-		partido.setInscripciones(inscripciones);
 		return ok(equipos.render());
 	}
 
