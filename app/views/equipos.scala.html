@@ -10,7 +10,7 @@
         <script src="@routes.Assets.at("javascripts/app.js")" type="text/javascript"></script>
     </head>
     
-    <body>
+    <body ng-controller="GeneralController as gc">
     	<h2 class="well well-default">Generar Equipos</h2>
         <div style="margin:10px" ng-controller="OrdenamientoController as oc">
             <em>Ordenar jugadores por: </em>
@@ -29,7 +29,8 @@
                     <p style="text-align:center">Equipo A</p>
                     <ul style="float:left;margin-left:10px" class="list-group">
                         <a type="button" style="margin-right:30px;margin-bottom:5px" class="btn btn-primary | list-group-item"
-                        ng-repeat="jugador in ec.jugadores | limitTo:5" >
+                        ng-repeat="jugador in ec.jugadores | limitTo:5"
+                        ng-click="gc.actualizar(jugador.nombre)" >
                             <p>{{jugador.nombre}} ({{jugador.edad}} años)</p>
                         </a>
                     </ul>
@@ -39,13 +40,45 @@
                     <p style="text-align:center">Equipo B</p>
                     <ul style="float:left;margin-left:10px" class="list-group">
                         <a type="button" style="margin-right:30px;margin-bottom:5px" class="btn btn-warning | list-group-item"
-                        ng-repeat="jugador in ec.jugadores | limitTo:-5">
+                        ng-repeat="jugador in ec.jugadores | limitTo:-5"
+                        ng-click="gc.actualizar(jugador.nombre)">
                             <p>{{jugador.nombre}} ({{jugador.edad}} años)</p>
                         </a>
                     </ul>
                 </td>
+                <td width="100px"> <!-- Solucion chanta, hay que hacer un div que este al lado de la tabla -->
+                </td>
+                <td ng-show="gc.estaVisible()">
+                    <p><strong>Nombre:</strong>   {{gc.jugador.nombre}}</p>
+                    <p><strong>Apodo:</strong>   {{gc.jugador.apodo}}</p>
+                    <p><strong>Edad:</strong>   {{gc.jugador.edad}}</p>
+                    <p><strong>Handicap:</strong>   {{gc.jugador.handicap}}</p>
+                    <p><strong>Prom. Ult. Partido:</strong>   </p> <!--TODO: Agregar promedio del ultimo partido-->
+                    <p><strong>Prom. Partidos Jugados:</strong>   </p> <!--TODO: Agregar promedio todos los partidos -->
+                    <p><strong>Fecha de Nacimiento:</strong>   </p> <!--TODO: Agregar fecha de nacimiento--> 
+                    <p><strong>Amigos:</strong>   </p> <!-- TODO: Grilla de amigos: Nombre Apodo Handicap Promedio-->  
+                    <h4><span style="margin-right:5px" class="label label-info"
+                            ng-repeat="amigo in gc.jugador.amigos">{{amigo.nombre}}</span>
+                        </h4>
+                    </ul>
+                    <p><strong>Infracciones:</strong>   </p> <!-- TODO: Grilla de infracciones: Fecha Hora Motivo-->
+                    <ul>
+                        <h4><span style="margin-right:5px" class="label label-danger"
+                            ng-repeat="infraccion in gc.jugador.infracciones">{{infraccion.motivo}}</span>
+                        </h4>
+                    </ul> <!--TODO: Las infracciones deben cambiar de color tras superar cierto puntaje-->
+                    <p><strong>Calificaciones:</strong></p>
+                    <ul>
+                        <h4><span style="margin-right:5px" class="label label-warning"
+                            ng-repeat="calificacion in gc.jugador.calificaciones">{{calificacion.puntaje}}</span>
+                        </h4>
+                    </ul>
+                    <p>Handicap: {{gc.jugador.handicap}}</p>
+                    <p><strong>Cantidad Jugados:</strong>   </p> <!--TODO: Agregar cantidad de partidos jugados-->
+                </td>
             </table>
-            <button style="margin:10px" type="button" class="btn btn-success">Confirmar Equipos</button> <!-- TODO: Agregar la funcionalidad de Confirmar Equipos-->
+            <button style="margin:10px" type="button" class="btn btn-success">Confirmar Equipos</button> 
+            <!-- TODO: Agregar la funcionalidad de Confirmar Equipos-->
         </div>
     </body>
 
