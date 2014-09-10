@@ -32,28 +32,33 @@
                 </ul>
             </td>
             <td ng-show="gc.estaVisible()">
-    	        <p>Nombre: {{gc.jugador.nombre}}</p>
-    	        <p>Edad: {{gc.jugador.edad}}</p>
-    	        <p>Amigos:</p>
-    	        <ul>
-    	        	<h4><span style="margin-right:5px" class="label label-info"
+                <p><strong>Nombre:</strong>   {{gc.jugador.nombre}}</p>
+                <p><strong>Apodo:</strong>   {{gc.jugador.apodo}}</p>
+                <p><strong>Edad:</strong>   {{gc.jugador.edad}}</p>
+                <p><strong>Handicap:</strong>   {{gc.jugador.handicap}}</p>
+                <p><strong>Prom. Ult. Partido:</strong>   </p> <!--TODO: Agregar promedio del ultimo partido-->
+                <p><strong>Prom. Partidos Jugados:</strong>   </p> <!--TODO: Agregar promedio todos los partidos -->
+                <p><strong>Fecha de Nacimiento:</strong>   </p> <!--TODO: Agregar fecha de nacimiento--> 
+                <p><strong>Amigos:</strong>   </p> <!-- TODO: Grilla de amigos: Nombre Apodo Handicap Promedio-->  
+            	<h4><span style="margin-right:5px" class="label label-info"
                         ng-repeat="amigo in gc.jugador.amigos">{{amigo.nombre}}</span>
                     </h4>
     	        </ul>
-    	        <p>Infracciones:</p>
+    	        <p><strong>Infracciones:</strong>   </p> <!-- TODO: Grilla de infracciones: Fecha Hora Motivo-->
     	        <ul>
     	        	<h4><span style="margin-right:5px" class="label label-danger"
                         ng-repeat="infraccion in gc.jugador.infracciones">{{infraccion.motivo}}</span>
                     </h4>
-    	        </ul>
-    	        <p>Calificaciones:</p>
+    	        </ul> <!--TODO: Las infracciones deben cambiar de color tras superar cierto puntaje-->
+    	        <p><strong>Calificaciones:</strong></p>
     	        <ul>
     	        	<h4><span style="margin-right:5px" class="label label-warning"
                         ng-repeat="calificacion in gc.jugador.calificaciones">{{calificacion.puntaje}}</span>
                     </h4>
     	        </ul>
     	        <p>Handicap: {{gc.jugador.handicap}}</p>
-    	        <button type="button" class="btn btn-default" 
+    	        <p><strong>Cantidad Jugados:</strong>   </p> <!--TODO: Agregar cantidad de partidos jugados-->
+                <button type="button" class="btn btn-default" 
                     ng-click="gc.ocultar()">Ocultar Informacion</button>
             </td>
         </table>
