@@ -43,7 +43,7 @@
         
         store.jugadores = [];
 
-        $http.get('http://localhost:9000/generar-equipos/11').success(function(data) {
+        $http.get('http://localhost:9000/generar-equipos/12').success(function(data) {
             store.jugadores = data;
         });
     }]);

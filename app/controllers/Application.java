@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import model.armador.ParesImpares;
+import model.armador.PosicionesDadas;
 import model.homes.JugadoresHome;
 import model.inscripcion.Estandar;
 import model.inscripcion.Inscripcion;
@@ -32,10 +33,6 @@ public class Application extends Controller {
 		return ok(toJson(JugadoresHome.getJugador(nombre)));
 	}
 
-	public static Result detallesJuan() {
-		return ok(toJson(JugadoresHome.getJugador("Juan Pablo Jacob")));
-	}
-
 	public static Result generarEquipos() {
 		return ok(equipos.render());
 	}
@@ -53,16 +50,12 @@ public class Application extends Controller {
 			partido.setOrdenadorEquipos(new Handicap());
 			partido.setArmadorEquipos(new ParesImpares());
 			break;
+		case "12":
+			partido.setOrdenadorEquipos(new Handicap());
+			partido.setArmadorEquipos(new PosicionesDadas());
+			break;
 		}
 		partido.generarEquipos();
-//		return ok(toJson(partido.obtenerJugadores()));
 		return ok(toJson(partido.jugadoresPorEquipos()));
-	}
-
-	public static Result obtenerEquipo(String n) {
-		if (n.equals("a"))
-			return ok("A");
-		else
-			return ok("B");
 	}
 }

@@ -25,7 +25,7 @@ public class JugadoresHome {
 		demian.setHandicap(8.9);
 		Jugador lucas = new Jugador("Lucas Spigariol", 40);
 		lucas.setHandicap(3.9);
-		Jugador nico = new Jugador("Nico Scarsela", 27);
+		Jugador nico = new Jugador("Nico Scarscela", 27);
 		nico.setHandicap(4.9);
 		Jugador gustavo = new Jugador("Gustavo Pina", 50);
 		gustavo.setHandicap(9.9);
@@ -39,8 +39,7 @@ public class JugadoresHome {
 		juan.recibirCalificacion(new Calificacion(9.2));
 
 		ArrayList<Infraccion> infracciones = new ArrayList<>();
-		infracciones.add(new Infraccion("Llego tarde al partido"));
-		infracciones.add(new Infraccion("Tarjeta roja"));
+		infracciones.add(new Infraccion("Llega tarde al partido"));
 		juan.setInfracciones(infracciones);
 
 		juan.setHandicap(7.7);
@@ -56,8 +55,7 @@ public class JugadoresHome {
 		franco.recibirCalificacion(new Calificacion(9.3));
 
 		infracciones = new ArrayList<>();
-		infracciones.add(new Infraccion("Sabe mucho de diseño"));
-		infracciones.add(new Infraccion("Su poder radica en su pelo"));
+		infracciones.add(new Infraccion("Hace parciales dificiles"));
 		franco.setInfracciones(infracciones);
 
 		franco.setHandicap(9.8);
@@ -71,8 +69,7 @@ public class JugadoresHome {
 
 		infracciones = new ArrayList<>();
 		infracciones.add(new Infraccion("Hace TADP solo"));
-		infracciones.add(new Infraccion("Nos traiciono en el cine"));
-		infracciones.add(new Infraccion("Es puto y cagon"));
+		infracciones.add(new Infraccion("Nos traiciona en el cine"));
 		agustin.setInfracciones(infracciones);
 
 		agustin.setHandicap(5.6);
@@ -87,7 +84,7 @@ public class JugadoresHome {
 		manuel.recibirCalificacion(new Calificacion(5.3));
 
 		infracciones = new ArrayList<>();
-		infracciones.add(new Infraccion("Juega al basket"));
+		infracciones.add(new Infraccion("Es alto"));
 		manuel.setInfracciones(infracciones);
 
 		manuel.setHandicap(6.1);

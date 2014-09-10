@@ -1,6 +1,7 @@
 @(title: String)
 
 <!DOCTYPE html>
+
 <html ng-app="app">
 
     <head>
@@ -14,52 +15,62 @@
 
     <body ng-controller="GeneralController as gc">
         <h2 class="well well-default">Jugadores Inscriptos</h2>
-        <a type="button" class="btn btn-success pull-right" style="margin-right:30px"
-            href="/generar-equipos">Generar Equipos</a>
+    
+        <a type="button" class="btn btn-success pull-right" style="margin-right:30px" href="/generar-equipos">
+        	Generar Equipos
+        </a>
+    
         <div style="margin:20px">
             <em>Nombre: </em><input type="text" ng-model="search.nombre">
             <em>Edad: </em><input type="text" ng-model="search.edad">
         </div>
+    
         <table>
             <td>
-                <ul style="float:left;margin-left:10px" class="list-group" ng-controller="JugadoresController as jc">
-                	<a type="button" style="margin-right:30px;margin-bottom:5px"
-                        class="btn btn-default | list-group-item"
-                        ng-repeat="jugador in jc.jugadores | filter:search | orderBy:'nombre'"
-                        ng-click="gc.actualizar(jugador.nombre)">
-                        <h3><span style="margin-right:15px" class="label label-primary">{{jugador.nombre}}</span></h3>
+                <ul style="margin-left:10px;margin-right:30px" class="list-group"
+                		ng-controller="JugadoresController as jc">
+                	<a type="button" style="margin-bottom:5px"
+	                		class="btn btn-default | list-group-item"
+	                        ng-repeat="jugador in jc.jugadores | filter:search | orderBy:'nombre'"
+	                        ng-click="gc.actualizar(jugador.nombre)">
+                        {{jugador.nombre}}
                 	</a>
                 </ul>
             </td>
-            <td ng-show="gc.estaVisible()">
-                <p><strong>Nombre:</strong>   {{gc.jugador.nombre}}</p>
-                <p><strong>Apodo:</strong>   {{gc.jugador.apodo}}</p>
-                <p><strong>Edad:</strong>   {{gc.jugador.edad}}</p>
-                <p><strong>Handicap:</strong>   {{gc.jugador.handicap}}</p>
-                <p><strong>Prom. Ult. Partido:</strong>   </p> <!--TODO: Agregar promedio del ultimo partido-->
-                <p><strong>Prom. Partidos Jugados:</strong>   </p> <!--TODO: Agregar promedio todos los partidos -->
-                <p><strong>Fecha de Nacimiento:</strong>   </p> <!--TODO: Agregar fecha de nacimiento--> 
-                <p><strong>Amigos:</strong>   </p> <!-- TODO: Grilla de amigos: Nombre Apodo Handicap Promedio-->  
-            	<h4><span style="margin-right:5px" class="label label-info"
-                        ng-repeat="amigo in gc.jugador.amigos">{{amigo.nombre}}</span>
-                    </h4>
+
+            <td style="vertical-align:top" ng-show="gc.estaVisible()">
+    	        <p>Nombre: {{gc.jugador.nombre}}</p>
+    	        <p>Edad: {{gc.jugador.edad}}</p>
+
+    	        <p>Amigos:</p>
+    	        <ul>
+    	        	<h4><span style="margin-right:5px" class="label label-info"
+    	        			ng-repeat="amigo in gc.jugador.amigos">
+    	        		{{amigo.nombre}}
+    	        	</span></h4>
     	        </ul>
-    	        <p><strong>Infracciones:</strong>   </p> <!-- TODO: Grilla de infracciones: Fecha Hora Motivo-->
+
+    	        <p>Infracciones:</p>
     	        <ul>
     	        	<h4><span style="margin-right:5px" class="label label-danger"
-                        ng-repeat="infraccion in gc.jugador.infracciones">{{infraccion.motivo}}</span>
-                    </h4>
-    	        </ul> <!--TODO: Las infracciones deben cambiar de color tras superar cierto puntaje-->
-    	        <p><strong>Calificaciones:</strong></p>
+                        	ng-repeat="infraccion in gc.jugador.infracciones">
+                        {{infraccion.motivo}}
+                    </span></h4>
+    	        </ul>
+
+    	        <p>Calificaciones:</p>
     	        <ul>
     	        	<h4><span style="margin-right:5px" class="label label-warning"
-                        ng-repeat="calificacion in gc.jugador.calificaciones">{{calificacion.puntaje}}</span>
-                    </h4>
+                        	ng-repeat="calificacion in gc.jugador.calificaciones">
+                        {{calificacion.puntaje}}
+                    </span></h4>
     	        </ul>
+
     	        <p>Handicap: {{gc.jugador.handicap}}</p>
-    	        <p><strong>Cantidad Jugados:</strong>   </p> <!--TODO: Agregar cantidad de partidos jugados-->
-                <button type="button" class="btn btn-default" 
-                    ng-click="gc.ocultar()">Ocultar Informacion</button>
+
+    	        <button type="button" class="btn btn-default" ng-click="gc.ocultar()">
+    	        	Ocultar Informacion
+    	        </button>
             </td>
         </table>
     </body>
