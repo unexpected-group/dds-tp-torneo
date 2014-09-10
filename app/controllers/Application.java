@@ -8,6 +8,8 @@ import java.util.List;
 
 import model.armador.ParesImpares;
 import model.armador.PosicionesDadas;
+import model.homes.CriteriosArmadoHome;
+import model.homes.CriteriosOrdenamientoHome;
 import model.homes.JugadoresHome;
 import model.inscripcion.Estandar;
 import model.inscripcion.Inscripcion;
@@ -75,5 +77,13 @@ public class Application extends Controller {
 		}
 		partido.generarEquipos();
 		return ok(toJson(partido.jugadoresPorEquipos()));
+	}
+	
+	public static Result obtenerCriteriosOrdenamiento() {
+		return ok(toJson(CriteriosOrdenamientoHome.getOpciones()));
+	}
+	
+	public static Result obtenerCriteriosArmado() {
+		return ok(toJson(CriteriosArmadoHome.getOpciones()));
 	}
 }

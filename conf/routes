@@ -8,4 +8,7 @@ GET     /jugadores/:nombre          controllers.Application.detallesJugador(nomb
 GET		/generar-equipos			controllers.Application.generarEquipos()
 GET		/generar-equipos/:cod		controllers.Application.generarEquiposOpciones(cod)
 
+GET		/criterios-ordenamiento		controllers.Application.obtenerCriteriosOrdenamiento()
+GET		/criterios-armado			controllers.Application.obtenerCriteriosArmado()
+
 GET     /assets/*file               controllers.Assets.at(path="/public", file)
