@@ -13,6 +13,8 @@ import model.inscripcion.Estandar;
 import model.inscripcion.Inscripcion;
 import model.jugador.Jugador;
 import model.ordenador.Handicap;
+import model.ordenador.PromedioUltimasCalificaciones;
+import model.ordenador.PromedioUltimoPartido;
 import model.partido.Partido;
 import play.mvc.Controller;
 import play.mvc.Result;
@@ -52,6 +54,22 @@ public class Application extends Controller {
 			break;
 		case "12":
 			partido.setOrdenadorEquipos(new Handicap());
+			partido.setArmadorEquipos(new PosicionesDadas());
+			break;
+		case "21":
+			partido.setOrdenadorEquipos(new PromedioUltimoPartido(null));
+			partido.setArmadorEquipos(new ParesImpares());
+			break;
+		case "22":
+			partido.setOrdenadorEquipos(new PromedioUltimoPartido(null));
+			partido.setArmadorEquipos(new PosicionesDadas());
+			break;
+		case "31":
+			partido.setOrdenadorEquipos(new PromedioUltimasCalificaciones(0));
+			partido.setArmadorEquipos(new ParesImpares());
+			break;
+		case "32":
+			partido.setOrdenadorEquipos(new PromedioUltimasCalificaciones(0));
 			partido.setArmadorEquipos(new PosicionesDadas());
 			break;
 		}
