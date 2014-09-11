@@ -15,3 +15,5 @@ GET		/criterios-armado				controllers.Application.obtenerCriteriosArmado()
 GET		/criterios-armado/:id			controllers.Application.setCriterioArmado(id)
 
 GET     /assets/*file               	controllers.Assets.at(path="/public", file)
+
+GET		/detalle-jugador				controllers.Application.showJugadorView()

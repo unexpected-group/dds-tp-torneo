@@ -94,6 +94,13 @@
 			botonGenerar += 1;
 		};
 	} ]);
+
+	app.directive('detalleJugador', function() {
+		return {
+			restrict: 'E',
+			templateUrl: '/detalle-jugador'
+		};
+	});
 	
 	logGeneracionEquipos = function() {
 		console.log("Se Generaron los equipos exitosamente");

@@ -37,43 +37,13 @@
             </td>
 
             <td style="vertical-align:top" ng-show="gc.estaVisible()">
-    	        <p>Nombre: {{gc.jugador.nombre}}</p>
-    	        <p>Edad: {{gc.jugador.edad}}</p>
-
-    	        <p>Amigos:</p>
-    	        <ul>
-    	        	<h4><span style="margin-right:5px" class="label label-info"
-    	        			ng-repeat="amigo in gc.jugador.amigos">
-    	        		{{amigo.nombre}}
-    	        	</span></h4>
-    	        </ul>
-
-    	        <p>Infracciones:</p>
-    	        <ul>
-    	        	<h4><span style="margin-right:5px" class="label label-danger"
-                        	ng-repeat="infraccion in gc.jugador.infracciones">
-                        {{infraccion.motivo}}
-                    </span></h4>
-    	        </ul>
-
-    	        <p>Calificaciones:</p>
-    	        <ul>
-    	        	<h4><span style="margin-right:5px" class="label label-warning"
-                        	ng-repeat="calificacion in gc.jugador.calificaciones">
-                        {{calificacion.puntaje}}
-                    </span></h4>
-    	        </ul>
-
-    	        <p>Handicap: {{gc.jugador.handicap}}</p>
-
-    	        <button type="button" class="btn btn-default" ng-click="gc.ocultar()">
-    	        	Ocultar Informacion
-    	        </button>
+    	        <detalle-jugador></detalle-jugador>
             </td>
         </table>
         
-        <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.15/angular.min.js"></script>
-        <script src='@routes.Assets.at("javascripts/app.js")' type="text/javascript"></script>
+        <!--<script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.15/angular.min.js"></script>-->
+        <script src='@routes.Assets.at("javascripts/angular.min.js")'></script>
+        <script src='@routes.Assets.at("javascripts/app.js")'></script>
     </body>
 
 </html>

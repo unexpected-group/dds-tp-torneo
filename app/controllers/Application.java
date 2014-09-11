@@ -1,30 +1,23 @@
 package controllers;
 
 import static play.libs.Json.toJson;
-
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
-
+import model.armador.ArmadorEquipos;
 import model.armador.ParesImpares;
 import model.armador.PosicionesDadas;
 import model.homes.CriteriosArmadoHome;
 import model.homes.CriteriosOrdenamientoHome;
 import model.homes.JugadoresHome;
 import model.homes.PartidosHome;
-import model.armador.ArmadorEquipos;
-import model.ordenador.OrdenadorEquipos;
-import model.inscripcion.Estandar;
-import model.inscripcion.Inscripcion;
-import model.jugador.Jugador;
 import model.ordenador.Handicap;
+import model.ordenador.OrdenadorEquipos;
 import model.ordenador.PromedioUltimasCalificaciones;
 import model.ordenador.PromedioUltimoPartido;
 import model.partido.Partido;
 import play.mvc.Controller;
 import play.mvc.Result;
-import views.html.index;
 import views.html.equipos;
+import views.html.jugador;
+import views.html.index;
 
 public class Application extends Controller {
 
@@ -92,5 +85,9 @@ public class Application extends Controller {
 			break;
 		}
 		return ok();
+	}
+
+	public static Result showJugadorView(){
+		return ok(jugador.render());
 	}
 }
