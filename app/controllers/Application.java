@@ -48,8 +48,6 @@ public class Application extends Controller {
 	}
 
 	public static Result generarEquiposOpciones() {
-		if (ordenador == null || armador == null)
-			return badRequest("No se ingresaron opciones");
 		Partido partido = PartidosHome.getPartido();
 		partido.setOrdenadorEquipos(ordenador);
 		partido.setArmadorEquipos(armador);

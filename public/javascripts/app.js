@@ -1,5 +1,7 @@
 (function() {
 	var app = angular.module('app', []);
+	
+	var botonGenerar = 0;
 
 	app.controller('JugadoresController', [ '$http', function($http) {
 
@@ -54,6 +56,10 @@
 		store.estaVisible = function() {
 			return store.visible === 1;
 		};
+		
+		store.mostrar = function() {
+			return botonGenerar > 1;
+		};
 
 	} ]);
 
@@ -69,6 +75,7 @@
 
 		store.setOrdenador = function() {
 			$http.get('/criterios-ordenamiento/' + store.seleccionado);
+			botonGenerar += 1;
 		};
 	} ]);
 
@@ -84,6 +91,11 @@
 
 		store.setArmador = function() {
 			$http.get('/criterios-armado/' + store.seleccionado);
+			botonGenerar += 1;
 		};
 	} ]);
+	
+	logGeneracionEquipos = function() {
+		console.log("Se Generaron los equipos exitosamente");
+	}
 })();
