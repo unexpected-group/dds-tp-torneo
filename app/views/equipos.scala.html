@@ -5,28 +5,31 @@
     <head>
         <title>Generar Equipos</title>
         <meta charset="UTF-8">
-        <link rel="stylesheet" type="text/css" href="@routes.Assets.at("stylesheets/bootstrap.min.css")">
-        <link rel="shortcut icon" type="image/png" href="@routes.Assets.at("images/favicon.png")">
+        <link rel="stylesheet" type="text/css" href='@routes.Assets.at("stylesheets/bootstrap.min.css")'>
+        <link rel="shortcut icon" type="image/png" href='@routes.Assets.at("images/favicon.png")'>
     </head>
     
     <body>
     	<h2 class="well well-default">Generar Equipos</h2>
         
         <div style="margin:10px" ng-controller="OrdenamientoController as oc">
-            <select class="form-control" ng-model="oc.seleccionado" ng-options="ordenador for ordenador in oc.ordenadores" ng-change="oc.setOrdenador()">
+            <select class="form-control" ng-model="oc.seleccionado" ng-options="ordenador for ordenador in oc.ordenadores"
+                    ng-change="oc.setOrdenador()">
                 <option value="" disabled selected>Seleccione un ordenador</option>
             </select>
         </div>
         <div style="margin:10px" ng-controller="ArmadoController as ac">
-            <select class="form-control" ng-model="ac.seleccionado" ng-options="armador for armador in ac.armadores" ng-change="ac.setArmador()">
+            <select class="form-control" ng-model="ac.seleccionado" ng-options="armador for armador in ac.armadores"
+                    ng-change="ac.setArmador()">
                 <option value="" disabled selected>Seleccione un armador</option>
             </select>
         </div>
         
         <div ng-controller="EquipoController as ec">
-            <button style="margin:10px" type="button" class="btn btn-success" ng-click="ec.generarEquipos()">Generar Equipos</button>
+            <button style="margin:10px" type="button" class="btn btn-info"
+            		ng-click="ec.generarEquipos()">Generar Equipos</button>
 
-            <table>
+            <table ng-show="ec.estaVisible()">
                 <td>
                     <p style="text-align:center">Equipo A</p>
                     <ul style="margin-left:10px" class="list-group">
@@ -46,9 +49,11 @@
                 </td>
             </table>
         </div>
+        
+        <button style="margin:10px" type="button" class="btn btn-success">Confirmar Equipos</button>
 
         <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.15/angular.min.js"></script>
-        <script src="@routes.Assets.at("javascripts/app.js")" type="text/javascript"></script>
+        <script src='@routes.Assets.at("javascripts/app.js")' type="text/javascript"></script>
     </body>
 
 </html>
