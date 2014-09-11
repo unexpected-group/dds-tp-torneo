@@ -48,6 +48,8 @@ public class Application extends Controller {
 	}
 
 	public static Result generarEquiposOpciones() {
+		if (ordenador == null || armador == null)
+			return badRequest("No se ingresaron opciones");
 		Partido partido = PartidosHome.getPartido();
 		partido.setOrdenadorEquipos(ordenador);
 		partido.setArmadorEquipos(armador);
@@ -70,6 +72,8 @@ public class Application extends Controller {
 		case "Promedio de las ultimas calificaciones":
 			ordenador = new PromedioUltimasCalificaciones(0);
 			break;
+		default:
+			break;
 		}
 		return ok();
 	}
@@ -85,6 +89,8 @@ public class Application extends Controller {
 			break;
 		case "Posiciones preestablecidas":
 			armador = new PosicionesDadas();
+			break;
+		default:
 			break;
 		}
 		return ok();
