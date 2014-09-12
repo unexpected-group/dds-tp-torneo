@@ -103,6 +103,12 @@
 	});
 	
 	logGeneracionEquipos = function() {
-		console.log("Se Generaron los equipos exitosamente");
+	    var txt;
+	    var r = confirm("¿Desea generar los equipos?");
+	    if (r == true) {
+	        alert("Los quipos se generaron exitosamente!");
+	    } else {
+	        alert("Operacion cancelada.");
+	    }
 	}
 })();
