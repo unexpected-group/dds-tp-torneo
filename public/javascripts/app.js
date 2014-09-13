@@ -1,5 +1,7 @@
 (function() {
-	var app = angular.module('app', []);
+	var app = angular.module('app', [
+		'ngAnimate'
+		]);
 	
 	var botonGenerar = 0;
 
@@ -101,6 +103,26 @@
 			templateUrl: '/detalle-jugador'
 		};
 	});
+
+	/*app.directive('listarJugadores', function() {
+		return {
+			restrict: 'E',
+			templateUrl: '/listar-jugadores',
+			scope:{
+				filtros: '@filtros'
+			},
+			controller: function($http){
+				var store = this;
+
+				store.jugadores = [];
+
+				$http.get('/jugadores').success(function(jugadores) {
+					store.jugadores = jugadores;
+				});
+			},
+			controllerAs:'jc'
+		};
+	});*/
 	
 	logGeneracionEquipos = function() {
 	    var texto = confirm("¿Desea generar los equipos?");
