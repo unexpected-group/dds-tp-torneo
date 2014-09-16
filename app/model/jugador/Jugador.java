@@ -3,8 +3,8 @@ package model.jugador;
 import java.util.ArrayList;
 import java.util.List;
 
-import model.dominio.Sistema;
 import model.excepciones.NoEsAmigoException;
+import model.homes.PropuestasHome;
 import model.inscripcion.Estandar;
 import model.partido.Partido;
 
@@ -59,7 +59,7 @@ public class Jugador implements Observer {
 		this.calificaciones.add(calificacion);
 	}
 
-	public void proponerAmigo(Sistema administrador, Jugador amigo) {
+	public void proponerAmigo(PropuestasHome administrador, Jugador amigo) {
 		if (amigos.contains(amigo))
 			administrador.agregarPropuestaAmigo(amigo);
 		else

@@ -9,7 +9,7 @@ public class Pendiente implements Estado {
 		partido.getInscripciones().add(inscripcion);
 		partido.getObservadores().add(inscripcion.getJugador());
 		if (!partido.hayCupos()) {
-			partido.setEstado(new Confirmado());
+			partido.setEstado(new Completo());
 		}
 		partido.getObservadores().forEach(observador -> inscripcion.notificar(observador));
 	}

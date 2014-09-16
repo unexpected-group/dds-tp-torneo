@@ -7,11 +7,12 @@ import java.util.Optional;
 import java.util.function.Predicate;
 
 import model.armador.ArmadorEquipos;
-import model.dominio.Sistema;
 import model.excepciones.CuposCompletosException;
 import model.excepciones.JugadorInscriptoException;
 import model.excepciones.JugadorNoInscriptoException;
 import model.excepciones.NoSeCumpleCondicionException;
+import model.homes.PartidosHome;
+import model.homes.PropuestasHome;
 import model.inscripcion.Inscripcion;
 import model.inscripcion.Prioridad;
 import model.jugador.Jugador;
@@ -41,36 +42,36 @@ public class Partido {
 		this.equipoB = new ArrayList<>();
 	}
 
-	public Partido(LocalDate fecha, String lugar, Sistema administrador) {
+	public Partido(LocalDate fecha, String lugar, PropuestasHome propuestasHome) {
 		super();
 		this.fecha = fecha;
 		this.lugar = lugar;
 		this.inscripciones = new ArrayList<>();
 		this.observadores = new ArrayList<>();
-		this.observadores.add(administrador);
+		this.observadores.add(propuestasHome);
 		this.estado = new Pendiente();
 		this.equipoA = new ArrayList<>();
 		this.equipoB = new ArrayList<>();
 	}
 
 	public Partido(LocalDate fecha, String lugar, List<Inscripcion> inscripciones,
-			Sistema administrador) {
+			PropuestasHome propuestasHome) {
 		super();
 		this.fecha = fecha;
 		this.lugar = lugar;
 		this.inscripciones = inscripciones;
 		this.observadores = new ArrayList<>();
-		this.observadores.add(administrador);
+		this.observadores.add(propuestasHome);
 		this.equipoA = new ArrayList<>();
 		this.equipoB = new ArrayList<>();
 		if (inscripciones.size() < 10)
 			this.estado = new Pendiente();
 		else
-			this.estado = new Confirmado();
+			this.estado = new Completo();
 	}
 
 	public Partido(LocalDate fecha, String lugar, List<Inscripcion> inscripciones) {
-		this(fecha, lugar, inscripciones, new Sistema(null));
+		this(fecha, lugar, inscripciones, new PropuestasHome(null));
 	}
 
 	public List<Jugador> obtenerJugadores() {
@@ -91,6 +92,10 @@ public class Partido {
 		equipoA.forEach(jug -> jugadores.add(jug));
 		equipoB.forEach(jug -> jugadores.add(jug));
 		return jugadores;
+	}
+	
+	public void confirmarPartido() {
+		PartidosHome.agregarPartido(this);
 	}
 
 	public void inscribir(Inscripcion inscripcion) {

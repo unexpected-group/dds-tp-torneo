@@ -11,14 +11,18 @@ import model.partido.Partido;
 
 public class PartidosHome {
 
-	private static Partido partido;
+	private static List<Partido> partidos = new ArrayList<>();
 
-	public static Partido getPartido() {
-		partido = new Partido(LocalDate.now(), "MASCHWITZ");
+	public static Partido crearPartido() {
+		Partido partido = new Partido(LocalDate.now(), "MASCHWITZ");
 		List<Jugador> jugadores = JugadoresHome.getJugadores();
 		List<Inscripcion> inscripciones = new ArrayList<Inscripcion>();
 		jugadores.forEach(jug -> inscripciones.add(new Estandar(jug)));
 		partido.setInscripciones(inscripciones);
 		return partido;
+	}
+
+	public static void agregarPartido(Partido partido) {
+		partidos.add(partido);
 	}
 }

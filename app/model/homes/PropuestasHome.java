@@ -1,4 +1,4 @@
-package model.dominio;
+package model.homes;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,11 +9,11 @@ import model.jugador.Observer;
 import model.ordenador.OrdenadorEquipos;
 import model.propuesta.Propuesta;
 
-public class Sistema implements Observer {
+public class PropuestasHome implements Observer {
 
 	private List<Propuesta> propuestas;
 
-	public Sistema(OrdenadorEquipos organizadorEquipos) {
+	public PropuestasHome(OrdenadorEquipos organizadorEquipos) {
 		this.propuestas = new ArrayList<>();
 	}
 
@@ -38,12 +38,10 @@ public class Sistema implements Observer {
 	public void registrarRechazo(Propuesta propuesta, String motivo) {
 		propuesta.rechazarPropuesta(motivo);
 		this.propuestas.remove(propuesta);
-		// la propuesta misma registra el rechazo
 	}
 
 	public void registrarAceptacion(Propuesta propuesta) {
 		propuesta.aceptarPropuesta();
-		// dar de alta en nadie sabe donde
 	}
 
 	public long cantidadPropuestasAceptadas() {

@@ -23,6 +23,7 @@ public class Application extends Controller {
 
 	private static OrdenadorEquipos ordenador;
 	private static ArmadorEquipos armador;
+	private static Partido partidoConfirmar; 
 
 	public static Result index() {
 		return ok(index.render("Torneo de Futbol 5"));
@@ -41,10 +42,11 @@ public class Application extends Controller {
 	}
 
 	public static Result generarEquiposOpciones() {
-		Partido partido = PartidosHome.getPartido();
+		Partido partido = PartidosHome.crearPartido();
 		partido.setOrdenadorEquipos(ordenador);
 		partido.setArmadorEquipos(armador);
 		partido.generarEquipos();
+		partidoConfirmar = partido;
 		return ok(toJson(partido.jugadoresPorEquipos()));
 	}
 	
@@ -87,7 +89,12 @@ public class Application extends Controller {
 		return ok();
 	}
 
-	public static Result showJugadorView(){
+	public static Result showJugadorView() {
 		return ok(jugador.render());
+	}
+	
+	public static Result confirmarPartido() {
+		partidoConfirmar.confirmarPartido();
+		return ok();
 	}
 }

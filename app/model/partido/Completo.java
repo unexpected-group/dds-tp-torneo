@@ -2,7 +2,7 @@ package model.partido;
 
 import model.inscripcion.Inscripcion;
 
-public class Confirmado implements Estado {
+public class Completo implements Estado {
 
 	@Override
 	public void agregarInscripcion(Inscripcion inscripcion, Partido partido) {
