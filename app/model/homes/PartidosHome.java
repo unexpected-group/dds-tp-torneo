@@ -25,4 +25,8 @@ public class PartidosHome {
 	public static void agregarPartido(Partido partido) {
 		partidos.add(partido);
 	}
+	
+	public static List<Partido> getPartidos() {
+		return partidos;
+	}
 }

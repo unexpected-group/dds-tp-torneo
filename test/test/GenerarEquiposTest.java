@@ -25,7 +25,6 @@ public class GenerarEquiposTest {
 
 	@Before
 	public void setUp() throws Exception {
-
 		for (int i = 0; i < 10; i++) {
 			jugadores.add(mock(Jugador.class));
 		}
