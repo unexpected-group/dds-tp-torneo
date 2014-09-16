@@ -1,9 +1,8 @@
 (function() {
-	var app = angular.module('app', [
-		'ngAnimate'
-		]);
-	
-	var botonGenerar = 0;
+	var app = angular.module('app', [ 'ngAnimate' ]);
+
+	var ordenadorSeleccionado = false;
+	var armadorSeleccionado = false;
 
 	app.controller('JugadoresController', [ '$http', function($http) {
 
@@ -58,9 +57,9 @@
 		store.estaVisible = function() {
 			return store.visible === 1;
 		};
-		
+
 		store.mostrar = function() {
-			return botonGenerar > 1;
+			return ordenadorSeleccionado && armadorSeleccionado;
 		};
 
 	} ]);
@@ -77,7 +76,7 @@
 
 		store.setOrdenador = function() {
 			$http.get('/criterios-ordenamiento/' + store.seleccionado);
-			botonGenerar += 1;
+			ordenadorSeleccionado = true;
 		};
 	} ]);
 
@@ -93,43 +92,34 @@
 
 		store.setArmador = function() {
 			$http.get('/criterios-armado/' + store.seleccionado);
-			botonGenerar += 1;
+			armadorSeleccionado = true;
 		};
 	} ]);
 
 	app.directive('detalleJugador', function() {
 		return {
-			restrict: 'E',
-			templateUrl: '/detalle-jugador'
+			restrict : 'E',
+			templateUrl : '/detalle-jugador'
 		};
 	});
 
-	/*app.directive('listarJugadores', function() {
-		return {
-			restrict: 'E',
-			templateUrl: '/listar-jugadores',
-			scope:{
-				filtros: '@filtros'
-			},
-			controller: function($http){
-				var store = this;
+	/*
+	 * app.directive('listarJugadores', function() { return { restrict: 'E',
+	 * templateUrl: '/listar-jugadores', scope:{ filtros: '@filtros' },
+	 * controller: function($http){ var store = this;
+	 * 
+	 * store.jugadores = [];
+	 * 
+	 * $http.get('/jugadores').success(function(jugadores) { store.jugadores =
+	 * jugadores; }); }, controllerAs:'jc' }; });
+	 */
 
-				store.jugadores = [];
-
-				$http.get('/jugadores').success(function(jugadores) {
-					store.jugadores = jugadores;
-				});
-			},
-			controllerAs:'jc'
-		};
-	});*/
-	
 	logGeneracionEquipos = function() {
-	    var texto = confirm("¿Desea generar los equipos?");
-	    if (texto == true) {
-	        alert("Los equipos se generaron exitosamente!");
-	    } else {
-	        alert("Operacion cancelada.");
-	    }
+		var texto = confirm("¿Desea generar el partido con estos equipos?");
+		if (texto == true) {
+			alert("El partido se genero exitosamente");
+		} else {
+			alert("La operacion fue cancelada");
+		}
 	}
 })();
