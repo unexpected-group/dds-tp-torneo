@@ -96,6 +96,18 @@
 		};
 	} ]);
 
+	app.controller('PanelController', function() {
+		var current = 1;
+
+        this.selectTab = function(index){
+          current = index;
+        };
+
+        this.isSelected = function(index){
+          return index === current;
+        };
+	});
+
 	app.directive('detalleJugador', function() {
 		return {
 			restrict : 'E',
@@ -103,17 +115,39 @@
 		};
 	});
 
-	/*
-	 * app.directive('listarJugadores', function() { return { restrict: 'E',
-	 * templateUrl: '/listar-jugadores', scope:{ filtros: '@filtros' },
-	 * controller: function($http){ var store = this;
-	 * 
-	 * store.jugadores = [];
-	 * 
-	 * $http.get('/jugadores').success(function(jugadores) { store.jugadores =
-	 * jugadores; }); }, controllerAs:'jc' }; });
-	 */
+	app.directive('generarEquipos', function() {
+		return {
+			restrict: 'E',
+			templateUrl: '/generar-equipos'
+		};
+	});
 
+	app.directive('busquedaJugadores', function() {
+		return {
+			restrict: 'E',
+			templateUrl: '/busqueda-jugadores'
+		};
+	});
+	/*app.directive('listarJugadores', function() {
+		return {
+			restrict: 'E',
+			templateUrl: '/listar-jugadores',
+			scope:{
+				filtros: '@filtros'
+			},
+			controller: function($http){
+				var store = this;
+
+				store.jugadores = [];
+
+				$http.get('/jugadores').success(function(jugadores) {
+					store.jugadores = jugadores;
+				});
+			},
+			controllerAs:'jc'
+		};
+	});*/
+	
 	logGeneracionEquipos = function() {
 		var texto = confirm("¿Desea generar el partido con estos equipos?");
 		if (texto == true) {

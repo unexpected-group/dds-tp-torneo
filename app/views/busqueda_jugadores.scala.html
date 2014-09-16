@@ -1,0 +1,27 @@
+<div ng-controller='GeneralController as gc'>
+	<h2 class="well well-default">Jugadores Inscriptos</h2>
+
+	<div style="margin:20px">
+	    <em>Nombre: </em><input type="text" ng-model="search.nombre">
+	    <em>Edad: </em><input type="text" ng-model="search.edad">
+	</div>
+
+	<table>
+		<td style="vertical-align:top">
+	        <ul style="margin-left:10px;margin-right:30px" class="list-group"
+	        		ng-controller="JugadoresController as jc">
+	        	<a type="button" style="margin-bottom:5px"
+	            		class="btn btn-default | list-group-item animate-repeat"
+	                    ng-repeat="jugador in jc.jugadores | filter:search | orderBy:'-handicap'"
+	                    ng-click="gc.actualizar(jugador.nombre)">
+	                {{jugador.nombre}}
+	        	</a>
+	        </ul>
+	        <!--<listar-jugadores filtros="| filter:search | orderBy:'-handicap'"></listar-jugadores>-->
+	    </td>
+
+	    <td style="vertical-align:top" ng-show="gc.estaVisible()">
+	        <detalle-jugador></detalle-jugador>
+	    </td>
+	</table>
+</div>
