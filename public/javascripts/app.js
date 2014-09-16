@@ -1,5 +1,7 @@
 (function() {
-	var app = angular.module('app', [ 'ngAnimate' ]);
+	var app = angular.module('app', [ 
+		'ngAnimate',
+	]);
 
 	var ordenadorSeleccionado = false;
 	var armadorSeleccionado = false;
@@ -13,30 +15,18 @@
 		$http.get('/jugadores').success(function(jugadores) {
 			store.jugadores = jugadores;
 		});
-	} ]);
 
-	app.controller('GeneralController', [ '$http', function($http) {
-
-		var store = this;
-
-		store.visible = 0;
-		store.nombre = "";
-		store.jugador = {};
-
-		store.actualizar = function(n) {
-			store.nombre = n;
-			store.visible = 1;
-			$http.get('/jugadores/' + store.nombre).success(function(jugador) {
-				store.jugador = jugador;
-			});
+		store.jugador = {
+			nombre:""
 		};
 
-		store.ocultar = function() {
-			store.visible = 0;
+		store.noEstaVisible = function() {
+			return store.jugador.nombre === "";
 		};
 
-		store.estaVisible = function() {
-			return store.visible === 1;
+		store.actualizar = function(unJugador) {
+			console.log(unJugador);
+			store.jugador = unJugador;
 		};
 	} ]);
 
@@ -62,6 +52,15 @@
 			return ordenadorSeleccionado && armadorSeleccionado;
 		};
 
+		store.confirmarPartido = function() {
+			var texto = confirm("¿Desea generar el partido con estos equipos?");
+			if (texto == true) {
+				$http.get('/confirmar-partido');
+				alert("El partido se genero exitosamente");
+			} else {
+				alert("La operacion fue cancelada");
+			}
+		};
 	} ]);
 
 	app.controller('OrdenamientoController', [ '$http', function($http) {
@@ -147,13 +146,4 @@
 			controllerAs:'jc'
 		};
 	});*/
-	
-	logGeneracionEquipos = function() {
-		var texto = confirm("¿Desea generar el partido con estos equipos?");
-		if (texto == true) {
-			alert("El partido se genero exitosamente");
-		} else {
-			alert("La operacion fue cancelada");
-		}
-	}
 })();

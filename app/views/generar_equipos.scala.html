@@ -1,57 +1,55 @@
-<div ng-controller='GeneralController as gc'>
-	<h2 class="well well-default">Generar Equipos</h2>
+<h2 class="well well-default" style="text-align:center">Generar Equipos</h2>
 
-	<div style="margin:10px" ng-controller="OrdenamientoController as oc">
-	    <select class="form-control" ng-model="oc.seleccionado"
-	    		ng-options="ordenador for ordenador in oc.ordenadores"
-	            ng-change="oc.setOrdenador()">
-	        <option value="" disabled selected>Seleccione un ordenador</option>
-	    </select>
-	</div>
-	<div style="margin:10px" ng-controller="ArmadoController as ac">
-	    <select class="form-control" ng-model="ac.seleccionado"
-	    		ng-options="armador for armador in ac.armadores"
-	            ng-change="ac.setArmador()">
-	        <option value="" disabled selected>Seleccione un armador</option>
-	    </select>
-	</div>
+<div style="margin:10px" ng-controller="OrdenamientoController as oc">
+    <select class="form-control" ng-model="oc.seleccionado"
+    		ng-options="ordenador for ordenador in oc.ordenadores"
+            ng-change="oc.setOrdenador()">
+        <option value="" disabled selected>Seleccione un ordenador</option>
+    </select>
+</div>
+<div style="margin:10px" ng-controller="ArmadoController as ac">
+    <select class="form-control" ng-model="ac.seleccionado"
+    		ng-options="armador for armador in ac.armadores"
+            ng-change="ac.setArmador()">
+        <option value="" disabled selected>Seleccione un armador</option>
+    </select>
+</div>
 
-	<div ng-controller="EquipoController as ec">
-	    <button style="margin:10px" type="button" class="btn btn-info"
-	    		ng-show="ec.mostrar()" ng-click="ec.generarEquipos()">Generar Equipos</button>
+<div ng-controller="EquipoController as ec">
+    <button style="margin:10px" type="button" class="btn btn-info"
+    		ng-show="ec.mostrar()" ng-click="ec.generarEquipos()">Generar Equipos</button>
 
-	    <table ng-show="ec.estaVisible()">
-	        <td>
-	            <p style="text-align:center">Equipo A</p>
-	            <ul style="margin-left:10px" class="list-group">
-	                <a type="button" class="btn btn-default | list-group-item" style="margin-bottom:5px"
-	                        ng-repeat="jugador in ec.jugadores | limitTo:5"
-	                        ng-click="gc.actualizar(jugador.nombre)">
-						{{jugador.nombre}} ({{jugador.edad}} años)
-					</a>
-	            </ul>
-	            <!--<listar-jugadores filtros="| limitTo:5"></listar-jugadores>-->
-	        </td>
-	        
-	        <td>
-	            <p style="text-align:center">Equipo B</p>
-	            <ul style="margin-left:10px;margin-right:30px" class="list-group">
-	                <a type="button" class="btn btn-default | list-group-item" style="margin-bottom:5px"
-	                        ng-repeat="jugador in ec.jugadores | limitTo:-5"
-	                        ng-click="gc.actualizar(jugador.nombre)">
-	                	{{jugador.nombre}} ({{jugador.edad}} años)
-	                </a>
-	            </ul>
-	            <!-- <listar-jugadores filtros="| limitTo:-5"></listar-jugadores> -->
-	        </td>
+    <table ng-show="ec.estaVisible()" ng-controller="JugadoresController as jc">
+        <td>
+            <p style="text-align:center">Equipo A</p>
+            <ul style="margin-left:10px" class="list-group">
+                <a type="button" class="btn btn-default | list-group-item" style="margin-bottom:5px"
+                	ng-repeat="jugador in ec.jugadores | limitTo:5"
+                    ng-click="jc.actualizar(jugador)">
+				{{jugador.nombre}} ({{jugador.edad}} años)
+				</a>
+            </ul>
+            <!--<listar-jugadores filtros="| limitTo:5"></listar-jugadores>-->
+        </td>
+        
+        <td>
+            <p style="text-align:center">Equipo B</p>
+            <ul style="margin-left:10px;margin-right:30px" class="list-group">
+                <a type="button" class="btn btn-default | list-group-item" style="margin-bottom:5px"
+                	ng-repeat="jugador in ec.jugadores | limitTo:-5"
+                    ng-click="jc.actualizar(jugador)">
+				{{jugador.nombre}} ({{jugador.edad}} años)
+				</a>
+            </ul>
+            <!-- <listar-jugadores filtros="| limitTo:-5"></listar-jugadores> -->
+        </td>
 
-	        <td ng-show="gc.estaVisible()">
-	            <detalle-jugador></detalle-jugador>
-	        </td>
+        <td ng-hide="jc.noEstaVisible()">
+            <detalle-jugador></detalle-jugador>
+        </td>
 
-	    </table>
-	    <button style="margin:10px" type="button" class="btn btn-success"
-	            ng-show="ec.estaVisible()"
-	            onclick="logGeneracionEquipos()">Confirmar Equipos</button>
-	</div>
+    </table>
+    <button style="margin:10px" type="button" class="btn btn-success"
+            ng-show="ec.estaVisible()"
+            ng-click="ec.confirmarPartido()">Confirmar Equipos</button>
 </div>
