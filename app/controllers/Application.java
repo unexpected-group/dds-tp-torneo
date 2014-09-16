@@ -91,13 +91,13 @@ public class Application extends Controller {
 		return ok();
 	}
 
-	public static Result showJugadorView() {
-		return ok(jugador.render());
-	}
-	
 	public static Result confirmarPartido() {
 		partidoConfirmar.confirmarPartido();
 		return ok();
+	}
+	
+	public static Result showJugadorView() {
+		return ok(jugador.render());
 	}
 
 	public static Result showJugadoresView(){

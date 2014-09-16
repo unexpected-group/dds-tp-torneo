@@ -26,44 +26,44 @@ public class Partido {
 	private List<Inscripcion> inscripciones;
 	private Estado estado;
 	private List<Observer> observadores;
-	private List<Jugador> equipoA;
-	private List<Jugador> equipoB;
+	private List<Jugador> equipoLocal;
+	private List<Jugador> equipoVisitante;
 	private OrdenadorEquipos ordenadorEquipos;
 	private ArmadorEquipos armadorEquipos;
 
 	public Partido(LocalDate fecha, String lugar) {
-		super();
 		this.fecha = fecha;
 		this.lugar = lugar;
 		this.inscripciones = new ArrayList<>();
 		this.observadores = new ArrayList<>();
 		this.estado = new Pendiente();
-		this.equipoA = new ArrayList<>();
-		this.equipoB = new ArrayList<>();
+		this.equipoLocal = new ArrayList<>();
+		this.equipoVisitante = new ArrayList<>();
 	}
 
-	public Partido(LocalDate fecha, String lugar, PropuestasHome propuestasHome) {
-		super();
+	public Partido(LocalDate fecha,
+			String lugar,
+			PropuestasHome propuestasHome) {
 		this.fecha = fecha;
 		this.lugar = lugar;
 		this.inscripciones = new ArrayList<>();
 		this.observadores = new ArrayList<>();
 		this.observadores.add(propuestasHome);
 		this.estado = new Pendiente();
-		this.equipoA = new ArrayList<>();
-		this.equipoB = new ArrayList<>();
+		this.equipoLocal = new ArrayList<>();
+		this.equipoVisitante = new ArrayList<>();
 	}
 
-	public Partido(LocalDate fecha, String lugar, List<Inscripcion> inscripciones,
+	public Partido(LocalDate fecha, String lugar,
+			List<Inscripcion> inscripciones,
 			PropuestasHome propuestasHome) {
-		super();
 		this.fecha = fecha;
 		this.lugar = lugar;
 		this.inscripciones = inscripciones;
 		this.observadores = new ArrayList<>();
 		this.observadores.add(propuestasHome);
-		this.equipoA = new ArrayList<>();
-		this.equipoB = new ArrayList<>();
+		this.equipoLocal = new ArrayList<>();
+		this.equipoVisitante = new ArrayList<>();
 		if (inscripciones.size() < 10)
 			this.estado = new Pendiente();
 		else
@@ -83,14 +83,14 @@ public class Partido {
 	public void generarEquipos() {
 		List<Jugador> jugadores = obtenerJugadores();
 		ordenadorEquipos.ordenarJugadores(jugadores);
-		armadorEquipos.armarEquipos(jugadores, equipoA, equipoB);
+		armadorEquipos.armarEquipos(jugadores, equipoLocal, equipoVisitante);
 	}
 
-	// metodo creado para mostrar los equipos en la ui web
+	// metodo usado solo para mostrar los equipos en web
 	public ArrayList<Jugador> jugadoresPorEquipos() {
 		ArrayList<Jugador> jugadores = new ArrayList<>();
-		equipoA.forEach(jug -> jugadores.add(jug));
-		equipoB.forEach(jug -> jugadores.add(jug));
+		equipoLocal.forEach(jug -> jugadores.add(jug));
+		equipoVisitante.forEach(jug -> jugadores.add(jug));
 		return jugadores;
 	}
 	
@@ -141,7 +141,8 @@ public class Partido {
 	public Inscripcion buscarInscripcionDeJugador(Jugador jugador) {
 		Optional<Inscripcion> inscripcionParaSacar;
 		inscripcionParaSacar = inscripciones.stream()
-				.filter(inscripcion -> inscripcion.esDelJugador(jugador)).findFirst();
+				.filter(inscripcion -> inscripcion.esDelJugador(jugador))
+				.findFirst();
 		if (inscripcionParaSacar.isPresent())
 			return inscripcionParaSacar.get();
 		else
@@ -205,15 +206,19 @@ public class Partido {
 	}
 
 	public List<Jugador> getEquipoA() {
-		return equipoA;
+		return equipoLocal;
 	}
 
 	public List<Jugador> getEquipoB() {
-		return equipoB;
+		return equipoVisitante;
 	}
 
-	public OrdenadorEquipos getOrganizadorEquipos() {
+	public OrdenadorEquipos getOrdenadorEquipos() {
 		return ordenadorEquipos;
+	}
+	
+	public ArmadorEquipos getArmadorEquipos() {
+		return armadorEquipos;
 	}
 
 	public void setOrdenadorEquipos(OrdenadorEquipos organizadorEquipos) {
