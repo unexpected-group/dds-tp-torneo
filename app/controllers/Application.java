@@ -12,6 +12,7 @@ import model.ordenador.Handicap;
 import model.ordenador.OrdenadorEquipos;
 import model.ordenador.PromedioUltimasCalificaciones;
 import model.ordenador.PromedioUltimoPartido;
+import model.partido.Configuracion;
 import model.partido.Partido;
 import play.mvc.Controller;
 import play.mvc.Result;
@@ -23,6 +24,7 @@ import views.html.busqueda_jugadores;
 
 public class Application extends Controller {
 
+	// TODO: Eliminar el state en el controller
 	private static OrdenadorEquipos ordenador;
 	private static ArmadorEquipos armador;
 	private static Partido partidoConfirmar; 
@@ -45,17 +47,17 @@ public class Application extends Controller {
 
 	public static Result generarEquiposOpciones() {
 		Partido partido = PartidosHome.crearPartido();
-		partido.setOrdenadorEquipos(ordenador);
-		partido.setArmadorEquipos(armador);
+		partido.setConfiguracion(new Configuracion(ordenador, armador));
 		partido.generarEquipos();
 		partidoConfirmar = partido;
-		return ok(toJson(partido.jugadoresPorEquipos()));
+		return ok(toJson(partido.jugadoresOrdenadosPorEquipos()));
 	}
 	
 	public static Result obtenerCriteriosOrdenamiento() {
 		return ok(toJson(CriteriosOrdenamientoHome.getOpciones()));
 	}
 
+	// TODO: Eliminar el acoplamiento con los strings
 	public static Result setCriterioOrdenamiento(String id) {
 		switch (id) {
 		case "Handicap":

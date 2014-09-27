@@ -1,5 +1,6 @@
 package model.armador;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import model.jugador.Jugador;
@@ -7,13 +8,17 @@ import model.jugador.Jugador;
 public class ParesImpares implements ArmadorEquipos {
 
 	@Override
-	public void armarEquipos(List<Jugador> jugadores, List<Jugador> equipoLocal,
-			List<Jugador> equipoVisitante) {
+	public void armarEquipos(List<Jugador> jugadores) {
+		List<Jugador> local = new ArrayList<Jugador>();
+		List<Jugador> visitante = new ArrayList<Jugador>();
 		for (int i = 0; i < 10; i++) {
 			if (i % 2 == 0)
-				equipoLocal.add(jugadores.get(i));
+				local.add(jugadores.get(i));
 			else
-				equipoVisitante.add(jugadores.get(i));
+				visitante.add(jugadores.get(i));
 		}
+		jugadores.clear();
+		jugadores.addAll(local);
+		jugadores.addAll(visitante);
 	}
 }

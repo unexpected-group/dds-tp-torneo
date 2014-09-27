@@ -19,9 +19,9 @@ import org.junit.Test;
 public class GenerarEquiposTest {
 
 	private List<Jugador> jugadores = new ArrayList<>();
-	private List<Jugador> jugadoresCompararOrdenados = new ArrayList<>();
+	private List<Jugador> jugadoresOrdenados = new ArrayList<>();
 	private OrdenadorEquipos ordenador;
-	private ArmadorEquipos separador;
+	private ArmadorEquipos armador;
 
 	@Before
 	public void setUp() throws Exception {
@@ -43,50 +43,45 @@ public class GenerarEquiposTest {
 		when(jugadores.get(8).getHandicap()).thenReturn(6.0);
 		when(jugadores.get(9).getHandicap()).thenReturn(5.0);
 
-		jugadoresCompararOrdenados.add(jugadores.get(0));
-		jugadoresCompararOrdenados.add(jugadores.get(5));
-		jugadoresCompararOrdenados.add(jugadores.get(1));
-		jugadoresCompararOrdenados.add(jugadores.get(3));
-		jugadoresCompararOrdenados.add(jugadores.get(9));
-		jugadoresCompararOrdenados.add(jugadores.get(8));
-		jugadoresCompararOrdenados.add(jugadores.get(6));
-		jugadoresCompararOrdenados.add(jugadores.get(7));
-		jugadoresCompararOrdenados.add(jugadores.get(2));
-		jugadoresCompararOrdenados.add(jugadores.get(4));
+		jugadoresOrdenados.add(jugadores.get(0));
+		jugadoresOrdenados.add(jugadores.get(5));
+		jugadoresOrdenados.add(jugadores.get(1));
+		jugadoresOrdenados.add(jugadores.get(3));
+		jugadoresOrdenados.add(jugadores.get(9));
+		jugadoresOrdenados.add(jugadores.get(8));
+		jugadoresOrdenados.add(jugadores.get(6));
+		jugadoresOrdenados.add(jugadores.get(7));
+		jugadoresOrdenados.add(jugadores.get(2));
+		jugadoresOrdenados.add(jugadores.get(4));
 
 		ordenador = new Handicap();
 		ordenador.ordenarJugadores(jugadores);
 
-		assertEquals(jugadores, jugadoresCompararOrdenados);
+		assertEquals(jugadores, jugadoresOrdenados);
 	}
 
 	// con solo testear una forma de ordenar pensamos que es suficiente ya que
 	// las demas formas de ordenar son similares
 
 	@Test
-	public void separarEquiposPorParesImpares() {
-		List<Jugador> equipoA = new ArrayList<>();
-		List<Jugador> equipoB = new ArrayList<>();
-		List<Jugador> equipoImpares = new ArrayList<>();
-		List<Jugador> equipoPares = new ArrayList<>();
-
-		equipoImpares.add(jugadores.get(0));
-		equipoImpares.add(jugadores.get(2));
-		equipoImpares.add(jugadores.get(4));
-		equipoImpares.add(jugadores.get(6));
-		equipoImpares.add(jugadores.get(8));
-
-		equipoPares.add(jugadores.get(1));
-		equipoPares.add(jugadores.get(3));
-		equipoPares.add(jugadores.get(5));
-		equipoPares.add(jugadores.get(7));
-		equipoPares.add(jugadores.get(9));
-
-		separador = new ParesImpares();
-		separador.armarEquipos(jugadores, equipoA, equipoB);
-
-		assertEquals(equipoA, equipoImpares);
-		assertEquals(equipoB, equipoPares);
+	public void armarEquiposPorParesImpares() {
+		List<Jugador> lista = new ArrayList<>();
+		
+		lista.add(jugadores.get(0));
+		lista.add(jugadores.get(2));
+		lista.add(jugadores.get(4));
+		lista.add(jugadores.get(6));
+		lista.add(jugadores.get(8));
+		lista.add(jugadores.get(1));
+		lista.add(jugadores.get(3));
+		lista.add(jugadores.get(5));
+		lista.add(jugadores.get(7));
+		lista.add(jugadores.get(9));
+		
+		armador = new ParesImpares();
+		armador.armarEquipos(jugadores);
+		
+		assertEquals(lista, jugadores);
 	}
 
 	// el separar equipos segun posiciones dadas es muy trivial para testear ya

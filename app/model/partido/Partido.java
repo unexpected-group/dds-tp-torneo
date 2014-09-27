@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Optional;
 import java.util.function.Predicate;
 
-import model.armador.ArmadorEquipos;
 import model.excepciones.CuposCompletosException;
 import model.excepciones.JugadorInscriptoException;
 import model.excepciones.JugadorNoInscriptoException;
@@ -17,7 +16,6 @@ import model.inscripcion.Inscripcion;
 import model.inscripcion.Prioridad;
 import model.jugador.Jugador;
 import model.jugador.Observer;
-import model.ordenador.OrdenadorEquipos;
 
 public class Partido {
 
@@ -26,44 +24,34 @@ public class Partido {
 	private List<Inscripcion> inscripciones;
 	private Estado estado;
 	private List<Observer> observadores;
-	private List<Jugador> equipoLocal;
-	private List<Jugador> equipoVisitante;
-	private OrdenadorEquipos ordenadorEquipos;
-	private ArmadorEquipos armadorEquipos;
+	private Configuracion configuracion;
+	private List<Jugador> jugadores;
 
+	// TODO: Refactorizar los constructores del partido
 	public Partido(LocalDate fecha, String lugar) {
 		this.fecha = fecha;
 		this.lugar = lugar;
 		this.inscripciones = new ArrayList<>();
 		this.observadores = new ArrayList<>();
 		this.estado = new Pendiente();
-		this.equipoLocal = new ArrayList<>();
-		this.equipoVisitante = new ArrayList<>();
 	}
 
-	public Partido(LocalDate fecha,
-			String lugar,
-			PropuestasHome propuestasHome) {
+	public Partido(LocalDate fecha, String lugar, PropuestasHome propuestas) {
 		this.fecha = fecha;
 		this.lugar = lugar;
 		this.inscripciones = new ArrayList<>();
 		this.observadores = new ArrayList<>();
-		this.observadores.add(propuestasHome);
+		this.observadores.add(propuestas);
 		this.estado = new Pendiente();
-		this.equipoLocal = new ArrayList<>();
-		this.equipoVisitante = new ArrayList<>();
 	}
 
-	public Partido(LocalDate fecha, String lugar,
-			List<Inscripcion> inscripciones,
+	public Partido(LocalDate fecha, String lugar, List<Inscripcion> inscripciones,
 			PropuestasHome propuestasHome) {
 		this.fecha = fecha;
 		this.lugar = lugar;
 		this.inscripciones = inscripciones;
 		this.observadores = new ArrayList<>();
 		this.observadores.add(propuestasHome);
-		this.equipoLocal = new ArrayList<>();
-		this.equipoVisitante = new ArrayList<>();
 		if (inscripciones.size() < 10)
 			this.estado = new Pendiente();
 		else
@@ -74,23 +62,18 @@ public class Partido {
 		this(fecha, lugar, inscripciones, new PropuestasHome(null));
 	}
 
-	public List<Jugador> obtenerJugadores() {
-		List<Jugador> jugadores = new ArrayList<Jugador>();
+	public void obtenerJugadores() {
+		jugadores = new ArrayList<Jugador>();
 		inscripciones.forEach(ins -> jugadores.add(ins.getJugador()));
-		return jugadores;
 	}
 
 	public void generarEquipos() {
-		List<Jugador> jugadores = obtenerJugadores();
-		ordenadorEquipos.ordenarJugadores(jugadores);
-		armadorEquipos.armarEquipos(jugadores, equipoLocal, equipoVisitante);
+		obtenerJugadores();
+		configuracion.getOrdenadorEquipos().ordenarJugadores(jugadores);
+		configuracion.getArmadorEquipos().armarEquipos(jugadores);
 	}
 
-	// metodo usado solo para mostrar los equipos en web
-	public ArrayList<Jugador> jugadoresPorEquipos() {
-		ArrayList<Jugador> jugadores = new ArrayList<>();
-		equipoLocal.forEach(jug -> jugadores.add(jug));
-		equipoVisitante.forEach(jug -> jugadores.add(jug));
+	public List<Jugador> jugadoresOrdenadosPorEquipos() {
 		return jugadores;
 	}
 	
@@ -205,27 +188,11 @@ public class Partido {
 		this.observadores = observadores;
 	}
 
-	public List<Jugador> getEquipoA() {
-		return equipoLocal;
+	public Configuracion getConfiguracion() {
+		return configuracion;
 	}
 
-	public List<Jugador> getEquipoB() {
-		return equipoVisitante;
-	}
-
-	public OrdenadorEquipos getOrdenadorEquipos() {
-		return ordenadorEquipos;
-	}
-	
-	public ArmadorEquipos getArmadorEquipos() {
-		return armadorEquipos;
-	}
-
-	public void setOrdenadorEquipos(OrdenadorEquipos organizadorEquipos) {
-		this.ordenadorEquipos = organizadorEquipos;
-	}
-
-	public void setArmadorEquipos(ArmadorEquipos generadorEquipos) {
-		this.armadorEquipos = generadorEquipos;
+	public void setConfiguracion(Configuracion configuracion) {
+		this.configuracion = configuracion;
 	}
 }
