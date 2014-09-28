@@ -116,15 +116,15 @@ public class Application extends Controller {
 	public static Result hello() {
 		JsonNode json = request().body().asJson();
 		if (json == null) {
-			return badRequest("Expecting Json data");
+			return badRequest("No se recibio ningun Json");
 		} else {
-			String name = json.findPath("name").textValue();
+			String name = json.findPath("nombre").textValue();
 			if (name == null) {
-				return badRequest("Missing parameter [name]");
+				return badRequest("Parametro faltante [nombre]");
 			} else {
-				return ok("Hello " + name);
+				// return ok(name);
+				return redirect(routes.Application.index());
 			}
 		}
 	}
-
 }

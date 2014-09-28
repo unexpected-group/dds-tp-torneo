@@ -113,17 +113,13 @@
 		};
 
 		this.test = function() {
-			$http({
-				method : 'POST',
-				url : '/test',
-				data : {
-					"name" : "juan",
-					"age" : 21
-				}
+			$http.post('/test', {
+				"nombre" : "Juan",
+				"edad" : 21
 			}).success(function(response) {
-				console.log("OK")
+				console.log("Post OK")
 			}).error(function(response) {
-				console.log("BAD")
+				console.log("Post WRONG")
 			});
 		};
 	} ]);
