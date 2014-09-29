@@ -26,27 +26,34 @@ import com.fasterxml.jackson.databind.JsonNode;
 
 public class Application extends Controller {
 
+	// TODO: Eliminar el acoplamiento con los strings
 	// TODO: Eliminar el state en el controller
+
 	private static OrdenadorEquipos ordenador;
 	private static ArmadorEquipos armador;
 	private static Partido partidoConfirmar;
 
+	// GET /
 	public static Result index() {
 		return ok(index.render("Torneo de Futbol 5"));
 	}
 
+	// GET /jugadores
 	public static Result obtenerJugadores() {
 		return ok(toJson(JugadoresHome.getJugadores()));
 	}
 
+	// GET /jugadores/:nombre
 	public static Result detallesJugador(String nombre) {
 		return ok(toJson(JugadoresHome.getJugador(nombre)));
 	}
 
+	// GET /generar-equipos
 	public static Result generarEquipos() {
 		return ok(generar_equipos.render());
 	}
 
+	// GET /generar-equipos-opciones
 	public static Result generarEquiposOpciones() {
 		Partido partido = PartidosHome.crearPartido();
 		partido.setConfiguracion(new Configuracion(ordenador, armador));
@@ -55,21 +62,22 @@ public class Application extends Controller {
 		return ok(toJson(partido.jugadoresOrdenadosPorEquipos()));
 	}
 
+	// GET /criterios-ordenamiento
 	public static Result obtenerCriteriosOrdenamiento() {
 		return ok(toJson(CriteriosOrdenamientoHome.getOpciones()));
 	}
 
-	// TODO: Eliminar el acoplamiento con los strings
+	// GET /criterios-ordenamiento/:id
 	public static Result setCriterioOrdenamiento(String id) {
 		switch (id) {
 		case "Handicap":
 			ordenador = new Handicap();
 			break;
 		case "Promedio del ultimo partido":
-			ordenador = new PromedioUltimoPartido(null); // hardcodeado
+			ordenador = new PromedioUltimoPartido(null); // hardcodeado en null
 			break;
 		case "Promedio de las ultimas calificaciones":
-			ordenador = new PromedioUltimasCalificaciones(0); // hardcodeado
+			ordenador = new PromedioUltimasCalificaciones(0); // hardcodeado en 0
 			break;
 		default:
 			break;
@@ -77,10 +85,12 @@ public class Application extends Controller {
 		return ok();
 	}
 
+	// GET /criterios-armado
 	public static Result obtenerCriteriosArmado() {
 		return ok(toJson(CriteriosArmadoHome.getOpciones()));
 	}
 
+	// GET /criterios-armado/:id
 	public static Result setCriterioArmado(String id) {
 		switch (id) {
 		case "Posiciones pares e impares":
@@ -95,19 +105,28 @@ public class Application extends Controller {
 		return ok();
 	}
 
+	// POST /confirmar-partido
 	public static Result confirmarPartido() {
-		partidoConfirmar.confirmarPartido();
-		return ok();
+		JsonNode json = request().body().asJson();
+		if (json == null) {
+			return badRequest("No se recibio ningun Json");
+		} else {
+			partidoConfirmar.confirmarPartido();
+			return ok(json);
+		}
 	}
 
+	// GET /detalle-jugador
 	public static Result showJugadorView() {
 		return ok(jugador.render());
 	}
 
+	// GET /listar-jugadores
 	public static Result showJugadoresView() {
 		return ok(listar_jugadores.render());
 	}
 
+	// GET /busqueda-jugadores
 	public static Result showBusquedaJugadoresView() {
 		return ok(busqueda_jugadores.render());
 	}
@@ -122,7 +141,6 @@ public class Application extends Controller {
 			if (name == null) {
 				return badRequest("Parametro faltante [nombre]");
 			} else {
-				// return ok(name);
 				return redirect(routes.Application.index());
 			}
 		}

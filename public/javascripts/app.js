@@ -1,4 +1,5 @@
 (function() {
+	
 	var app = angular.module('app', [ 'ngAnimate', ]);
 
 	var ordenadorSeleccionado = false;
@@ -28,45 +29,43 @@
 		};
 	} ]);
 
-	app
-			.controller(
-					'EquipoController',
-					[
-							'$http',
-							function($http) {
+	app.controller('EquipoController',[ '$http', function($http) {
 
-								var store = this;
+		var store = this;
 
-								store.visible = 0;
-								store.jugadores = [];
+		store.visible = 0;
+		store.jugadores = [];
 
-								store.generarEquipos = function() {
-									$http.get('/generar-equipos-opciones')
-											.success(function(jugadores) {
-												store.jugadores = jugadores;
-												store.visible = 1;
-											});
-								};
+		store.generarEquipos = function() {
+			$http.get('/generar-equipos-opciones').success(function(jugadores) {
+				store.jugadores = jugadores;
+				store.visible = 1;
+			});
+		};
 
-								store.estaVisible = function() {
-									return store.visible === 1;
-								};
+		store.estaVisible = function() {
+			return store.visible === 1;
+		};
 
-								store.mostrar = function() {
-									return ordenadorSeleccionado
-											&& armadorSeleccionado;
-								};
+		store.mostrar = function() {
+			return ordenadorSeleccionado && armadorSeleccionado;
+		};
 
-								store.confirmarPartido = function() {
-									var texto = confirm("¿Desea generar el partido con estos equipos?");
-									if (texto == true) {
-										$http.get('/confirmar-partido');
-										alert("El partido se genero exitosamente");
-									} else {
-										alert("La operacion fue cancelada");
-									}
-								};
-							} ]);
+		store.confirmarPartido = function() {
+			$http.post('/confirmar-partido', store.jugadores).success(function(response) {
+				console.log("Post OK");
+				alert("El partido se genero exitosamente");
+			}).error(function(response) {
+				console.log("Error");
+			});
+//			var texto = confirm("¿Desea generar el partido con estos equipos?");
+//			if (texto == true) {
+//				alert("El partido se genero exitosamente");
+//			} else {
+//				alert("La operacion fue cancelada");
+//			}
+		};
+	} ]);
 
 	app.controller('OrdenamientoController', [ '$http', function($http) {
 
@@ -117,9 +116,9 @@
 				"nombre" : "Juan",
 				"edad" : 21
 			}).success(function(response) {
-				console.log("Post OK")
+				console.log("Post OK");
 			}).error(function(response) {
-				console.log("Post WRONG")
+				console.log("Post WRONG");
 			});
 		};
 	} ]);
@@ -144,14 +143,12 @@
 			templateUrl : '/busqueda-jugadores'
 		};
 	});
-	/*
-	 * app.directive('listarJugadores', function() { return { restrict: 'E',
-	 * templateUrl: '/listar-jugadores', scope:{ filtros: '@filtros' },
-	 * controller: function($http){ var store = this;
-	 * 
-	 * store.jugadores = [];
-	 * 
-	 * $http.get('/jugadores').success(function(jugadores) { store.jugadores =
-	 * jugadores; }); }, controllerAs:'jc' }; });
-	 */
+//	app.directive('listarJugadores', function() { return { restrict: 'E',
+//	templateUrl: '/listar-jugadores', scope:{ filtros: '@filtros' },
+//	controller: function($http){ var store = this;
+//	
+//	store.jugadores = [];
+//	
+//	$http.get('/jugadores').success(function(jugadores) { store.jugadores =
+//	jugadores; }); }, controllerAs:'jc' }; });
 })();

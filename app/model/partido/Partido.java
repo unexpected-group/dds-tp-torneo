@@ -19,6 +19,8 @@ import model.jugador.Observer;
 
 public class Partido {
 
+	// TODO: Refactorizar los constructores del partido
+
 	private LocalDate fecha;
 	private String lugar;
 	private List<Inscripcion> inscripciones;
@@ -27,7 +29,6 @@ public class Partido {
 	private Configuracion configuracion;
 	private List<Jugador> jugadores;
 
-	// TODO: Refactorizar los constructores del partido
 	public Partido(LocalDate fecha, String lugar) {
 		this.fecha = fecha;
 		this.lugar = lugar;
@@ -76,7 +77,7 @@ public class Partido {
 	public List<Jugador> jugadoresOrdenadosPorEquipos() {
 		return jugadores;
 	}
-	
+
 	public void confirmarPartido() {
 		PartidosHome.agregarPartido(this);
 	}
@@ -86,7 +87,7 @@ public class Partido {
 			if (inscripcion.puedeInscribirse(this))
 				agregarInscripcion(inscripcion);
 			else
-				throw new NoSeCumpleCondicionException("NO SE CUMPLE LA CONDICION DEL JUGADOR");
+				throw new NoSeCumpleCondicionException("NO SE CUMPLE LA CONDICION");
 		} else if (inscripcion.desplazoJugador(this))
 			agregarInscripcion(inscripcion);
 		else
@@ -94,16 +95,20 @@ public class Partido {
 	}
 
 	public boolean desplazarJugadorCondicional() {
-		return desplazarJugador(inscripcion -> inscripcion.tienePrioridad(Prioridad.CONDICIONAL));
+		return desplazarJugador(inscripcion
+				-> inscripcion.tienePrioridad(Prioridad.CONDICIONAL));
 	}
 
 	public boolean desplazarJugadorSolidario() {
-		return desplazarJugador(inscripcion -> inscripcion.tienePrioridad(Prioridad.SOLIDARIO));
+		return desplazarJugador(inscripcion
+				-> inscripcion.tienePrioridad(Prioridad.SOLIDARIO));
 	}
 
 	private boolean desplazarJugador(Predicate<Inscripcion> condicion) {
 		Optional<Inscripcion> inscripcionParaSacar;
-		inscripcionParaSacar = inscripciones.stream().filter(condicion).findFirst();
+		inscripcionParaSacar = inscripciones.stream()
+				.filter(condicion)
+				.findFirst();
 		if (inscripcionParaSacar.isPresent()) {
 			estado.quitarInscripcion(inscripcionParaSacar.get(), this);
 			return true;
@@ -137,7 +142,8 @@ public class Partido {
 	}
 
 	private void verificarCondiciones() {
-		inscripciones.removeIf(inscripcion -> inscripcion.noVerificaLaCondicion(this));
+		inscripciones.removeIf(inscripcion
+				-> inscripcion.noVerificaLaCondicion(this));
 	}
 
 	public boolean hayCupos() {
