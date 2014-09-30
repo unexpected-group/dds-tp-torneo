@@ -19,63 +19,51 @@ import model.jugador.Observer;
 
 public class Partido {
 
-	// TODO: Refactorizar los constructores del partido
-
 	private LocalDate fecha;
 	private String lugar;
-	private List<Inscripcion> inscripciones;
 	private Estado estado;
-	private List<Observer> observadores;
 	private Configuracion configuracion;
-	private List<Jugador> jugadores;
+	private List<Inscripcion> inscripciones;
+	private List<Observer> observadores;
+	private List<Jugador> jugadoresPartido;
 
 	public Partido(LocalDate fecha, String lugar) {
-		this.fecha = fecha;
-		this.lugar = lugar;
-		this.inscripciones = new ArrayList<>();
-		this.observadores = new ArrayList<>();
-		this.estado = new Pendiente();
+		this(fecha, lugar, null, new ArrayList<>());
 	}
 
 	public Partido(LocalDate fecha, String lugar, PropuestasHome propuestas) {
-		this.fecha = fecha;
-		this.lugar = lugar;
-		this.inscripciones = new ArrayList<>();
-		this.observadores = new ArrayList<>();
-		this.observadores.add(propuestas);
-		this.estado = new Pendiente();
+		this(fecha, lugar, propuestas, new ArrayList<>());
+	}
+	
+	public Partido(LocalDate fecha, String lugar, List<Inscripcion> inscripciones) {
+		this(fecha, lugar, null, inscripciones);
 	}
 
-	public Partido(LocalDate fecha, String lugar, List<Inscripcion> inscripciones,
-			PropuestasHome propuestasHome) {
+	public Partido(LocalDate fecha,	String lugar, PropuestasHome propuestas,
+			List<Inscripcion> inscripciones) {
+		if (inscripciones == null)
+			throw new RuntimeException("PARTIDO SIN LISTA DE INSCRIPCIONES");
 		this.fecha = fecha;
 		this.lugar = lugar;
-		this.inscripciones = inscripciones;
 		this.observadores = new ArrayList<>();
-		this.observadores.add(propuestasHome);
+		this.inscripciones = inscripciones;
+		if (propuestas != null)
+			this.observadores.add(propuestas);
 		if (inscripciones.size() < 10)
 			this.estado = new Pendiente();
 		else
 			this.estado = new Completo();
 	}
 
-	public Partido(LocalDate fecha, String lugar, List<Inscripcion> inscripciones) {
-		this(fecha, lugar, inscripciones, new PropuestasHome(null));
+	private void cargarJugadores() {
+		jugadoresPartido = new ArrayList<Jugador>();
+		inscripciones.forEach(ins -> jugadoresPartido.add(ins.getJugador()));
 	}
 
-	public void obtenerJugadores() {
-		jugadores = new ArrayList<Jugador>();
-		inscripciones.forEach(ins -> jugadores.add(ins.getJugador()));
-	}
-
-	public void generarEquipos() {
-		obtenerJugadores();
-		configuracion.getOrdenadorEquipos().ordenarJugadores(jugadores);
-		configuracion.getArmadorEquipos().armarEquipos(jugadores);
-	}
-
-	public List<Jugador> jugadoresOrdenadosPorEquipos() {
-		return jugadores;
+	public void aplicarConfiguracion() {
+		cargarJugadores();
+		configuracion.getOrdenadorEquipos().ordenarJugadores(jugadoresPartido);
+		configuracion.getArmadorEquipos().armarEquipos(jugadoresPartido);
 	}
 
 	public void confirmarPartido() {
@@ -200,5 +188,9 @@ public class Partido {
 
 	public void setConfiguracion(Configuracion configuracion) {
 		this.configuracion = configuracion;
+	}
+
+	public List<Jugador> getJugadoresPartido() {
+		return jugadoresPartido;
 	}
 }

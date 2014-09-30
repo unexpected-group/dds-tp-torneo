@@ -21,7 +21,7 @@ import model.partido.Pendiente;
 import org.junit.Before;
 import org.junit.Test;
 
-public class PartidoTest {
+public class PartidosTest {
 
 	private Partido partido;
 	private ArrayList<Inscripcion> ochoInscripcionesEstandar;

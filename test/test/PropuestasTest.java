@@ -9,7 +9,7 @@ import model.propuesta.Propuesta;
 import org.junit.Before;
 import org.junit.Test;
 
-public class SistemaTest {
+public class PropuestasTest {
 
 	private PropuestasHome propuestas;
 	private Propuesta propuesta;
@@ -18,7 +18,7 @@ public class SistemaTest {
 
 	@Before
 	public void setup() {
-		propuestas = new PropuestasHome(null);
+		propuestas = new PropuestasHome();
 		juan = new Jugador("juan", 20);
 		carlos = new Jugador("carlos", 21);
 		juan.agregarAmigo(carlos);

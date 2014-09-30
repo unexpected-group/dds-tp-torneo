@@ -6,14 +6,13 @@ import java.util.stream.Stream;
 
 import model.jugador.Jugador;
 import model.jugador.Observer;
-import model.ordenador.OrdenadorEquipos;
 import model.propuesta.Propuesta;
 
 public class PropuestasHome implements Observer {
 
 	private List<Propuesta> propuestas;
 
-	public PropuestasHome(OrdenadorEquipos organizadorEquipos) {
+	public PropuestasHome() {
 		this.propuestas = new ArrayList<>();
 	}
 

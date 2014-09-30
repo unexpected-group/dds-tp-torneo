@@ -15,7 +15,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-public class JugadorTest {
+public class JugadoresTest {
 
 	private Partido partido;
 	private Jugador juan;
@@ -72,7 +72,7 @@ public class JugadorTest {
 
 	@Test
 	public void proponerUnJugador() {
-		PropuestasHome propuestas = new PropuestasHome(null);
+		PropuestasHome propuestas = new PropuestasHome();
 		juan.agregarAmigo(carlos);
 
 		juan.proponerAmigo(propuestas, carlos);

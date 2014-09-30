@@ -57,9 +57,9 @@ public class Application extends Controller {
 	public static Result generarEquiposOpciones() {
 		Partido partido = PartidosHome.crearPartido();
 		partido.setConfiguracion(new Configuracion(ordenador, armador));
-		partido.generarEquipos();
+		partido.aplicarConfiguracion();
 		partidoConfirmar = partido;
-		return ok(toJson(partido.jugadoresOrdenadosPorEquipos()));
+		return ok(toJson(partido.getJugadoresPartido()));
 	}
 
 	// GET /criterios-ordenamiento
@@ -74,10 +74,10 @@ public class Application extends Controller {
 			ordenador = new Handicap();
 			break;
 		case "Promedio del ultimo partido":
-			ordenador = new PromedioUltimoPartido(null); // hardcodeado en null
+			ordenador = new PromedioUltimoPartido(null); // hardcodeado
 			break;
 		case "Promedio de las ultimas calificaciones":
-			ordenador = new PromedioUltimasCalificaciones(0); // hardcodeado en 0
+			ordenador = new PromedioUltimasCalificaciones(0); // hardcodeado
 			break;
 		default:
 			break;

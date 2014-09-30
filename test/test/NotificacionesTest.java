@@ -36,7 +36,7 @@ public class NotificacionesTest {
 	@Test
 	public void notificarAlAdministradorAlSacarUnJugadorCuandoElPartidoEstaConfirmado() {
 		PropuestasHome propuestas = mock(PropuestasHome.class);
-		partido = new Partido(null, null, diezInscripcionesEstandar, propuestas);
+		partido = new Partido(null, null, propuestas, diezInscripcionesEstandar);
 
 		diezInscripcionesEstandar.get(3).getJugador().darseDeBaja(partido);
 
@@ -46,7 +46,7 @@ public class NotificacionesTest {
 	@Test
 	public void notificarAlAdministradorQueElPartidoEstaConfirmado() {
 		PropuestasHome propuestas = mock(PropuestasHome.class);
-		partido = new Partido(null, null, nueveInscripcionesEstandar, propuestas);
+		partido = new Partido(null, null, propuestas, nueveInscripcionesEstandar);
 		Jugador jugador = new Jugador("A", 99);
 		Inscripcion estandar = new Estandar(jugador);
 
