@@ -5,6 +5,8 @@
 	var ordenadorSeleccionado = false;
 	var armadorSeleccionado = false;
 
+	// CONTROLLERS
+	
 	app.controller('JugadoresController', [ '$http', function($http) {
 
 		var store = this;
@@ -34,11 +36,11 @@
 		var store = this;
 
 		store.visible = 0;
-		store.jugadores = [];
+		store.partido = {};
 
 		store.generarEquipos = function() {
-			$http.get('/generar-equipos-opciones').success(function(jugadores) {
-				store.jugadores = jugadores;
+			$http.get('/generar-equipos-opciones').success(function(/*jugadores*/partido) {
+				store.partido = partido;
 				store.visible = 1;
 			});
 		};
@@ -52,18 +54,12 @@
 		};
 
 		store.confirmarPartido = function() {
-			$http.post('/confirmar-partido', store.jugadores).success(function(response) {
+			$http.post('/confirmar-partido', store.partido).success(function(response) {
 				console.log("Post OK");
 				alert("El partido se genero exitosamente");
 			}).error(function(response) {
 				console.log("Error");
 			});
-//			var texto = confirm("¿Desea generar el partido con estos equipos?");
-//			if (texto == true) {
-//				alert("El partido se genero exitosamente");
-//			} else {
-//				alert("La operacion fue cancelada");
-//			}
 		};
 	} ]);
 
@@ -110,19 +106,10 @@
 		this.isSelected = function(index) {
 			return index === current;
 		};
-
-		this.test = function() {
-			$http.post('/test', {
-				"nombre" : "Juan",
-				"edad" : 21
-			}).success(function(response) {
-				console.log("Post OK");
-			}).error(function(response) {
-				console.log("Post WRONG");
-			});
-		};
 	} ]);
 
+	// DIRECTIVES
+	
 	app.directive('detalleJugador', function() {
 		return {
 			restrict : 'E',
@@ -143,12 +130,18 @@
 			templateUrl : '/busqueda-jugadores'
 		};
 	});
-//	app.directive('listarJugadores', function() { return { restrict: 'E',
-//	templateUrl: '/listar-jugadores', scope:{ filtros: '@filtros' },
-//	controller: function($http){ var store = this;
-//	
-//	store.jugadores = [];
-//	
-//	$http.get('/jugadores').success(function(jugadores) { store.jugadores =
-//	jugadores; }); }, controllerAs:'jc' }; });
 })();
+
+//	app.directive('listarJugadores', function() {
+//		return { restrict: 'E', templateUrl: '/listar-jugadores',
+//			scope:{ filtros: '@filtros' }, controller: function($http) {
+//
+//				var store = this;
+//				store.jugadores = [];
+//		
+//				$http.get('/jugadores').success(function(jugadores) {
+//					store.jugadores = jugadores;
+//				}); 
+//			}, controllerAs:'jc'
+//		}; 
+//	});

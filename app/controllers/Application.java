@@ -1,6 +1,8 @@
 package controllers;
 
 import static play.libs.Json.toJson;
+import static play.libs.Json.fromJson;
+
 import model.armador.ArmadorEquipos;
 import model.armador.ParesImpares;
 import model.armador.PosicionesDadas;
@@ -27,11 +29,9 @@ import com.fasterxml.jackson.databind.JsonNode;
 public class Application extends Controller {
 
 	// TODO: Eliminar el acoplamiento con los strings
-	// TODO: Eliminar el state en el controller
 
 	private static OrdenadorEquipos ordenador;
 	private static ArmadorEquipos armador;
-	private static Partido partidoConfirmar;
 
 	// GET /
 	public static Result index() {
@@ -58,8 +58,7 @@ public class Application extends Controller {
 		Partido partido = PartidosHome.crearPartido();
 		partido.setConfiguracion(new Configuracion(ordenador, armador));
 		partido.aplicarConfiguracion();
-		partidoConfirmar = partido;
-		return ok(toJson(partido.getJugadoresPartido()));
+		return ok(toJson(partido));
 	}
 
 	// GET /criterios-ordenamiento
@@ -111,7 +110,8 @@ public class Application extends Controller {
 		if (json == null) {
 			return badRequest("No se recibio ningun Json");
 		} else {
-			partidoConfirmar.confirmarPartido();
+			Partido partido = fromJson(json, Partido.class);
+			partido.confirmarPartido();
 			return ok(json);
 		}
 	}
@@ -129,20 +129,5 @@ public class Application extends Controller {
 	// GET /busqueda-jugadores
 	public static Result showBusquedaJugadoresView() {
 		return ok(busqueda_jugadores.render());
-	}
-
-	// POST /test
-	public static Result hello() {
-		JsonNode json = request().body().asJson();
-		if (json == null) {
-			return badRequest("No se recibio ningun Json");
-		} else {
-			String name = json.findPath("nombre").textValue();
-			if (name == null) {
-				return badRequest("Parametro faltante [nombre]");
-			} else {
-				return redirect(routes.Application.index());
-			}
-		}
 	}
 }

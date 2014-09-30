@@ -24,7 +24,7 @@
             <p style="text-align:center">Equipo A</p>
             <ul style="margin-left:10px" class="list-group">
                 <a type="button" class="btn btn-default | list-group-item" style="margin-bottom:5px"
-                	ng-repeat="jugador in ec.jugadores | limitTo:5"
+                	ng-repeat="jugador in ec.partido.jugadoresPartido | limitTo:5"
                     ng-click="jc.actualizar(jugador)">
 				{{jugador.nombre}} ({{jugador.edad}} años)
 				</a>
@@ -36,7 +36,7 @@
             <p style="text-align:center">Equipo B</p>
             <ul style="margin-left:10px;margin-right:30px" class="list-group">
                 <a type="button" class="btn btn-default | list-group-item" style="margin-bottom:5px"
-                	ng-repeat="jugador in ec.jugadores | limitTo:-5"
+                	ng-repeat="jugador in ec.partido.jugadoresPartido | limitTo:-5"
                     ng-click="jc.actualizar(jugador)">
 				{{jugador.nombre}} ({{jugador.edad}} años)
 				</a>
