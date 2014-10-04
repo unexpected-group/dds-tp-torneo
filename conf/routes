@@ -10,11 +10,11 @@ GET		/generar-equipos-opciones  		controllers.Application.generarEquiposOpciones
 
 POST	/confirmar-partido				controllers.Application.confirmarPartido()
 
-GET		/criterios-ordenamiento			controllers.Application.obtenerCriteriosOrdenamiento()
-POST	/criterios-ordenamiento			controllers.Application.setCriterioOrdenamiento()
+GET		/ordenadores			controllers.Application.obtenerCriteriosOrdenamiento()
+POST	/ordenadores			controllers.Application.setCriterioOrdenamiento()
 
-GET		/criterios-armado				controllers.Application.obtenerCriteriosArmado()
-POST	/criterios-armado				controllers.Application.setCriterioArmado()
+GET		/armadores				controllers.Application.obtenerCriteriosArmado()
+POST	/armadores				controllers.Application.setCriterioArmado()
 
 POST	/configuracion					controllers.Application.setConfiguracion()
 
