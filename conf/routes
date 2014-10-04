@@ -11,10 +11,12 @@ GET		/generar-equipos-opciones  		controllers.Application.generarEquiposOpciones
 POST	/confirmar-partido				controllers.Application.confirmarPartido()
 
 GET		/criterios-ordenamiento			controllers.Application.obtenerCriteriosOrdenamiento()
-GET		/criterios-ordenamiento/:id		controllers.Application.setCriterioOrdenamiento(id)
+POST	/criterios-ordenamiento			controllers.Application.setCriterioOrdenamiento()
 
 GET		/criterios-armado				controllers.Application.obtenerCriteriosArmado()
-GET		/criterios-armado/:id			controllers.Application.setCriterioArmado(id)
+POST	/criterios-armado				controllers.Application.setCriterioArmado()
+
+POST	/configuracion					controllers.Application.setConfiguracion()
 
 GET		/detalle-jugador				controllers.Application.showJugadorView()
 GET		/listar-jugadores				controllers.Application.showJugadoresView()

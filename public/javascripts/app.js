@@ -5,8 +5,6 @@
 	var ordenadorSeleccionado = false;
 	var armadorSeleccionado = false;
 
-	// CONTROLLERS
-	
 	app.controller('JugadoresController', [ '$http', function($http) {
 
 		var store = this;
@@ -37,12 +35,23 @@
 
 		store.visible = 0;
 		store.partido = {};
+		store.configuracion = {
+				"ordenador": "Handicap",
+				"armador": "Posiciones pares e impares"
+		};
 
 		store.generarEquipos = function() {
-			$http.get('/generar-equipos-opciones').success(function(/*jugadores*/partido) {
+			$http.get('/generar-equipos-opciones').success(function(partido) {
 				store.partido = partido;
 				store.visible = 1;
 			});
+			
+//			$http.post('/configuracion', store.configuracion).success(function(response) {
+//				console.log("Post OK");
+//			}).error(function(response) {
+//				console.log("Error en el POST");
+//			});
+			
 		};
 
 		store.estaVisible = function() {
@@ -58,7 +67,7 @@
 				console.log("Post OK");
 				alert("El partido se genero exitosamente");
 			}).error(function(response) {
-				console.log("Error");
+				console.log("Error en el POST");
 			});
 		};
 	} ]);
@@ -74,7 +83,14 @@
 		});
 
 		store.setOrdenador = function() {
-			$http.get('/criterios-ordenamiento/' + store.seleccionado);
+//			$http.get('/criterios-ordenamiento/' + store.seleccionado);
+			$http.post('/criterios-ordenamiento', {
+				"ordenador": store.seleccionado
+			}).success(function(response) {
+				console.log("Post OK");
+			}).error(function(response) {
+				console.log("Error en el POST");
+			});
 			ordenadorSeleccionado = true;
 		};
 	} ]);
@@ -90,7 +106,14 @@
 		});
 
 		store.setArmador = function() {
-			$http.get('/criterios-armado/' + store.seleccionado);
+//			$http.get('/criterios-armado/' + store.seleccionado);
+			$http.post('/criterios-armado', {
+				"armador": store.seleccionado
+			}).success(function(response) {
+				console.log("Post OK");
+			}).error(function(response) {
+				console.log("Error en el POST");
+			});
 			armadorSeleccionado = true;
 		};
 	} ]);
@@ -108,7 +131,9 @@
 		};
 	} ]);
 
-	// DIRECTIVES
+	
+	
+	
 	
 	app.directive('detalleJugador', function() {
 		return {
