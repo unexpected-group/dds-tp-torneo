@@ -17,7 +17,7 @@ import play.mvc.Result;
 import views.html.busqueda_jugadores;
 import views.html.generar_equipos;
 import views.html.index;
-import views.html.jugador;
+import views.html.detalle_jugador;
 import views.html.listar_jugadores;
 
 import com.fasterxml.jackson.databind.JsonNode;
@@ -154,7 +154,7 @@ public class Application extends Controller {
 
 	// GET /detalle-jugador
 	public static Result showJugadorView() {
-		return ok(jugador.render());
+		return ok(detalle_jugador.render());
 	}
 
 	// GET /listar-jugadores

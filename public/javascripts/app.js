@@ -14,29 +14,6 @@
 			return index === current;
 		};
 	} ]);
-
-	app.directive('detalleJugador', function() {
-		return {
-			restrict : 'E',
-			templateUrl : '/detalle-jugador'
-		};
-	});
-
-	app.directive('generarEquipos', function(){
-		return {
-			restrict : 'E',
-			templateUrl : '/generar-equipos',
-			controller : 'GenerarEquiposController',
-			controllerAs : 'equiposCtrl'
-		};
-	});
-
-	app.directive('busquedaJugadores', function() {
-		return {
-			restrict : 'E',
-			templateUrl : '/busqueda-jugadores'
-		};
-	});
 	//	app.directive('listarJugadores', function() {
 	//		return { restrict: 'E', templateUrl: '/listar-jugadores',
 	//			scope:{ filtros: '@filtros' }, controller: function($http) {

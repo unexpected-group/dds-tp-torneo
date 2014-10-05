@@ -1,0 +1,30 @@
+<div ng-show="jugador">
+	<p>Nombre: {{jugador.nombre}}</p>
+	<p>Edad: {{jugador.edad}}</p>
+
+	<p>Amigos:</p>
+	<ul>
+		<h4><span style="margin-right:5px" class="label label-info"
+				ng-repeat="amigo in jugador.amigos">
+			{{amigo.nombre}}
+		</span></h4>
+	</ul>
+
+	<p>Infracciones:</p>
+	<ul>
+		<h4><span style="margin-right:5px" class="label label-danger"
+	        	ng-repeat="infraccion in jugador.infracciones">
+	        {{infraccion.motivo}}
+	    </span></h4>
+	</ul>
+
+	<p>Calificaciones:</p>
+	<ul>
+		<h4><span style="margin-right:5px" class="label label-warning"
+	        	ng-repeat="calificacion in jugador.calificaciones">
+	        {{calificacion.puntaje}}
+	    </span></h4>
+	</ul>
+
+	<p>Handicap: {{jugador.handicap}}</p>
+</div>

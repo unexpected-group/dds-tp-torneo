@@ -1,3 +1,4 @@
+
 <h2 class="well well-default" style="text-align:center">Generar Equipos</h2>
 
 <div style="margin:10px">
@@ -17,13 +18,13 @@
     <button style="margin:10px" type="button" class="btn btn-info"
     		ng-show="equiposCtrl.generarVisible()" ng-click="equiposCtrl.generarEquipos()">Generar Equipos</button>
 
-    <table ng-show="equiposCtrl.equiposVisible()" ng-controller="JugadoresController as jc">
+    <table ng-show="equiposCtrl.partido">
         <td>
             <p style="text-align:center">Equipo A</p>
             <ul style="margin-left:10px" class="list-group">
                 <a type="button" class="btn btn-default | list-group-item" style="margin-bottom:5px"
                 	ng-repeat="jugador in equiposCtrl.partido.jugadoresPartido | limitTo:5"
-                    ng-click="jc.actualizar(jugador)">
+                    ng-click="equiposCtrl.seleccionarJugador(jugador)">
 				{{jugador.nombre}} ({{jugador.edad}} años)
 				</a>
             </ul>
@@ -35,19 +36,19 @@
             <ul style="margin-left:10px;margin-right:30px" class="list-group">
                 <a type="button" class="btn btn-default | list-group-item" style="margin-bottom:5px"
                 	ng-repeat="jugador in equiposCtrl.partido.jugadoresPartido | limitTo:-5"
-                    ng-click="jc.actualizar(jugador)">
+                    ng-click="equiposCtrl.seleccionarJugador(jugador)">
 				{{jugador.nombre}} ({{jugador.edad}} años)
 				</a>
             </ul>
             <!-- <listar-jugadores filtros="| limitTo:-5"></listar-jugadores> -->
         </td>
 
-        <td ng-hide="jc.noEstaVisible()">
-            <detalle-jugador></detalle-jugador>
+        <td>
+            <detalle-jugador jugador="equiposCtrl.jugador"></detalle-jugador>
         </td>
 
     </table>
     <button style="margin:10px" type="button" class="btn btn-success"
-            ng-show="equiposCtrl.equiposVisible()"
+            ng-show="equiposCtrl.partido"
             ng-click="equiposCtrl.confirmarPartido()">Confirmar Equipos</button>
 </div>
