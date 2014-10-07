@@ -60,7 +60,7 @@ public class Partido {
 		inscripciones.forEach(ins -> jugadoresPartido.add(ins.getJugador()));
 	}
 
-	public void aplicarConfiguracion() {
+	public void configurar() {
 		cargarJugadores();
 		configuracion.getOrdenadorEquipos().ordenarJugadores(jugadoresPartido);
 		configuracion.getArmadorEquipos().armarEquipos(jugadoresPartido);

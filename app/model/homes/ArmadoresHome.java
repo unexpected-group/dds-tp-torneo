@@ -3,15 +3,14 @@ package model.homes;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CriteriosOrdenamientoHome {
+public class ArmadoresHome {
 
 	private static List<String> opciones;
 
 	public static List<String> getOpciones() {
 		opciones = new ArrayList<String>();
-		opciones.add("Handicap");
-		opciones.add("Promedio del ultimo partido");
-		opciones.add("Promedio de las ultimas calificaciones");
+		opciones.add("Posiciones pares e impares");
+		opciones.add("Posiciones preestablecidas");
 		return opciones;
 	}
 }

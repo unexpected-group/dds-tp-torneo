@@ -12,12 +12,13 @@ import model.partido.Partido;
 public class PartidosHome {
 
 	private static List<Partido> partidos = new ArrayList<>();
+	private static Partido partidoActual;
 
-	public static Partido crearPartido() {
-		Partido partido = new Partido(LocalDate.now(), "MASCHWITZ");
+	public static Partido crearPartidoFicticio() {
+		Partido partido = new Partido(LocalDate.now(), "Maschwitz");
 		List<Jugador> jugadores = JugadoresHome.getJugadores();
 		List<Inscripcion> inscripciones = new ArrayList<Inscripcion>();
-		jugadores.forEach(jug -> inscripciones.add(new Estandar(jug)));
+		jugadores.forEach(j -> inscripciones.add(new Estandar(j)));
 		partido.setInscripciones(inscripciones);
 		return partido;
 	}
@@ -28,5 +29,13 @@ public class PartidosHome {
 	
 	public static List<Partido> getPartidos() {
 		return partidos;
+	}
+	
+	public static Partido getPartidoActual() {
+		return partidoActual;
+	}
+	
+	public static void setPartidoActual(Partido partidoActual) {
+		PartidosHome.partidoActual = partidoActual;
 	}
 }

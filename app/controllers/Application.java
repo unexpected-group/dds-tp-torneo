@@ -3,8 +3,8 @@ package controllers;
 import static play.libs.Json.toJson;
 import model.armador.ParesImpares;
 import model.armador.PosicionesDadas;
-import model.homes.CriteriosArmadoHome;
-import model.homes.CriteriosOrdenamientoHome;
+import model.homes.ArmadoresHome;
+import model.homes.OrdenadoresHome;
 import model.homes.JugadoresHome;
 import model.homes.PartidosHome;
 import model.ordenador.Handicap;
@@ -14,20 +14,14 @@ import model.partido.Configuracion;
 import model.partido.Partido;
 import play.mvc.Controller;
 import play.mvc.Result;
-import views.html.busqueda_jugadores;
-import views.html.generar_equipos;
-import views.html.index;
-import views.html.jugador;
-import views.html.listar_jugadores;
+import views.html.*;
 
 import com.fasterxml.jackson.databind.JsonNode;
 
 public class Application extends Controller {
 
-	private static Configuracion configuracion = new Configuracion(null, null);
-
 	// GET /
-	public static Result index() {
+	public static Result showIndex() {
 		return ok(index.render("Futbol 5"));
 	}
 
@@ -42,112 +36,75 @@ public class Application extends Controller {
 	}
 
 	// GET /generar-equipos
-	public static Result generarEquipos() {
+	public static Result showGenerarEquipos() {
 		return ok(generar_equipos.render());
 	}
 
-	// GET /generar-equipos-opciones
-	public static Result generarEquiposOpciones() {
-		Partido partido = PartidosHome.crearPartido();
-		partido.setConfiguracion(configuracion);
-		partido.aplicarConfiguracion();
+	// GET /ordenadores
+	public static Result obtenerOrdenadores() {
+		return ok(toJson(OrdenadoresHome.getOpciones()));
+	}
+
+	// GET /armadores
+	public static Result obtenerArmadores() {
+		return ok(toJson(ArmadoresHome.getOpciones()));
+	}
+
+	// POST /configuracion
+	public static Result configurar() {
+		JsonNode json = request().body().asJson();
+		if (json == null) {
+			return badRequest("No se recibio ningun Json");
+		} else {
+			Partido partido = PartidosHome.crearPartidoFicticio();
+			partido.setConfiguracion(new Configuracion(null, null));
+
+			switch (json.findPath("ordenador").asText()) {
+			case "Handicap":
+				partido.getConfiguracion().setOrdenadorEquipos(new Handicap());
+				break;
+			case "Promedio del ultimo partido":
+				partido.getConfiguracion().setOrdenadorEquipos(new PromedioUltimoPartido(null));
+				break;
+			case "Promedio de las ultimas calificaciones":
+				partido.getConfiguracion()
+						.setOrdenadorEquipos(new PromedioUltimasCalificaciones(0));
+				break;
+			default:
+				break;
+			}
+
+			switch (json.findPath("armador").asText()) {
+			case "Posiciones pares e impares":
+				partido.getConfiguracion().setArmadorEquipos(new ParesImpares());
+				break;
+			case "Posiciones preestablecidas":
+				partido.getConfiguracion().setArmadorEquipos(new PosicionesDadas());
+				break;
+			default:
+				break;
+			}
+
+			PartidosHome.setPartidoActual(partido);
+			return ok(json);
+		}
+	}
+	
+	// GET /partido
+	public static Result obtenerEquipos() {
+		Partido partido = PartidosHome.getPartidoActual();
+		partido.configurar();
 		return ok(toJson(partido));
 	}
 
-	// GET /criterios-ordenamiento
-	public static Result obtenerCriteriosOrdenamiento() {
-		return ok(toJson(CriteriosOrdenamientoHome.getOpciones()));
-	}
-	
-	// GET /criterios-armado
-	public static Result obtenerCriteriosArmado() {
-		return ok(toJson(CriteriosArmadoHome.getOpciones()));
-	}
-
-	// POST /criterios-ordenamiento
-	public static Result setCriterioOrdenamiento() {
-		JsonNode json = request().body().asJson();
-		if (json == null) {
-			return badRequest("No se recibio ningun Json");
-		} else {
-			switch (json.findPath("ordenador").asText()) {
-			case "Handicap":
-				configuracion.setOrdenadorEquipos(new Handicap());
-				break;
-			case "Promedio del ultimo partido":
-				configuracion.setOrdenadorEquipos(new PromedioUltimoPartido(null));
-				break;
-			case "Promedio de las ultimas calificaciones":
-				configuracion.setOrdenadorEquipos(new PromedioUltimasCalificaciones(0));
-				break;
-			default:
-				break;
-			}
-			return ok(json);
-		}
-	}
-	
-	// POST /criterios-armado
-	public static Result setCriterioArmado() {
-		JsonNode json = request().body().asJson();
-		if (json == null) {
-			return badRequest("No se recibio ningun Json");
-		} else {
-			switch (json.findPath("armador").asText()) {
-			case "Posiciones pares e impares":
-				configuracion.setArmadorEquipos(new ParesImpares());
-				break;
-			case "Posiciones preestablecidas":
-				configuracion.setArmadorEquipos(new PosicionesDadas());
-				break;
-			default:
-				break;
-			}
-			return ok(json);
-		}
-	}
-	
-	// POST /configuracion
-	public static Result setConfiguracion() {
-		JsonNode json = request().body().asJson();
-		if (json == null) {
-			return badRequest("No se recibio ningun Json");
-		} else {
-			switch (json.findPath("ordenador").asText()) {
-			case "Handicap":
-				configuracion.setOrdenadorEquipos(new Handicap());
-				break;
-			case "Promedio del ultimo partido":
-				configuracion.setOrdenadorEquipos(new PromedioUltimoPartido(null));
-				break;
-			case "Promedio de las ultimas calificaciones":
-				configuracion.setOrdenadorEquipos(new PromedioUltimasCalificaciones(0));
-				break;
-			default:
-				break;
-			}
-			switch (json.findPath("armador").asText()) {
-			case "Posiciones pares e impares":
-				configuracion.setArmadorEquipos(new ParesImpares());
-				break;
-			case "Posiciones preestablecidas":
-				configuracion.setArmadorEquipos(new PosicionesDadas());
-				break;
-			default:
-				break;
-			}
-			return ok(json);
-		}
-	}
-	
 	// POST /confirmar-partido
 	public static Result confirmarPartido() {
 		JsonNode json = request().body().asJson();
 		if (json == null) {
 			return badRequest("No se recibio ningun Json");
 		} else {
-//			Partido partido = fromJson(json, Partido.class);
-//			partido.confirmarPartido();
+			// Partido partido = fromJson(json, Partido.class);
+			// partido.confirmarPartido();
 			return ok(json);
 		}
 	}

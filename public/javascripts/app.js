@@ -78,13 +78,12 @@
 
 		store.ordenadores = [];
 
-		$http.get('/criterios-ordenamiento').success(function(ordenadores) {
+		$http.get('/ordenadores').success(function(ordenadores) {
 			store.ordenadores = ordenadores;
 		});
 
 		store.setOrdenador = function() {
-//			$http.get('/criterios-ordenamiento/' + store.seleccionado);
-			$http.post('/criterios-ordenamiento', {
+			$http.post('/ordenadores', {
 				"ordenador": store.seleccionado
 			}).success(function(response) {
 				console.log("Post OK");
@@ -101,13 +100,12 @@
 
 		store.armadores = [];
 
-		$http.get('/criterios-armado').success(function(armadores) {
+		$http.get('/armadores').success(function(armadores) {
 			store.armadores = armadores;
 		});
 
 		store.setArmador = function() {
-//			$http.get('/criterios-armado/' + store.seleccionado);
-			$http.post('/criterios-armado', {
+			$http.post('/armadores', {
 				"armador": store.seleccionado
 			}).success(function(response) {
 				console.log("Post OK");
