@@ -21,7 +21,6 @@ angular.module('app')
 	});
 
 	ctrl.generarEquipos = function() {
-		ctrl.configurarPartido();
 		$http.get('/partido').success(function(partido) {
 			ctrl.partido = partido;
 		});
@@ -35,7 +34,7 @@ angular.module('app')
 	};
 
 	ctrl.generarVisible = function() {
-		return ctrl.ordenador && ctrl.armador;
+		return ctrl.partidoConfigurado;
 	};
 
 	ctrl.confirmarPartido = function() {
@@ -48,14 +47,17 @@ angular.module('app')
 	};
 
 	ctrl.configurarPartido = function() {
-		$http.post('/configuracion', {
-			"ordenador": ctrl.ordenador,
-			"armador": ctrl.armador
-		}).success(function(response) {
-			console.log("Post OK");
-		}).error(function(response) {
-			throw "Error en el POST";
-		});
+		if(ctrl.ordenador && ctrl.armador) {
+			$http.post('/configuracion', {
+				"ordenador": ctrl.ordenador,
+				"armador": ctrl.armador
+			}).success(function(response) {
+				console.log("Post OK");
+				ctrl.partidoConfigurado = true;
+			}).error(function(response) {
+				throw "Error en el POST";
+			});
+		}
 	};
 
 	//Cosas que agrego para usar la directive de detalle-jugador

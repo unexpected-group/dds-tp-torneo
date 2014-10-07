@@ -1,15 +1,18 @@
 
+
 <h2 class="well well-default" style="text-align:center">Generar Equipos</h2>
 
 <div style="margin:10px">
     <select class="form-control" ng-model="equiposCtrl.ordenador"
-    		ng-options="ordenador for ordenador in equiposCtrl.ordenadores">
+    		ng-options="ordenador for ordenador in equiposCtrl.ordenadores"
+            ng-change="equiposCtrl.configurarPartido()">
         <option value="" disabled selected>Seleccione un ordenador</option>
     </select>
 </div>
 <div style="margin:10px">
     <select class="form-control" ng-model="equiposCtrl.armador"
-    		ng-options="armador for armador in equiposCtrl.armadores">
+    		ng-options="armador for armador in equiposCtrl.armadores"
+            ng-change="equiposCtrl.configurarPartido()">
         <option value="" disabled selected>Seleccione un armador</option>
     </select>
 </div>
