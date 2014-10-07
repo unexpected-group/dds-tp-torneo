@@ -22,7 +22,7 @@ angular.module('app')
 
 	ctrl.generarEquipos = function() {
 		ctrl.configurarPartido();
-		$http.get('/generar-equipos-opciones').success(function(partido) {
+		$http.get('/partido').success(function(partido) {
 			ctrl.partido = partido;
 		});
 		
