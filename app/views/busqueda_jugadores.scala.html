@@ -5,20 +5,20 @@
     <em>Edad: </em><input type="text" ng-model="search.edad">
 </div>
 
-<table ng-controller="JugadoresController as jc">
+<table>
 	<td style="vertical-align:top">
         <ul style="margin-left:10px;margin-right:30px" class="list-group">
     		<a type="button" style="margin-bottom:5px"
         		class="btn btn-default | list-group-item animate-repeat"
-        		ng-repeat="jugador in jc.jugadores | filter:search | orderBy:'-handicap'"
-                ng-click="jc.actualizar(jugador)">
+        		ng-repeat="jugador in busquedaCtrl.jugadores | filter:search | orderBy:'-handicap'"
+                ng-click="busquedaCtrl.seleccionarJugador(jugador)">
             {{jugador.nombre}}
     		</a>
         </ul>
         <!--<listar-jugadores filtros="| filter:search | orderBy:'-handicap'"></listar-jugadores>-->
     </td>
 
-    <td style="vertical-align:top" ng-hide="jc.noEstaVisible()">
-        <detalle-jugador></detalle-jugador>
+    <td style="vertical-align:top">
+        <detalle-jugador jugador="busquedaCtrl.jugador"></detalle-jugador>
     </td>
 </table>

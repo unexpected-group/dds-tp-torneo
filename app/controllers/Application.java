@@ -111,7 +111,7 @@ public class Application extends Controller {
 
 	// GET /detalle-jugador
 	public static Result showJugadorView() {
-		return ok(jugador.render());
+		return ok(detalle_jugador.render());
 	}
 
 	// GET /listar-jugadores
