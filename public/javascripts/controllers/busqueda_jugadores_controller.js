@@ -1,17 +1,17 @@
 angular.module('app')
     .controller('BusquedaJugadoresController', [ '$http', function($http) {
 
-    var store = this;
+    var ctrl = this;
 
-    store.jugadores = [];
+    ctrl.jugadores = [];
 
     $http.get('/jugadores').success(function(jugadores) {
-        store.jugadores = jugadores;
+        ctrl.jugadores = jugadores;
     });
 
     //Cosas que agrego para usar la directive de detalle-jugador
-    store.jugador;
-    store.seleccionarJugador = function(unJugador) {
-        store.jugador = unJugador;   
+    ctrl.jugador;
+    ctrl.seleccionarJugador = function(unJugador) {
+        ctrl.jugador = unJugador;   
     };
 }]);
