@@ -1,7 +1,7 @@
 CREATE TABLE partido (
 	cod_partido NUMERIC(10, 0) PRIMARY KEY,
 	fecha DATETIME,
-	estado,
+	estado, /* ESTE ES UN STRING?*/
 	cod_config NUMERIC(10, 0),
 	cod_inscripcion NUMERIC(10, 0),
 	cod_propuesta NUMERIC(10, 0),
@@ -19,11 +19,11 @@ CREATE TABLE configuracion (
 CREATE TABLE jugador (
 	cod_jugador NUMERIC(10, 0) PRIMARY KEY,
 	nombre NVARCHAR(30),
-	edad,
+	edad SMALLINT,
 	cod_jugador NUMERIC(10, 0),
 	cod_infraccion NUMERIC(10, 0),
 	cod_calif NUMERIC(10, 0),
-	handicap,
+	handicap SMALLINT,
 	FOREIGN KEY (cod_jugador) REFERENCES jugador (cod_jugador),
 	FOREIGN KEY (cod_infraccion) REFERENCES infraccion (cod_infraccion),
 	FOREIGN KEY (cod_calif) REFERENCES calificacion (cod_calif)
@@ -31,7 +31,7 @@ CREATE TABLE jugador (
 
 CREATE TABLE calificacion (
 	cod_calif NUMERIC(10, 0) PRIMARY KEY,
-	puntaje,
+	puntaje SMALLINT,
 	descripcion NVARCHAR(255),
 	cod_jugador NUMERIC(10, 0),
 	cod_partido NUMERIC(10, 0),
@@ -51,13 +51,13 @@ CREATE TABLE propuesta (
 	fecha DATETIME,
 	fecha_rechazo DATETIME,
 	motivo_rechazo NVARCHAR(255),
-	estado,
+	estado NVARCHAR(30),
 	FOREIGN KEY (cod_jugador) REFERENCES jugador (cod_jugador)
 );
 
 CREATE TABLE inscripcion (
 	cod_inscripcion NUMERIC(10, 0) PRIMARY KEY,
 	cod_jugador NUMERIC(10, 0),
-	tipo,
+	tipo, /* ESTE ES UN STRING?*/
 	FOREIGN KEY (cod_jugador) REFERENCES jugador (cod_jugador)
 );
