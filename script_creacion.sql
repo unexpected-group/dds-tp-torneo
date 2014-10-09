@@ -1,63 +1,63 @@
 CREATE TABLE partido (
-	id_partido PRIMARY KEY,
+	cod_partido PRIMARY KEY,
 	fecha,
 	estado,
-	id_config
-	id_inscripcion,
-	id_propuesta,
-	FOREIGN KEY (id_config) REFERENCES configuracion (id_config),
-	FOREIGN KEY (id_inscripcion) REFERENCES inscripcion (id_inscripcion),
-	FOREIGN KEY (id_propuesta) REFERENCES propuesta (id_propuesta)
+	cod_config
+	cod_inscripcion,
+	cod_propuesta,
+	FOREIGN KEY (cod_config) REFERENCES configuracion (cod_config),
+	FOREIGN KEY (cod_inscripcion) REFERENCES inscripcion (cod_inscripcion),
+	FOREIGN KEY (cod_propuesta) REFERENCES propuesta (cod_propuesta)
 );
 
 CREATE TABLE configuracion (
-	id_config PRIMARY KEY,
+	cod_config PRIMARY KEY,
 	armador,
 	ordenador
 );
 
 CREATE TABLE jugador (
-	id_jugador PRIMARY KEY,
+	cod_jugador PRIMARY KEY,
 	nombre,
 	edad,
-	id_jugador,
-	id_infraccion,
-	id_calif,
+	cod_jugador,
+	cod_infraccion,
+	cod_calif,
 	handicap,
-	FOREIGN KEY (id_jugador) REFERENCES jugador (id_jugador),
-	FOREIGN KEY (id_infraccion) REFERENCES infraccion (id_infraccion),
-	FOREIGN KEY (id_calif) REFERENCES calificacion (id_calif)
+	FOREIGN KEY (cod_jugador) REFERENCES jugador (cod_jugador),
+	FOREIGN KEY (cod_infraccion) REFERENCES infraccion (cod_infraccion),
+	FOREIGN KEY (cod_calif) REFERENCES calificacion (cod_calif)
 );
 
 CREATE TABLE calificacion (
-	id_calif PRIMARY KEY,
+	cod_calif PRIMARY KEY,
 	puntaje,
 	descripcion,
-	id_jugador,
-	id_partido,
-	FOREIGN KEY (id_jugador) REFERENCES jugador (id_jugador),
-	FOREIGN KEY (id_partido) REFERENCES partido (id_partido)
+	cod_jugador,
+	cod_partido,
+	FOREIGN KEY (cod_jugador) REFERENCES jugador (cod_jugador),
+	FOREIGN KEY (cod_partido) REFERENCES partido (cod_partido)
 );
 
 CREATE TABLE infraccion (
-	id_infraccion PRIMARY KEY,
+	cod_infraccion PRIMARY KEY,
 	fecha,
 	motivo
 );
 
 CREATE TABLE propuesta (
-	id_propuesta PRIMARY KEY,
-	id_jugador,
+	cod_propuesta PRIMARY KEY,
+	cod_jugador,
 	fecha,
 	fecha_rechazo,
 	motivo_rechazo,
 	estado,
-	FOREIGN KEY (id_jugador) REFERENCES jugador (id_jugador)
+	FOREIGN KEY (cod_jugador) REFERENCES jugador (cod_jugador)
 );
 
 CREATE TABLE inscripcion (
-	id_inscripcion PRIMARY KEY,
-	id_jugador,
+	cod_inscripcion PRIMARY KEY,
+	cod_jugador,
 	tipo,
-	FOREIGN KEY (id_jugador) REFERENCES jugador (id_jugador)
+	FOREIGN KEY (cod_jugador) REFERENCES jugador (cod_jugador)
 );
