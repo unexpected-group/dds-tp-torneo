@@ -8,14 +8,14 @@ public class Propuesta {
 
 	private Jugador jugadorPropuesto;
 	private Estado estado;
-	private LocalDate fecha;
+	private LocalDate fechaFormulacion;
 	private LocalDate fechaRechazo;
 	private String motivoRechazo;
 
 	public Propuesta(Jugador amigo) {
 		this.jugadorPropuesto = amigo;
 		this.estado = Estado.PENDIENTE;
-		this.fecha = LocalDate.now();
+		this.fechaFormulacion = LocalDate.now();
 	}
 
 	public void aceptarPropuesta() {
@@ -33,7 +33,7 @@ public class Propuesta {
 	}
 
 	public LocalDate getFecha() {
-		return fecha;
+		return fechaFormulacion;
 	}
 
 	public LocalDate getFechaRechazo() {

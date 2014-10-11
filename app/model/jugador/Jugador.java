@@ -13,9 +13,9 @@ public class Jugador implements Observer {
 	private final String nombre;
 	private final int edad;
 	private List<Jugador> amigos;
+	private Double handicap;
 	private List<Infraccion> infracciones;
 	private List<Calificacion> calificaciones;
-	private Double handicap;
 
 	public Jugador(String nombre, int edad) {
 		super();
