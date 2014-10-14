@@ -1,5 +1,6 @@
 package model.jugador;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,6 +13,7 @@ public class Jugador implements Observer {
 
 	private final String nombre;
 	private final int edad;
+	private final LocalDate fechaNacimiento;
 	private List<Jugador> amigos;
 	private Double handicap;
 	private List<Infraccion> infracciones;
@@ -21,6 +23,7 @@ public class Jugador implements Observer {
 		super();
 		this.nombre = nombre;
 		this.edad = edad;
+		this.fechaNacimiento = null;
 		this.amigos = new ArrayList<>();
 		this.infracciones = new ArrayList<>();
 		this.calificaciones = new ArrayList<>();
@@ -106,6 +109,10 @@ public class Jugador implements Observer {
 		this.handicap = handicap;
 	}
 
+	public LocalDate getFechaNacimiento() {
+		return fechaNacimiento;
+	}
+	
 	public Double promedioCalificacionesPartido(Partido partido) {
 //		return calificaciones.stream()
 //				.filter(calificacion -> calificacion.getPartido().equals(partido))
