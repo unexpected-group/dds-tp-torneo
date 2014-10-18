@@ -4,12 +4,19 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
 import model.excepciones.NoEsAmigoException;
 import model.homes.PropuestasHome;
 import model.inscripcion.Estandar;
 import model.partido.Partido;
 
+@Entity
 public class Jugador implements Observer {
+	
+	@Id
+	private long id;
 
 	private final String nombre;
 	private final int edad;

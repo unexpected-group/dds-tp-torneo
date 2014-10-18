@@ -1,7 +1,7 @@
 # Routes
 
-GET		/jugadores            	controllers.Application.obtenerJugadores()
-GET   /jugadores/:nombre    	controllers.Application.detallesJugador(nombre)
+GET		/jugadores							controllers.Application.obtenerJugadores()
+GET		/jugadores/:nombre			controllers.Application.detallesJugador(nombre)
 
 POST	/configuracion					controllers.Application.configurar()
 GET		/partido								controllers.Application.obtenerEquipos()
@@ -10,10 +10,10 @@ POST	/confirmar-partido			controllers.Application.confirmarPartido()
 GET		/ordenadores						controllers.Application.obtenerOrdenadores()
 GET		/armadores							controllers.Application.obtenerArmadores()
 
-GET   /                       controllers.Application.showIndex()
+GET		/												controllers.Application.showIndex()
 GET		/generar-equipos				controllers.Application.showGenerarEquipos()
 GET		/detalle-jugador				controllers.Application.showJugadorView()
 GET		/listar-jugadores				controllers.Application.showJugadoresView()
 GET		/busqueda-jugadores			controllers.Application.showBusquedaJugadoresView()
 
-GET   /assets/*file         	controllers.Assets.at(path="/public", file)
+GET		/assets/*file						controllers.Assets.at(path="/public", file)

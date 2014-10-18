@@ -6,6 +6,9 @@ import java.util.List;
 import java.util.Optional;
 import java.util.function.Predicate;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
 import model.excepciones.CuposCompletosException;
 import model.excepciones.JugadorInscriptoException;
 import model.excepciones.JugadorNoInscriptoException;
@@ -17,8 +20,12 @@ import model.inscripcion.Prioridad;
 import model.jugador.Jugador;
 import model.jugador.Observer;
 
+@Entity
 public class Partido {
 
+	@Id
+	private long id;
+	
 	private LocalDate fecha;
 	private String lugar;
 	private Estado estado;

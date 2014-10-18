@@ -2,9 +2,16 @@ package model.propuesta;
 
 import java.time.LocalDate;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
 import model.jugador.Jugador;
 
+@Entity
 public class Propuesta {
+	
+	@Id
+	private long id;
 
 	private Jugador jugadorPropuesto;
 	private Estado estado;
