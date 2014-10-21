@@ -32,16 +32,16 @@ public class GenerarEquiposTest {
 
 	@Test
 	public void ordenarPorHandicap() {
-		when(jugadores.get(0).getHandicap()).thenReturn(1.0);
-		when(jugadores.get(1).getHandicap()).thenReturn(3.0);
-		when(jugadores.get(2).getHandicap()).thenReturn(9.0);
-		when(jugadores.get(3).getHandicap()).thenReturn(4.0);
-		when(jugadores.get(4).getHandicap()).thenReturn(10.0);
-		when(jugadores.get(5).getHandicap()).thenReturn(2.0);
-		when(jugadores.get(6).getHandicap()).thenReturn(7.0);
-		when(jugadores.get(7).getHandicap()).thenReturn(8.0);
-		when(jugadores.get(8).getHandicap()).thenReturn(6.0);
-		when(jugadores.get(9).getHandicap()).thenReturn(5.0);
+		when(jugadores.get(0).getHandicap()).thenReturn(1);
+		when(jugadores.get(1).getHandicap()).thenReturn(3);
+		when(jugadores.get(2).getHandicap()).thenReturn(9);
+		when(jugadores.get(3).getHandicap()).thenReturn(4);
+		when(jugadores.get(4).getHandicap()).thenReturn(10);
+		when(jugadores.get(5).getHandicap()).thenReturn(2);
+		when(jugadores.get(6).getHandicap()).thenReturn(7);
+		when(jugadores.get(7).getHandicap()).thenReturn(8);
+		when(jugadores.get(8).getHandicap()).thenReturn(6);
+		when(jugadores.get(9).getHandicap()).thenReturn(5);
 
 		jugadoresOrdenados.add(jugadores.get(0));
 		jugadoresOrdenados.add(jugadores.get(5));
