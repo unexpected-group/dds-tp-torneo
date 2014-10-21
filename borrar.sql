@@ -10,3 +10,4 @@ drop table if exists armadores;
 drop procedure if exists jugadores_malos;
 drop procedure if exists jugadores_traicioneros;
 drop procedure if exists jugadores_mejorables;
+drop procedure if exists dar_de_baja_jugador;

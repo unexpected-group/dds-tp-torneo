@@ -137,9 +137,9 @@ values
 	(2, '2014-10-15', 'Tarjeta amarilla'),
 	(3, '2014-10-14', 'Escupio a un jugador'),
 	(4, '2014-11-22', 'Llego a los 20 fouls'),
-    (4, '2014-10-16', 'Tarjeta amarilla'),
-    (4, '2014-10-16', 'Tarjeta roja'),
-    (4, '2014-10-17', 'Tarjeta azul'),
+	(4, '2014-10-16', 'Tarjeta amarilla'),
+	(4, '2014-10-16', 'Tarjeta roja'),
+	(4, '2014-10-17', 'Tarjeta azul'),
 	(5, '2014-11-23', 'Tarjeta roja'),
 	(6, '2014-12-12', 'Golpeo al arbitro');
 
@@ -154,26 +154,46 @@ delimiter //
 create procedure jugadores_malos ()
 begin
 	select nombre, edad, fecha_nacimiento, handicap
-    from jugadores
-    where handicap < 6;
+	from jugadores
+	where handicap < 6;
 end //
 
 create procedure jugadores_traicioneros ()
 begin
 	select nombre, edad, fecha_nacimiento, count(i.cod_infraccion)
-    from jugadores j
-    join infracciones i on j.cod_jugador = i.jugador
-    where i.fecha > date_sub(curdate(), interval 1 month)
-    group by nombre, edad, fecha_nacimiento
-    having count(i.cod_infraccion) > 3;
+	from jugadores j
+	join infracciones i on j.cod_jugador = i.jugador
+	where i.fecha > date_sub(curdate(), interval 1 month)
+	group by nombre, edad, fecha_nacimiento
+	having count(i.cod_infraccion) > 3;
 end //
 
 create procedure jugadores_mejorables ()
 begin
 	select nombre, edad, fecha_nacimiento, handicap
-    from jugadores
-    where handicap < 6
-    and edad < 25;
+	from jugadores
+	where handicap < 6
+	and edad < 25;
+end //
+
+create procedure dar_de_baja_jugador (in jugador_sacar int, in partido_sacar int, in reemplazo int)
+begin
+	if reemplazo is not null then
+		update inscripciones
+		set jugador = reemplazo
+		where jugador = jugador_sacar
+		and partido = partido_sacar;
+	else
+		delete from inscripciones
+		where jugador = jugador_sacar
+		and partido = partido_sacar;
+	end if;
+end //
+
+create trigger chequear_reemplazo before delete on inscripciones for each row
+begin
+	insert into infracciones (jugador, fecha, motivo)
+	values (OLD.jugador, curdate(), 'No ofrece reemplazo');
 end //
 
 delimiter ;
