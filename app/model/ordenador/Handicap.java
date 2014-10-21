@@ -6,6 +6,6 @@ public class Handicap extends OrdenadorEquipos {
 
 	@Override
 	public Double valoracion(Jugador jugador) {
-		return jugador.getHandicap();
+		return (double) jugador.getHandicap();
 	}
 }

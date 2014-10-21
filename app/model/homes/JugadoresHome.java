@@ -30,11 +30,11 @@ public class JugadoresHome {
 		Jugador nico = new Jugador("Nico Scarscela", 27);
 		Jugador gustavo = new Jugador("Gustavo Pina", 50);
 		
-		ernesto.setHandicap(5.9);
-		demian.setHandicap(8.9);
-		lucas.setHandicap(3.9);
-		nico.setHandicap(4.9);
-		gustavo.setHandicap(9.9);
+		ernesto.setHandicap(5);
+		demian.setHandicap(8);
+		lucas.setHandicap(3);
+		nico.setHandicap(4);
+		gustavo.setHandicap(9);
 
 		ArrayList<Infraccion> infracciones = new ArrayList<>();
 
@@ -46,7 +46,7 @@ public class JugadoresHome {
 		juan.recibirCalificacion(new Calificacion(9.2));
 		infracciones.add(new Infraccion("Llega tarde al partido"));
 		juan.setInfracciones(infracciones);
-		juan.setHandicap(7.7);
+		juan.setHandicap(7);
 
 		/*--------------------------------------------------------------------------------*/
 
@@ -59,7 +59,7 @@ public class JugadoresHome {
 		infracciones = new ArrayList<>();
 		infracciones.add(new Infraccion("Hace parciales dificiles"));
 		franco.setInfracciones(infracciones);
-		franco.setHandicap(9.8);
+		franco.setHandicap(9);
 
 		/*--------------------------------------------------------------------------------*/
 
@@ -70,7 +70,7 @@ public class JugadoresHome {
 		infracciones.add(new Infraccion("Hace TADP solo"));
 		infracciones.add(new Infraccion("Nos traiciona en el cine"));
 		agustin.setInfracciones(infracciones);
-		agustin.setHandicap(5.6);
+		agustin.setHandicap(5);
 
 		/*--------------------------------------------------------------------------------*/
 
@@ -82,7 +82,7 @@ public class JugadoresHome {
 		infracciones = new ArrayList<>();
 		infracciones.add(new Infraccion("Es alto"));
 		manuel.setInfracciones(infracciones);
-		manuel.setHandicap(6.1);
+		manuel.setHandicap(6);
 
 		/*--------------------------------------------------------------------------------*/
 
@@ -90,7 +90,7 @@ public class JugadoresHome {
 		infracciones = new ArrayList<>();
 		infracciones.add(new Infraccion("Esta gordo"));
 		esteban.setInfracciones(infracciones);
-		esteban.setHandicap(4.8);
+		esteban.setHandicap(4);
 		
 		/*--------------------------------------------------------------------------------*/
 		

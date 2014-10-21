@@ -22,7 +22,7 @@ public class Jugador implements Observer {
 	private final int edad;
 	private final LocalDate fechaNacimiento;
 	private List<Jugador> amigos;
-	private Double handicap;
+	private int handicap;
 	private List<Infraccion> infracciones;
 	private List<Calificacion> calificaciones;
 
@@ -108,11 +108,11 @@ public class Jugador implements Observer {
 		this.calificaciones = calificaciones;
 	}
 
-	public Double getHandicap() {
+	public int getHandicap() {
 		return handicap;
 	}
 
-	public void setHandicap(Double handicap) {
+	public void setHandicap(int handicap) {
 		this.handicap = handicap;
 	}
 
