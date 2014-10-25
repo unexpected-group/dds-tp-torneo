@@ -121,17 +121,17 @@ public class Jugador implements Observer {
 	}
 	
 	public Double promedioCalificacionesPartido(Partido partido) {
-//		return calificaciones.stream()
-//				.filter(calificacion -> calificacion.getPartido().equals(partido))
-//				.mapToDouble(calificacion -> calificacion.getPuntaje())
-//				.average().getAsDouble();
-		return Math.random();
+		return calificaciones.stream()
+				.filter(calificacion -> calificacion.getPartido().equals(partido))
+				.mapToDouble(calificacion -> calificacion.getPuntaje())
+				.average().getAsDouble();
+//		return Math.random();
 	}
 
 	public Double promedioUltimasCalificaciones(int cantidad) {
-//		return calificaciones.stream().skip(calificaciones.size() - cantidad)
-//				.mapToDouble(calificacion -> calificacion.getPuntaje())
-//				.average().getAsDouble();
-		return Math.random();
+		return calificaciones.stream().skip(calificaciones.size() - cantidad)
+				.mapToDouble(calificacion -> calificacion.getPuntaje())
+				.average().getAsDouble();
+//		return Math.random();
 	}
 }

@@ -88,7 +88,11 @@ values
 	('Posiciones Preestablecidas');
 
 insert into configuraciones (ordenador, armador)
-values (1, 1);
+values
+	(1, 1),
+	(1, 2),
+	(2, 1),
+	(3, 1);
 
 insert into partidos (fecha, lugar, configuracion)
 values
@@ -149,18 +153,22 @@ values
 	(1, 5, '2014-9-4'),
 	(4, 7, '2014-9-4');
 
+create view jugadores_malos as
+select nombre, edad, fecha_nacimiento as 'fecha de nacimiento', handicap
+from jugadores
+where handicap < 6;
+
 delimiter //
 
-create procedure jugadores_malos ()
+create procedure obtener_jugadores_malos ()
 begin
-	select nombre, edad, fecha_nacimiento, handicap
-	from jugadores
-	where handicap < 6;
+	select *
+	from jugadores_malos;
 end //
 
-create procedure jugadores_traicioneros ()
+create procedure obtener_jugadores_traicioneros ()
 begin
-	select nombre, edad, fecha_nacimiento, count(i.cod_infraccion)
+	select nombre, edad, fecha_nacimiento as 'fecha de nacimiento', count(i.cod_infraccion) as 'infracciones'
 	from jugadores j
 	join infracciones i on j.cod_jugador = i.jugador
 	where i.fecha > date_sub(curdate(), interval 1 month)
@@ -168,12 +176,11 @@ begin
 	having count(i.cod_infraccion) > 3;
 end //
 
-create procedure jugadores_mejorables ()
+create procedure obtener_jugadores_mejorables ()
 begin
-	select nombre, edad, fecha_nacimiento, handicap
-	from jugadores
-	where handicap < 6
-	and edad < 25;
+	select *
+	from jugadores_malos
+	where edad < 25;
 end //
 
 create procedure dar_de_baja_jugador (in jugador_sacar int, in partido_sacar int, in reemplazo int)
