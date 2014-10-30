@@ -1,6 +1,7 @@
 package controllers;
 
 import static play.libs.Json.toJson;
+import static play.libs.Json.fromJson;
 import model.armador.ParesImpares;
 import model.armador.PosicionesDadas;
 import model.homes.ArmadoresHome;
@@ -103,8 +104,8 @@ public class Application extends Controller {
 		if (json == null) {
 			return badRequest("No se recibio ningun Json");
 		} else {
-			// Partido partido = fromJson(json, Partido.class);
-			// partido.confirmarPartido();
+			Partido partido = fromJson(json, Partido.class);
+			partido.confirmarPartido();
 			return ok(json);
 		}
 	}
