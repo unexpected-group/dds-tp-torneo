@@ -3,9 +3,17 @@ package model.ordenador;
 import java.util.Collections;
 import java.util.List;
 
-import model.jugador.Jugador;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 
-public abstract class OrdenadorEquipos {
+import model.jugador.Jugador;
+import play.db.ebean.Model;
+
+@Entity
+public abstract class OrdenadorEquipos extends Model {
+	
+	@Id
+	private long id;
 
 	public void ordenarJugadores(List<Jugador> jugadores) {
 		Collections.sort(jugadores,

@@ -1,10 +1,18 @@
 package model.inscripcion;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+import play.db.ebean.Model;
 import model.jugador.Jugador;
 import model.jugador.Observer;
 import model.partido.Partido;
 
-public abstract class Inscripcion {
+@Entity
+public abstract class Inscripcion extends Model {
+	
+	@Id
+	private long id;
 
 	private Jugador jugador;
 

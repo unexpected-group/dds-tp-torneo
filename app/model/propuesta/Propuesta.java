@@ -5,10 +5,11 @@ import java.time.LocalDate;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
+import play.db.ebean.Model;
 import model.jugador.Jugador;
 
 @Entity
-public class Propuesta {
+public class Propuesta extends Model {
 	
 	@Id
 	private long id;

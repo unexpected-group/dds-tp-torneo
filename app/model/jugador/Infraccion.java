@@ -2,15 +2,22 @@ package model.jugador;
 
 import java.time.LocalDate;
 
-public class Infraccion {
+import javax.persistence.Entity;
+import javax.persistence.Id;
 
+import play.db.ebean.Model;
+
+@Entity
+public class Infraccion extends Model {
+	
+	@Id
+	private long id;
+	
 	private LocalDate fecha;
 	private String motivo;
 
 	public Infraccion(String motivo) {
-		super();
-//		this.fecha = LocalDate.now();
-		this.fecha = null;
+		this.fecha = LocalDate.now();
 		this.motivo = motivo;
 	}
 

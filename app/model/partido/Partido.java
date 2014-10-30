@@ -9,6 +9,7 @@ import java.util.function.Predicate;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
+import play.db.ebean.Model;
 import model.excepciones.CuposCompletosException;
 import model.excepciones.JugadorInscriptoException;
 import model.excepciones.JugadorNoInscriptoException;
@@ -21,7 +22,7 @@ import model.jugador.Jugador;
 import model.jugador.Observer;
 
 @Entity
-public class Partido {
+public class Partido extends Model {
 
 	@Id
 	private long id;

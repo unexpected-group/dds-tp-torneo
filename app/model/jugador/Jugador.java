@@ -7,13 +7,14 @@ import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
+import play.db.ebean.Model;
 import model.excepciones.NoEsAmigoException;
 import model.homes.PropuestasHome;
 import model.inscripcion.Estandar;
 import model.partido.Partido;
 
 @Entity
-public class Jugador implements Observer {
+public class Jugador extends Model implements Observer {
 	
 	@Id
 	private long id;
