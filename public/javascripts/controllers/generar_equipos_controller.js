@@ -24,13 +24,6 @@ angular.module('app')
 		$http.get('/partido').success(function(partido) {
 			ctrl.partido = partido;
 		});
-		
-//			$http.post('/configuracion', ctrl.configuracion).success(function(response) {
-//				console.log("Post OK");
-//			}).error(function(response) {
-//				console.log("Error en el POST");
-//			});
-		
 	};
 
 	ctrl.generarVisible = function() {
@@ -60,7 +53,6 @@ angular.module('app')
 		}
 	};
 
-	//Cosas que agrego para usar la directive de detalle-jugador
 	ctrl.jugador;
 	ctrl.seleccionarJugador = function(unJugador) {
 		ctrl.jugador = unJugador;	
