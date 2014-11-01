@@ -8,12 +8,14 @@ import model.excepciones.NoEsAmigoException;
 import model.homes.PropuestasHome;
 import model.inscripcion.Estandar;
 import model.partido.Partido;
+import play.data.format.Formats.DateTime;
 
 public class Jugador {
 	
 	private final String nombre;
 	private final int edad;
-	private final Date fechaNacimiento;
+	@DateTime(pattern="dd/MM/yyyy")
+	private Date fechaNacimiento;
 	private int handicap;
 	private List<Jugador> amigos;
 	private List<Infraccion> infracciones;
@@ -102,6 +104,10 @@ public class Jugador {
 
 	public Date getFechaNacimiento() {
 		return fechaNacimiento;
+	}
+	
+	public void setFechaNacimiento(Date fechaNacimiento) {
+		this.fechaNacimiento = fechaNacimiento;
 	}
 	
 	public Double promedioCalificacionesPartido(Partido partido) {

@@ -39,13 +39,25 @@ public class Calificacion extends Model {
 	public Jugador getCalificador() {
 		return calificador;
 	}
+	
+	public Partido getPartido() {
+		return partido;
+	}
 
 	public void setCalificador(Jugador jugador) {
 		this.calificador = jugador;
 	}
-
-	public Partido getPartido() {
-		return partido;
+	
+	public void setPuntaje(double puntaje) {
+		this.puntaje = puntaje;
+	}
+	
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
+	}
+	
+	public void setPartido(Partido partido) {
+		this.partido = partido;
 	}
 
 	public long getId() {

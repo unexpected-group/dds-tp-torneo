@@ -24,6 +24,7 @@ public class ConnectionTest {
 	@Test
 	public void testGenerico() {
 		Infraccion i = new Infraccion("MALO");
+		
 		i.save();
 		Calificacion c = new Calificacion(3.0);
 		c.save();

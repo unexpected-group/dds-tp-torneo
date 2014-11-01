@@ -1,6 +1,6 @@
 package model.propuesta;
 
-import java.time.LocalDate;
+import java.util.Date;
 
 import model.jugador.Jugador;
 
@@ -8,14 +8,14 @@ public class Propuesta {
 	
 	private Jugador jugadorPropuesto;
 	private Estado estado;
-	private LocalDate fechaFormulacion;
-	private LocalDate fechaRechazo;
+	private Date fechaFormulacion;
+	private Date fechaRechazo;
 	private String motivoRechazo;
 
 	public Propuesta(Jugador amigo) {
 		this.jugadorPropuesto = amigo;
 		this.estado = Estado.PENDIENTE;
-		this.fechaFormulacion = LocalDate.now();
+		this.fechaFormulacion = new Date();
 	}
 
 	public void aceptarPropuesta() {
@@ -23,7 +23,7 @@ public class Propuesta {
 	}
 
 	public void rechazarPropuesta(String motivo) {
-		this.fechaRechazo = LocalDate.now();
+		this.fechaRechazo = new Date();
 		this.motivoRechazo = motivo;
 		this.estado = Estado.RECHAZADA;
 	}
@@ -32,16 +32,44 @@ public class Propuesta {
 		return jugadorPropuesto;
 	}
 
-	public LocalDate getFecha() {
+	public Date getFecha() {
 		return fechaFormulacion;
 	}
 
-	public LocalDate getFechaRechazo() {
+	public Date getFechaRechazo() {
 		return fechaRechazo;
 	}
 
+	public Estado getEstado() {
+		return estado;
+	}
+
+	public void setEstado(Estado estado) {
+		this.estado = estado;
+	}
+
+	public Date getFechaFormulacion() {
+		return fechaFormulacion;
+	}
+	
 	public String getMotivoRechazo() {
 		return motivoRechazo;
+	}
+
+	public void setFechaFormulacion(Date fechaFormulacion) {
+		this.fechaFormulacion = fechaFormulacion;
+	}
+
+	public void setJugadorPropuesto(Jugador jugadorPropuesto) {
+		this.jugadorPropuesto = jugadorPropuesto;
+	}
+
+	public void setFechaRechazo(Date fechaRechazo) {
+		this.fechaRechazo = fechaRechazo;
+	}
+
+	public void setMotivoRechazo(String motivoRechazo) {
+		this.motivoRechazo = motivoRechazo;
 	}
 
 	public boolean isAceptada() {
