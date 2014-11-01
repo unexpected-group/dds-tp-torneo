@@ -1,3 +1,5 @@
+use torneo;
+
 drop table if exists calificaciones;
 drop table if exists infracciones;
 drop table if exists propuestas;

@@ -1,3 +1,5 @@
+use torneo;
+
 create table if not exists ordenadores (
 	cod_ordenador int primary key auto_increment,
 	descripcion varchar(50) not null
