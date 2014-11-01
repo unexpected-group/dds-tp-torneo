@@ -1,7 +1,7 @@
 package test;
 
 import static org.junit.Assert.assertEquals;
-import model.auto.Auto;
+import model.jugador.Infraccion;
 
 import org.junit.After;
 import org.junit.Before;
@@ -22,23 +22,19 @@ public class ConnectionTest {
 	
 	@Test
 	public void testConection() {
-		Auto a1 = new Auto();
-		a1.setMarca("Ford");
-		a1.save();
-		Auto a2 = new Auto();
-		a2.setMarca("Fiat");
-		a2.save();
-		assertEquals(2, Auto.find.all().size());
+		Infraccion i = new Infraccion("FEO");
+		i.save();
+		System.out.println(Infraccion.find.byId(1L).getFecha());
+		assertEquals(1, Infraccion.find.all().size());
 	}
 	
 	@Test
 	public void testUpdate() {
-		Auto a = new Auto();
-		a.setMarca("Ford");
-		a.save();
-		a.setMarca("Renault");
-		a.update();
-		assertEquals("Renault", Auto.find.byId(1L).getMarca());
+		Infraccion i = new Infraccion("FEO");
+		i.save();
+		i.setMotivo("OTRO");
+		i.update();
+		assertEquals("OTRO", i.getMotivo());
 	}
 	
 	@After

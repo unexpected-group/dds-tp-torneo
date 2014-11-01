@@ -100,11 +100,10 @@ public class PartidosTest {
 		partido.inscribir(new Condicional(juan, condicion));
 		partido.inscribir(solidario2);
 
-		System.out.println("antes: "+ partido.getInscripciones());
+		System.out.println("Before: " + partido.getInscripciones());
 		partido.desplazarJugadorSolidario();
+		System.out.println("After: " + partido.getInscripciones());
 		
-		System.out.println("despues: "+ partido.getInscripciones());
-		System.out.println(partido.getInscripciones().contains(solidario1));
 		assertFalse(partido.getInscripciones().contains(solidario1));
 		assertTrue(partido.getInscripciones().contains(solidario2));
 	}

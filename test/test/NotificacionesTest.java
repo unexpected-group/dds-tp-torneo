@@ -5,7 +5,6 @@ import static org.mockito.Mockito.verify;
 
 import java.util.ArrayList;
 
-import model.homes.PropuestasHome;
 import model.inscripcion.Estandar;
 import model.inscripcion.Inscripcion;
 import model.jugador.Jugador;
@@ -26,7 +25,6 @@ public class NotificacionesTest {
 		for (int i = 0; i < 10; i++) {
 			diezInscripcionesEstandar.add(new Estandar(new Jugador("X", 15 + i)));
 		}
-
 		nueveInscripcionesEstandar = new ArrayList<>();
 		for (int i = 0; i < 9; i++) {
 			nueveInscripcionesEstandar.add(new Estandar(new Jugador("X", 15 + i)));

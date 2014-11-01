@@ -1,22 +1,34 @@
 package model.jugador;
 
-import java.time.LocalDate;
+import java.util.Date;
 
-public class Infraccion {
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+import play.data.format.Formats.DateTime;
+import play.db.ebean.Model;
+
+@Entity
+public class Infraccion extends Model {
 	
-	private LocalDate fecha;
+	@Id
+	private long id;
+	
+	@DateTime(pattern="dd/MM/yyyy")
+	private Date fecha;
+	
 	private String motivo;
 
 	public Infraccion(String motivo) {
-		this.fecha = LocalDate.now();
+		this.fecha = new Date();
 		this.motivo = motivo;
 	}
 
-	public LocalDate getFecha() {
+	public Date getFecha() {
 		return fecha;
 	}
 
-	public void setFecha(LocalDate fecha) {
+	public void setFecha(Date fecha) {
 		this.fecha = fecha;
 	}
 
@@ -27,4 +39,15 @@ public class Infraccion {
 	public void setMotivo(String motivo) {
 		this.motivo = motivo;
 	}
+	
+	public long getId() {
+		return id;
+	}
+	
+	public void setId(long id) {
+		this.id = id;
+	}
+	
+	public static Finder<Long, Infraccion> find =
+			new Finder<Long, Infraccion>(Long.class, Infraccion.class);
 }

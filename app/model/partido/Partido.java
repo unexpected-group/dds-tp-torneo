@@ -11,7 +11,6 @@ import model.excepciones.JugadorInscriptoException;
 import model.excepciones.JugadorNoInscriptoException;
 import model.excepciones.NoSeCumpleCondicionException;
 import model.homes.PartidosHome;
-import model.homes.PropuestasHome;
 import model.inscripcion.Inscripcion;
 import model.inscripcion.Prioridad;
 import model.jugador.Jugador;

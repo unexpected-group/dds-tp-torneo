@@ -4,7 +4,6 @@ import static play.libs.Json.fromJson;
 import static play.libs.Json.toJson;
 import model.armador.ParesImpares;
 import model.armador.PosicionesDadas;
-import model.auto.Auto;
 import model.homes.ArmadoresHome;
 import model.homes.JugadoresHome;
 import model.homes.OrdenadoresHome;
@@ -128,18 +127,5 @@ public class Application extends Controller {
 	// GET /busqueda-jugadores
 	public static Result showBusquedaJugadoresView() {
 		return ok(busqueda_jugadores.render());
-	}
-	
-	// GET /test
-	public static Result test() {
-		return ok(toJson(Auto.find.all()));
-	}
-	
-	// GET /test/:marca
-	public static Result testAdd(String marca) {
-		Auto a = new Auto();
-		a.setMarca(marca);
-		a.save();
-		return ok();
 	}
 }
