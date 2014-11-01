@@ -121,6 +121,16 @@ public class Jugador extends Model implements Observer {
 		return fechaNacimiento;
 	}
 	
+	
+	
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
+	}
+
 	public Double promedioCalificacionesPartido(Partido partido) {
 		return calificaciones.stream()
 				.filter(calificacion -> calificacion.getPartido().equals(partido))

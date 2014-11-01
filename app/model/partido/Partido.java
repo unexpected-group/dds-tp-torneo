@@ -46,6 +46,16 @@ public class Partido extends Model {
 	public Partido(LocalDate fecha, String lugar, List<Inscripcion> inscripciones) {
 		this(fecha, lugar, null, inscripciones);
 	}
+	
+	
+
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
+	}
 
 	public Partido(LocalDate fecha,	String lugar, PropuestasHome propuestas,
 			List<Inscripcion> inscripciones) {
