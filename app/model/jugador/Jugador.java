@@ -8,13 +8,12 @@ import model.excepciones.NoEsAmigoException;
 import model.homes.PropuestasHome;
 import model.inscripcion.Estandar;
 import model.partido.Partido;
-import play.data.format.Formats.DateTime;
+import play.db.ebean.Model;
 
-public class Jugador {
+public class Jugador extends Model {
 	
 	private final String nombre;
 	private final int edad;
-	@DateTime(pattern="dd/MM/yyyy")
 	private Date fechaNacimiento;
 	private int handicap;
 	private List<Jugador> amigos;

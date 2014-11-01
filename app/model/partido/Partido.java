@@ -170,4 +170,8 @@ public class Partido {
 	public List<Jugador> getJugadoresPartido() {
 		return jugadoresPartido;
 	}
+
+	public void setJugadoresPartido(List<Jugador> jugadoresPartido) {
+		this.jugadoresPartido = jugadoresPartido;
+	}
 }

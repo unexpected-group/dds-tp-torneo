@@ -1,6 +1,5 @@
 package controllers;
 
-import static play.libs.Json.fromJson;
 import static play.libs.Json.toJson;
 import model.armador.ParesImpares;
 import model.armador.PosicionesDadas;
@@ -25,37 +24,30 @@ import com.fasterxml.jackson.databind.JsonNode;
 
 public class Application extends Controller {
 
-	// GET /
 	public static Result showIndex() {
 		return ok(index.render("Futbol 5"));
 	}
 
-	// GET /jugadores
 	public static Result obtenerJugadores() {
 		return ok(toJson(JugadoresHome.getJugadores()));
 	}
 
-	// GET /jugadores/:nombre
 	public static Result detallesJugador(String nombre) {
 		return ok(toJson(JugadoresHome.getJugador(nombre)));
 	}
 
-	// GET /generar-equipos
 	public static Result showGenerarEquipos() {
 		return ok(generar_equipos.render());
 	}
 
-	// GET /ordenadores
 	public static Result obtenerOrdenadores() {
 		return ok(toJson(OrdenadoresHome.getOpciones()));
 	}
 
-	// GET /armadores
 	public static Result obtenerArmadores() {
 		return ok(toJson(ArmadoresHome.getOpciones()));
 	}
 
-	// POST /configuracion
 	public static Result configurar() {
 		JsonNode json = request().body().asJson();
 		if (json == null) {
@@ -95,36 +87,32 @@ public class Application extends Controller {
 		}
 	}
 	
-	// GET /partido
 	public static Result obtenerEquipos() {
 		Partido partido = PartidosHome.getPartidoActual();
 		partido.configurar();
+		PartidosHome.setPartidoActual(partido);
 		return ok(toJson(partido));
 	}
 
-	// POST /confirmar-partido
 	public static Result confirmarPartido() {
 		JsonNode json = request().body().asJson();
 		if (json == null) {
 			return badRequest("No se recibio ningun Json");
 		} else {
-			Partido partido = fromJson(json, Partido.class);
+			Partido partido = PartidosHome.getPartidoActual();
 			partido.confirmarPartido();
 			return ok(json);
 		}
 	}
 
-	// GET /detalle-jugador
 	public static Result showJugadorView() {
 		return ok(detalle_jugador.render());
 	}
 
-	// GET /listar-jugadores
 	public static Result showJugadoresView() {
 		return ok(listar_jugadores.render());
 	}
-
-	// GET /busqueda-jugadores
+	
 	public static Result showBusquedaJugadoresView() {
 		return ok(busqueda_jugadores.render());
 	}
