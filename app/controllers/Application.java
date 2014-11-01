@@ -1,12 +1,13 @@
 package controllers;
 
-import static play.libs.Json.toJson;
 import static play.libs.Json.fromJson;
+import static play.libs.Json.toJson;
 import model.armador.ParesImpares;
 import model.armador.PosicionesDadas;
+import model.auto.Auto;
 import model.homes.ArmadoresHome;
-import model.homes.OrdenadoresHome;
 import model.homes.JugadoresHome;
+import model.homes.OrdenadoresHome;
 import model.homes.PartidosHome;
 import model.ordenador.Handicap;
 import model.ordenador.PromedioUltimasCalificaciones;
@@ -15,7 +16,11 @@ import model.partido.Configuracion;
 import model.partido.Partido;
 import play.mvc.Controller;
 import play.mvc.Result;
-import views.html.*;
+import views.html.busqueda_jugadores;
+import views.html.detalle_jugador;
+import views.html.generar_equipos;
+import views.html.index;
+import views.html.listar_jugadores;
 
 import com.fasterxml.jackson.databind.JsonNode;
 
@@ -123,5 +128,18 @@ public class Application extends Controller {
 	// GET /busqueda-jugadores
 	public static Result showBusquedaJugadoresView() {
 		return ok(busqueda_jugadores.render());
+	}
+	
+	// GET /test
+	public static Result test() {
+		return ok(toJson(Auto.find.all()));
+	}
+	
+	// GET /test/:marca
+	public static Result testAdd(String marca) {
+		Auto a = new Auto();
+		a.setMarca(marca);
+		a.save();
+		return ok();
 	}
 }

@@ -68,17 +68,19 @@ public class PartidosTest {
 
 	@Test
 	public void desplazarUnJugadorCondicionalCuandoHayMasDeUnoVerificaQueSaqueAlPrimeroQueEntra() {
-		Inscripcion condicional1 = new Condicional(new Jugador("X", 20), condicion);
-		Inscripcion condicional2 = new Condicional(new Jugador("Y", 20), condicion);
-		partido.inscribir(new Estandar(carlos));
-		partido.inscribir(condicional1);
-		partido.inscribir(new Solidario(juan));
-		partido.inscribir(condicional2);
+		Inscripcion inscripcion1 = new Condicional(new Jugador("X", 20), condicion);
+		Inscripcion inscripcion2 = new Condicional(new Jugador("Y", 20), condicion);
+		Inscripcion inscripcion3 = new Estandar(carlos);
+		Inscripcion inscripcion4 = new Solidario(juan);
+		partido.inscribir(inscripcion3);
+		partido.inscribir(inscripcion1);
+		partido.inscribir(inscripcion4);
+		partido.inscribir(inscripcion2);
 
 		partido.desplazarJugadorCondicional();
 
-		assertFalse(partido.getInscripciones().contains(condicional1));
-		assertTrue(partido.getInscripciones().contains(condicional2));
+		assertFalse(partido.getInscripciones().contains(inscripcion1));
+		assertTrue(partido.getInscripciones().contains(inscripcion2));
 	}
 
 	@Test

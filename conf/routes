@@ -16,4 +16,7 @@ GET		/detalle-jugador		controllers.Application.showJugadorView()
 GET		/listar-jugadores		controllers.Application.showJugadoresView()
 GET		/busqueda-jugadores		controllers.Application.showBusquedaJugadoresView()
 
+GET		/test					controllers.Application.test()
+GET		/test/:marca			controllers.Application.testAdd(marca)
+
 GET		/assets/*file			controllers.Assets.at(path="/public", file)

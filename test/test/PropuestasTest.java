@@ -17,7 +17,7 @@ public class PropuestasTest {
 	private Jugador carlos;
 
 	@Before
-	public void setup() {
+	public void setUp() {
 		propuestas = new PropuestasHome();
 		juan = new Jugador("juan", 20);
 		carlos = new Jugador("carlos", 21);
