@@ -59,4 +59,12 @@ public class Propuesta extends Model {
 	public boolean isPendiente() {
 		return (estado.equals(Estado.PENDIENTE)) ? true : false;
 	}
+
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
+	}
 }

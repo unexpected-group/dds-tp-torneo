@@ -47,4 +47,12 @@ public abstract class Inscripcion extends Model {
 	public Jugador getJugador() {
 		return jugador;
 	}
+
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
+	}
 }

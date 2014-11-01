@@ -46,8 +46,6 @@ public class Partido extends Model {
 	public Partido(LocalDate fecha, String lugar, List<Inscripcion> inscripciones) {
 		this(fecha, lugar, null, inscripciones);
 	}
-	
-	
 
 	public long getId() {
 		return id;

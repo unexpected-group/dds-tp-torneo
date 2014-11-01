@@ -121,8 +121,6 @@ public class Jugador extends Model implements Observer {
 		return fechaNacimiento;
 	}
 	
-	
-	
 	public long getId() {
 		return id;
 	}
