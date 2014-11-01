@@ -25,11 +25,11 @@ public abstract class Inscripcion {
 	}
 
 	public boolean tienePrioridad(Prioridad prioridad) {
-		return getPrioridad().equals(prioridad);
+		return getPrioridad() == (prioridad);
 	}
 
 	public boolean esDelJugador(Jugador jugador) {
-		return this.jugador.equals(jugador);
+		return this.jugador == jugador;
 	}
 
 	public void notificar(Observer observer) {

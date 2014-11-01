@@ -28,27 +28,16 @@ public class Partido {
 	private List<Jugador> jugadoresPartido;
 
 	public Partido(LocalDate fecha, String lugar) {
-		this(fecha, lugar, null, new ArrayList<>());
-	}
-
-	public Partido(LocalDate fecha, String lugar, PropuestasHome propuestas) {
-		this(fecha, lugar, propuestas, new ArrayList<>());
+		this(fecha, lugar, new ArrayList<>());
 	}
 	
-	public Partido(LocalDate fecha, String lugar, List<Inscripcion> inscripciones) {
-		this(fecha, lugar, null, inscripciones);
-	}
-
-	public Partido(LocalDate fecha,	String lugar, PropuestasHome propuestas,
-			List<Inscripcion> inscripciones) {
+	public Partido(LocalDate fecha,	String lugar, List<Inscripcion> inscripciones) {
 		if (inscripciones == null)
 			throw new RuntimeException("PARTIDO SIN LISTA DE INSCRIPCIONES");
 		this.fecha = fecha;
 		this.lugar = lugar;
 		this.observadores = new ArrayList<>();
 		this.inscripciones = inscripciones;
-		if (propuestas != null)
-			this.observadores.add(propuestas);
 		if (inscripciones.size() < 10)
 			this.estado = new Pendiente();
 		else
@@ -106,7 +95,7 @@ public class Partido {
 
 	private void agregarInscripcion(Inscripcion inscripcion) {
 		if (inscripciones.stream().anyMatch(
-				ins -> ins.getJugador().equals(inscripcion.getJugador()))) {
+				ins -> ins.getJugador() == inscripcion.getJugador())) {
 			throw new JugadorInscriptoException("JUGADOR YA INSCRIPTO");
 		} else {
 			estado.agregarInscripcion(inscripcion, this);

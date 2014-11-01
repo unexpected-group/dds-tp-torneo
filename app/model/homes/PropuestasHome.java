@@ -5,23 +5,14 @@ import java.util.List;
 import java.util.stream.Stream;
 
 import model.jugador.Jugador;
-import model.jugador.Observer;
 import model.propuesta.Propuesta;
 
-public class PropuestasHome implements Observer {
+public class PropuestasHome {
 
 	private List<Propuesta> propuestas;
 
 	public PropuestasHome() {
 		this.propuestas = new ArrayList<>();
-	}
-
-	@Override
-	public void notificarNuevaInscripcion(Jugador jugador) {
-	}
-
-	@Override
-	public void notificarBaja() {
 	}
 
 	public void agregarPropuestaAmigo(Jugador amigo) {
@@ -30,7 +21,7 @@ public class PropuestasHome implements Observer {
 
 	public Propuesta propuestaDelJugador(Jugador jugador) {
 		return propuestas.stream()
-				.filter(p -> p.getJugadorPropuesto().equals(jugador))
+				.filter(p -> p.getJugadorPropuesto() == jugador)
 				.findFirst().get();
 	}
 

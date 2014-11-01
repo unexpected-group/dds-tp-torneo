@@ -114,7 +114,7 @@ public class Jugador implements Observer {
 	
 	public Double promedioCalificacionesPartido(Partido partido) {
 		return calificaciones.stream()
-				.filter(calificacion -> calificacion.getPartido().equals(partido))
+				.filter(calificacion -> calificacion.getPartido() == partido)
 				.mapToDouble(calificacion -> calificacion.getPuntaje())
 				.average().getAsDouble();
 	}

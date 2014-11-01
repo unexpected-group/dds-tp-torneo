@@ -45,10 +45,10 @@ public class Propuesta {
 	}
 
 	public boolean isAceptada() {
-		return (estado.equals(Estado.ACEPTADA)) ? true : false;
+		return (estado == Estado.ACEPTADA) ? true : false;
 	}
 
 	public boolean isPendiente() {
-		return (estado.equals(Estado.PENDIENTE)) ? true : false;
+		return (estado == Estado.PENDIENTE) ? true : false;
 	}
 }

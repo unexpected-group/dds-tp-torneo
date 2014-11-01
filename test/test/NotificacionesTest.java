@@ -34,28 +34,6 @@ public class NotificacionesTest {
 	}
 
 	@Test
-	public void notificarAlSacarUnJugadorCuandoElPartidoEstaConfirmado() {
-		PropuestasHome propuestas = mock(PropuestasHome.class);
-		partido = new Partido(null, null, propuestas, diezInscripcionesEstandar);
-
-		diezInscripcionesEstandar.get(3).getJugador().darseDeBaja(partido);
-
-		verify(propuestas).notificarBaja();
-	}
-
-	@Test
-	public void notificarQueElPartidoEstaConfirmado() {
-		PropuestasHome propuestas = mock(PropuestasHome.class);
-		partido = new Partido(null, null, propuestas, nueveInscripcionesEstandar);
-		Jugador jugador = new Jugador("A", 9);
-		Inscripcion estandar = new Estandar(jugador);
-
-		partido.inscribir(estandar);
-
-		verify(propuestas).notificarNuevaInscripcion(jugador);
-	}
-
-	@Test
 	public void notificarInscripcionAmigos() {
 		partido = new Partido(null, null);
 		Jugador jugador = mock(Jugador.class);
