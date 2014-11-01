@@ -4,31 +4,22 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-
-import play.db.ebean.Model;
 import model.excepciones.NoEsAmigoException;
 import model.homes.PropuestasHome;
 import model.inscripcion.Estandar;
 import model.partido.Partido;
 
-@Entity
-public class Jugador extends Model implements Observer {
+public class Jugador implements Observer {
 	
-	@Id
-	private long id;
-
 	private final String nombre;
 	private final int edad;
 	private final LocalDate fechaNacimiento;
-	private List<Jugador> amigos;
 	private int handicap;
+	private List<Jugador> amigos;
 	private List<Infraccion> infracciones;
 	private List<Calificacion> calificaciones;
 
 	public Jugador(String nombre, int edad) {
-		super();
 		this.nombre = nombre;
 		this.edad = edad;
 		this.fechaNacimiento = null;
@@ -70,9 +61,9 @@ public class Jugador extends Model implements Observer {
 		this.calificaciones.add(calificacion);
 	}
 
-	public void proponerAmigo(PropuestasHome administrador, Jugador amigo) {
+	public void proponerAmigo(PropuestasHome propuestas, Jugador amigo) {
 		if (amigos.contains(amigo))
-			administrador.agregarPropuestaAmigo(amigo);
+			propuestas.agregarPropuestaAmigo(amigo);
 		else
 			throw new NoEsAmigoException("NO SON AMIGOS");
 	}
@@ -121,26 +112,16 @@ public class Jugador extends Model implements Observer {
 		return fechaNacimiento;
 	}
 	
-	public long getId() {
-		return id;
-	}
-
-	public void setId(long id) {
-		this.id = id;
-	}
-
 	public Double promedioCalificacionesPartido(Partido partido) {
 		return calificaciones.stream()
 				.filter(calificacion -> calificacion.getPartido().equals(partido))
 				.mapToDouble(calificacion -> calificacion.getPuntaje())
 				.average().getAsDouble();
-//		return Math.random();
 	}
 
 	public Double promedioUltimasCalificaciones(int cantidad) {
 		return calificaciones.stream().skip(calificaciones.size() - cantidad)
 				.mapToDouble(calificacion -> calificacion.getPuntaje())
 				.average().getAsDouble();
-//		return Math.random();
 	}
 }

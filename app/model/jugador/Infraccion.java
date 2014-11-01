@@ -2,16 +2,7 @@ package model.jugador;
 
 import java.time.LocalDate;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-
-import play.db.ebean.Model;
-
-@Entity
-public class Infraccion extends Model {
-	
-	@Id
-	private long id;
+public class Infraccion {
 	
 	private LocalDate fecha;
 	private String motivo;
@@ -35,13 +26,5 @@ public class Infraccion extends Model {
 
 	public void setMotivo(String motivo) {
 		this.motivo = motivo;
-	}
-
-	public long getId() {
-		return id;
-	}
-
-	public void setId(long id) {
-		this.id = id;
 	}
 }

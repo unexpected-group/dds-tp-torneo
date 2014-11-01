@@ -6,10 +6,6 @@ import java.util.List;
 import java.util.Optional;
 import java.util.function.Predicate;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-
-import play.db.ebean.Model;
 import model.excepciones.CuposCompletosException;
 import model.excepciones.JugadorInscriptoException;
 import model.excepciones.JugadorNoInscriptoException;
@@ -21,12 +17,8 @@ import model.inscripcion.Prioridad;
 import model.jugador.Jugador;
 import model.jugador.Observer;
 
-@Entity
-public class Partido extends Model {
+public class Partido {
 
-	@Id
-	private long id;
-	
 	private LocalDate fecha;
 	private String lugar;
 	private Estado estado;
@@ -45,14 +37,6 @@ public class Partido extends Model {
 	
 	public Partido(LocalDate fecha, String lugar, List<Inscripcion> inscripciones) {
 		this(fecha, lugar, null, inscripciones);
-	}
-
-	public long getId() {
-		return id;
-	}
-
-	public void setId(long id) {
-		this.id = id;
 	}
 
 	public Partido(LocalDate fecha,	String lugar, PropuestasHome propuestas,

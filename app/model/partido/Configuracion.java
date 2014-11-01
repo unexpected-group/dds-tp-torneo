@@ -1,17 +1,9 @@
 package model.partido;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-
-import play.db.ebean.Model;
 import model.armador.ArmadorEquipos;
 import model.ordenador.OrdenadorEquipos;
 
-@Entity
-public class Configuracion extends Model {
-	
-	@Id
-	private long id;
+public class Configuracion {
 	
 	private OrdenadorEquipos ordenadorEquipos;
 	private ArmadorEquipos armadorEquipos;

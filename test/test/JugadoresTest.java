@@ -89,7 +89,7 @@ public class JugadoresTest {
 		when(calificacion2.getPartido()).thenReturn(partido);
 		when(calificacion2.getPuntaje()).thenReturn(8.0);
 		Calificacion calificacion3 = mock(Calificacion.class);
-		when(calificacion3.getPartido()).thenReturn(new Partido(null, null));
+		when(calificacion3.getPartido()).thenReturn(partido);
 		when(calificacion3.getPuntaje()).thenReturn(2.0);
 
 		juan.calificar(carlos, calificacion1);

@@ -1,17 +1,9 @@
 package model.jugador;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-
-import play.db.ebean.Model;
 import model.partido.Partido;
 
-@Entity
-public class Calificacion extends Model {
+public class Calificacion {
 
-	@Id
-	private long id;
-	
 	private double puntaje;
 	private String descripcion;
 	private Jugador calificador;

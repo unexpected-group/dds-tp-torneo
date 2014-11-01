@@ -2,18 +2,10 @@ package model.propuesta;
 
 import java.time.LocalDate;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-
-import play.db.ebean.Model;
 import model.jugador.Jugador;
 
-@Entity
-public class Propuesta extends Model {
+public class Propuesta {
 	
-	@Id
-	private long id;
-
 	private Jugador jugadorPropuesto;
 	private Estado estado;
 	private LocalDate fechaFormulacion;
@@ -58,13 +50,5 @@ public class Propuesta extends Model {
 
 	public boolean isPendiente() {
 		return (estado.equals(Estado.PENDIENTE)) ? true : false;
-	}
-
-	public long getId() {
-		return id;
-	}
-
-	public void setId(long id) {
-		this.id = id;
 	}
 }
