@@ -1,7 +1,7 @@
 package model.jugador;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import model.excepciones.NoEsAmigoException;
@@ -9,11 +9,11 @@ import model.homes.PropuestasHome;
 import model.inscripcion.Estandar;
 import model.partido.Partido;
 
-public class Jugador implements Observer {
+public class Jugador {
 	
 	private final String nombre;
 	private final int edad;
-	private final LocalDate fechaNacimiento;
+	private final Date fechaNacimiento;
 	private int handicap;
 	private List<Jugador> amigos;
 	private List<Infraccion> infracciones;
@@ -42,14 +42,6 @@ public class Jugador implements Observer {
 			partido.inscribir(new Estandar(jugadorReemplazante));
 		else
 			infracciones.add(new Infraccion("NO SE OFRECIO REEMPLAZANTE"));
-	}
-
-	@Override
-	public void notificarNuevaInscripcion(Jugador jugador) {
-	}
-
-	@Override
-	public void notificarBaja() {
 	}
 
 	public void calificar(Jugador jugador, Calificacion calificacion) {
@@ -108,7 +100,7 @@ public class Jugador implements Observer {
 		this.handicap = handicap;
 	}
 
-	public LocalDate getFechaNacimiento() {
+	public Date getFechaNacimiento() {
 		return fechaNacimiento;
 	}
 	

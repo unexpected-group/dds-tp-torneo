@@ -3,14 +3,23 @@
 
 # --- !Ups
 
-create table infraccion (
+create table Calificaciones (
+  id                        bigint not null,
+  puntaje                   double,
+  descripcion               varchar(255),
+  constraint pk_Calificaciones primary key (id))
+;
+
+create table Infracciones (
   id                        bigint not null,
   fecha                     timestamp,
   motivo                    varchar(255),
-  constraint pk_infraccion primary key (id))
+  constraint pk_Infracciones primary key (id))
 ;
 
-create sequence infraccion_seq;
+create sequence Calificaciones_seq;
+
+create sequence Infracciones_seq;
 
 
 
@@ -19,9 +28,13 @@ create sequence infraccion_seq;
 
 SET REFERENTIAL_INTEGRITY FALSE;
 
-drop table if exists infraccion;
+drop table if exists Calificaciones;
+
+drop table if exists Infracciones;
 
 SET REFERENTIAL_INTEGRITY TRUE;
 
-drop sequence if exists infraccion_seq;
+drop sequence if exists Calificaciones_seq;
+
+drop sequence if exists Infracciones_seq;
 

@@ -14,7 +14,6 @@ import model.homes.PartidosHome;
 import model.inscripcion.Inscripcion;
 import model.inscripcion.Prioridad;
 import model.jugador.Jugador;
-import model.jugador.Observer;
 
 public class Partido {
 
@@ -23,7 +22,6 @@ public class Partido {
 	private Estado estado;
 	private Configuracion configuracion;
 	private List<Inscripcion> inscripciones;
-	private List<Observer> observadores;
 	private List<Jugador> jugadoresPartido;
 
 	public Partido(LocalDate fecha, String lugar) {
@@ -35,7 +33,6 @@ public class Partido {
 			throw new RuntimeException("PARTIDO SIN LISTA DE INSCRIPCIONES");
 		this.fecha = fecha;
 		this.lugar = lugar;
-		this.observadores = new ArrayList<>();
 		this.inscripciones = inscripciones;
 		if (inscripciones.size() < 10)
 			this.estado = new Pendiente();
@@ -160,14 +157,6 @@ public class Partido {
 
 	public void setEstado(Estado estado) {
 		this.estado = estado;
-	}
-
-	public List<Observer> getObservadores() {
-		return observadores;
-	}
-
-	public void setObservadores(List<Observer> observadores) {
-		this.observadores = observadores;
 	}
 
 	public Configuracion getConfiguracion() {

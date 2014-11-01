@@ -11,7 +11,6 @@ public class Completo implements Estado {
 	@Override
 	public void quitarInscripcion(Inscripcion inscripcion, Partido partido) {
 		partido.getInscripciones().remove(inscripcion);
-		partido.getObservadores().forEach(observador -> observador.notificarBaja());
 		partido.setEstado(new Pendiente());
 	}
 }

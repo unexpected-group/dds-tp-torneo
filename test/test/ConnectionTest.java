@@ -1,6 +1,7 @@
 package test;
 
 import static org.junit.Assert.assertEquals;
+import model.jugador.Calificacion;
 import model.jugador.Infraccion;
 
 import org.junit.After;
@@ -21,11 +22,17 @@ public class ConnectionTest {
 	}
 	
 	@Test
-	public void testConection() {
-		Infraccion i = new Infraccion("FEO");
+	public void testGenerico() {
+		Infraccion i = new Infraccion("MALO");
 		i.save();
+		Calificacion c = new Calificacion(3.0);
+		c.save();
+		
 		System.out.println(Infraccion.find.byId(1L).getFecha());
+		System.out.println(Calificacion.find.byId(1L).getPuntaje());
+		
 		assertEquals(1, Infraccion.find.all().size());
+		assertEquals(1, Calificacion.find.all().size());
 	}
 	
 	@Test
