@@ -90,13 +90,13 @@ public class JugadoresTest {
 		when(calificacion2.getPuntaje()).thenReturn(8.0);
 		Calificacion calificacion3 = mock(Calificacion.class);
 		when(calificacion3.getPartido()).thenReturn(new Partido(null, null));
-		when(calificacion3.getPuntaje()).thenReturn(1.0);
+		when(calificacion3.getPuntaje()).thenReturn(2.0);
 
 		juan.calificar(carlos, calificacion1);
 		juan.calificar(carlos, calificacion2);
 		juan.calificar(carlos, calificacion3);
 
-		assertEquals((Double) 5.0, carlos.promedioCalificacionesPartido(partido));
+		assertEquals((Double) 4.0, carlos.promedioCalificacionesPartido(partido));
 	}
 
 	@Test

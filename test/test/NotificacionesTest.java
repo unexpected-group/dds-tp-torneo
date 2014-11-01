@@ -21,7 +21,7 @@ public class NotificacionesTest {
 	private ArrayList<Inscripcion> nueveInscripcionesEstandar;
 
 	@Before
-	public void setup() {
+	public void setUp() {
 		diezInscripcionesEstandar = new ArrayList<>();
 		for (int i = 0; i < 10; i++) {
 			diezInscripcionesEstandar.add(new Estandar(new Jugador("X", 15 + i)));
@@ -34,7 +34,7 @@ public class NotificacionesTest {
 	}
 
 	@Test
-	public void notificarAlAdministradorAlSacarUnJugadorCuandoElPartidoEstaConfirmado() {
+	public void notificarAlSacarUnJugadorCuandoElPartidoEstaConfirmado() {
 		PropuestasHome propuestas = mock(PropuestasHome.class);
 		partido = new Partido(null, null, propuestas, diezInscripcionesEstandar);
 
@@ -44,10 +44,10 @@ public class NotificacionesTest {
 	}
 
 	@Test
-	public void notificarAlAdministradorQueElPartidoEstaConfirmado() {
+	public void notificarQueElPartidoEstaConfirmado() {
 		PropuestasHome propuestas = mock(PropuestasHome.class);
 		partido = new Partido(null, null, propuestas, nueveInscripcionesEstandar);
-		Jugador jugador = new Jugador("A", 99);
+		Jugador jugador = new Jugador("A", 9);
 		Inscripcion estandar = new Estandar(jugador);
 
 		partido.inscribir(estandar);
@@ -56,7 +56,7 @@ public class NotificacionesTest {
 	}
 
 	@Test
-	public void notificarInscripcionAAmigos() {
+	public void notificarInscripcionAmigos() {
 		partido = new Partido(null, null);
 		Jugador jugador = mock(Jugador.class);
 		Inscripcion estandar = new Estandar(jugador);
