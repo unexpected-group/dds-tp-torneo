@@ -1,8 +1,8 @@
 package test;
 
 import static org.junit.Assert.assertEquals;
-import model.jugador.Calificacion;
-import model.jugador.Infraccion;
+import models.jugador.Calificacion;
+import models.jugador.Infraccion;
 
 import org.junit.After;
 import org.junit.Before;

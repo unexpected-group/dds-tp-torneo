@@ -7,16 +7,16 @@ import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
 
-import model.excepciones.JugadorInscriptoException;
-import model.inscripcion.Condicion;
-import model.inscripcion.Condicional;
-import model.inscripcion.Estandar;
-import model.inscripcion.Inscripcion;
-import model.inscripcion.Solidario;
-import model.jugador.Jugador;
-import model.partido.Completo;
-import model.partido.Partido;
-import model.partido.Pendiente;
+import models.excepciones.JugadorInscriptoException;
+import models.inscripcion.Condicion;
+import models.inscripcion.Condicional;
+import models.inscripcion.Estandar;
+import models.inscripcion.Inscripcion;
+import models.inscripcion.Solidario;
+import models.jugador.Jugador;
+import models.partido.Completo;
+import models.partido.Partido;
+import models.partido.Pendiente;
 
 import org.junit.Before;
 import org.junit.Test;

@@ -7,11 +7,11 @@ import static org.mockito.Mockito.when;
 import java.util.ArrayList;
 import java.util.List;
 
-import model.armador.ArmadorEquipos;
-import model.armador.ParesImpares;
-import model.jugador.Jugador;
-import model.ordenador.Handicap;
-import model.ordenador.OrdenadorEquipos;
+import models.armador.ArmadorEquipos;
+import models.armador.ParesImpares;
+import models.jugador.Jugador;
+import models.ordenador.Handicap;
+import models.ordenador.OrdenadorEquipos;
 
 import org.junit.Before;
 import org.junit.Test;
