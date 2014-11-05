@@ -100,6 +100,7 @@ public class Application extends Controller {
 			return badRequest("No se recibio ningun Json");
 		} else {
 			Partido partido = PartidosHome.getPartidoActual();
+			// los jugadores fueron seteados antes en el configurar 
 			partido.confirmarPartido();
 			return ok(json);
 		}

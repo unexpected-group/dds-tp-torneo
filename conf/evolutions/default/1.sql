@@ -4,29 +4,37 @@
 # --- !Ups
 
 create table Calificaciones (
-  id                        bigint auto_increment not null,
+  id                        bigint not null,
   puntaje                   double,
   descripcion               varchar(255),
   constraint pk_Calificaciones primary key (id))
 ;
 
 create table Infracciones (
-  id                        bigint auto_increment not null,
-  fecha                     datetime,
+  id                        bigint not null,
+  fecha                     timestamp,
   motivo                    varchar(255),
   constraint pk_Infracciones primary key (id))
 ;
+
+create sequence Calificaciones_seq;
+
+create sequence Infracciones_seq;
 
 
 
 
 # --- !Downs
 
-SET FOREIGN_KEY_CHECKS=0;
+SET REFERENTIAL_INTEGRITY FALSE;
 
-drop table Calificaciones;
+drop table if exists Calificaciones;
 
-drop table Infracciones;
+drop table if exists Infracciones;
 
-SET FOREIGN_KEY_CHECKS=1;
+SET REFERENTIAL_INTEGRITY TRUE;
+
+drop sequence if exists Calificaciones_seq;
+
+drop sequence if exists Infracciones_seq;
 
