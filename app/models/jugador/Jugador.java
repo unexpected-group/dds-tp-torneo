@@ -5,7 +5,9 @@ import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -13,24 +15,25 @@ import models.excepciones.NoEsAmigoException;
 import models.homes.PropuestasHome;
 import models.inscripcion.Estandar;
 import models.partido.Partido;
+import play.data.format.Formats.DateTime;
 import play.db.ebean.Model;
 
-@Entity
-@Table(name="Jugadores")
+@Entity @Table(name = "jugadores")
 public class Jugador extends Model {
 
-	@Id
+	@Id @GeneratedValue
 	private long id;
 	
 	private String nombre;
 	private int edad;
+	@DateTime(pattern="dd/MM/yyyy")
 	private Date fechaNacimiento;
 	private int handicap;
-	@OneToMany
+	@OneToMany @JoinColumn(name = "jugador_id")
 	private List<Jugador> amigos;
-	@OneToMany
+	@OneToMany @JoinColumn(name = "jugador_id")
 	private List<Infraccion> infracciones;
-	@OneToMany
+	@OneToMany @JoinColumn(name = "jugador_id")
 	private List<Calificacion> calificaciones;
 
 	public Jugador(String nombre, int edad) {

@@ -3,20 +3,25 @@ package models.propuesta;
 import java.util.Date;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
 import play.db.ebean.Model;
 import models.jugador.Jugador;
 
-@Entity
-public class Propuesta extends Model{
+@Entity @Table(name = "propuestas")
+public class Propuesta extends Model {
 	
-	@Id
+	@Id @GeneratedValue
 	private long id;
+	
 	@OneToOne
 	private Jugador jugadorPropuesto;
-	@OneToOne
+	@Enumerated(EnumType.STRING)
 	private Estado estado;
 	private Date fechaFormulacion;
 	private Date fechaRechazo;

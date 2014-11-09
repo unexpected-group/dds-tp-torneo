@@ -1,10 +1,12 @@
 package models.ordenador;
 
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 
 import models.jugador.Jugador;
 
 @Entity
+@DiscriminatorValue("C")
 public class PromedioUltimasCalificaciones extends OrdenadorEquipos {
 
 	private int cantidad;

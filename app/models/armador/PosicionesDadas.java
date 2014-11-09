@@ -3,11 +3,13 @@ package models.armador;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 
 import models.jugador.Jugador;
 
 @Entity
+@DiscriminatorValue("PD")
 public class PosicionesDadas extends ArmadorEquipos {
 
 	@Override

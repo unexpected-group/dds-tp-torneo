@@ -1,6 +1,7 @@
 package models.jugador;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -8,12 +9,12 @@ import javax.persistence.Table;
 import models.partido.Partido;
 import play.db.ebean.Model;
 
-@Entity
-@Table(name="Calificaciones")
+@Entity @Table(name = "calificaciones")
 public class Calificacion extends Model {
 	
-	@Id
+	@Id @GeneratedValue
 	private long id;
+	
 	private double puntaje;
 	private String descripcion;
 	@OneToOne
