@@ -1,13 +1,15 @@
 package models.inscripcion;
 
 import javax.persistence.Entity;
+import javax.persistence.Transient;
 
 import models.jugador.Jugador;
 import models.partido.Partido;
 
 @Entity
 public class Condicional extends Inscripcion {
-
+	
+	@Transient
 	private Condicion condicion;
 
 	public Condicional(Jugador jugador, Condicion condicion) {

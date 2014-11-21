@@ -3,13 +3,11 @@ package models.jugador;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
-import javax.persistence.Table;
 
 import models.partido.Partido;
 import play.db.ebean.Model;
 
 @Entity
-@Table(name="Calificaciones")
 public class Calificacion extends Model {
 	
 	@Id

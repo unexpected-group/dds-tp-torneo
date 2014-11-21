@@ -4,13 +4,11 @@ import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.Table;
 
 import play.data.format.Formats.DateTime;
 import play.db.ebean.Model;
 
 @Entity
-@Table(name="Infracciones")
 public class Infraccion extends Model {
 	
 	@Id

@@ -7,7 +7,6 @@ import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import javax.persistence.Table;
 
 import models.excepciones.NoEsAmigoException;
 import models.homes.PropuestasHome;
@@ -16,12 +15,10 @@ import models.partido.Partido;
 import play.db.ebean.Model;
 
 @Entity
-@Table(name="Jugadores")
 public class Jugador extends Model {
 
 	@Id
 	private long id;
-	
 	private String nombre;
 	private int edad;
 	private Date fechaNacimiento;
