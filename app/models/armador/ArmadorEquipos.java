@@ -16,7 +16,7 @@ import models.jugador.Jugador;
 @Entity @Table(name = "armadores")
 @Inheritance(strategy= InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "tipo")
-public abstract class ArmadorEquipos extends Model{
+public abstract class ArmadorEquipos extends Model {
 
 	@Id @GeneratedValue
 	private long id;
