@@ -110,15 +110,17 @@ public class Jugador extends Model {
 	}
 	
 	public Double promedioCalificacionesPartido(Partido partido) {
-		return calificaciones.stream()
-				.filter(calificacion -> calificacion.getPartido() == partido)
-				.mapToDouble(calificacion -> calificacion.getPuntaje())
-				.average().getAsDouble();
+//		return calificaciones.stream()
+//				.filter(calificacion -> calificacion.getPartido() == partido)
+//				.mapToDouble(calificacion -> calificacion.getPuntaje())
+//				.average().getAsDouble();
+		return Math.random() * 10;
 	}
 
 	public Double promedioUltimasCalificaciones(int cantidad) {
-		return calificaciones.stream().skip(calificaciones.size() - cantidad)
-				.mapToDouble(calificacion -> calificacion.getPuntaje())
-				.average().getAsDouble();
+//		return calificaciones.stream().skip(calificaciones.size() - cantidad)
+//				.mapToDouble(calificacion -> calificacion.getPuntaje())
+//				.average().getAsDouble();
+		return Math.random() * 10;
 	}
 }

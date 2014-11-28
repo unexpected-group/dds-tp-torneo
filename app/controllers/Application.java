@@ -50,6 +50,7 @@ public class Application extends Controller {
 
 	public static Result configurar() {
 		JsonNode json = request().body().asJson();
+		
 		if (json == null) {
 			return badRequest("No se recibio ningun Json");
 		} else {
@@ -64,8 +65,7 @@ public class Application extends Controller {
 				partido.getConfiguracion().setOrdenadorEquipos(new PromedioUltimoPartido(null));
 				break;
 			case "Promedio de las ultimas calificaciones":
-				partido.getConfiguracion()
-						.setOrdenadorEquipos(new PromedioUltimasCalificaciones(0));
+				partido.getConfiguracion().setOrdenadorEquipos(new PromedioUltimasCalificaciones(0));
 				break;
 			default:
 				break;
@@ -81,7 +81,6 @@ public class Application extends Controller {
 			default:
 				break;
 			}
-
 			PartidosHome.setPartidoActual(partido);
 			return ok(json);
 		}
