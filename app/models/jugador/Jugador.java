@@ -76,47 +76,78 @@ public class Jugador extends Model {
 		else
 			throw new NoEsAmigoException("NO SON AMIGOS");
 	}
-
+	
+	public Double promedioCalificacionesPartido(Partido partido) {
+//		return calificaciones.stream()
+//				.filter(calificacion -> calificacion.getPartido() == partido)
+//				.mapToDouble(calificacion -> calificacion.getPuntaje())
+//				.average().getAsDouble();
+		return Math.random() * 10;
+	}
+	
+	public Double promedioUltimasCalificaciones(int cantidad) {
+//		return calificaciones.stream().skip(calificaciones.size() - cantidad)
+//				.mapToDouble(calificacion -> calificacion.getPuntaje())
+//				.average().getAsDouble();
+		return Math.random() * 10;
+	}
+	
+	public long getId() {
+		return id;
+	}
+	
+	public void setId(long id) {
+		this.id = id;
+	}
+	
 	public String getNombre() {
 		return nombre;
 	}
-
+	
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+	
 	public int getEdad() {
 		return edad;
 	}
-
+	
+	public void setEdad(int edad) {
+		this.edad = edad;
+	}
+	
 	public List<Jugador> getAmigos() {
 		return amigos;
 	}
-
+	
 	public void setAmigos(List<Jugador> amigos) {
 		this.amigos = amigos;
 	}
-
+	
 	public List<Infraccion> getInfracciones() {
 		return infracciones;
 	}
-
+	
 	public void setInfracciones(List<Infraccion> infracciones) {
 		this.infracciones = infracciones;
 	}
-
+	
 	public List<Calificacion> getCalificaciones() {
 		return calificaciones;
 	}
-
+	
 	public void setCalificaciones(List<Calificacion> calificaciones) {
 		this.calificaciones = calificaciones;
 	}
-
+	
 	public int getHandicap() {
 		return handicap;
 	}
-
+	
 	public void setHandicap(int handicap) {
 		this.handicap = handicap;
 	}
-
+	
 	public Date getFechaNacimiento() {
 		return fechaNacimiento;
 	}
@@ -125,43 +156,8 @@ public class Jugador extends Model {
 		this.fechaNacimiento = fechaNacimiento;
 	}
 	
-	public Double promedioCalificacionesPartido(Partido partido) {
-		return calificaciones.stream()
-				.filter(calificacion -> calificacion.getPartido() == partido)
-				.mapToDouble(calificacion -> calificacion.getPuntaje())
-				.average().getAsDouble();
-	}
-
-	public Double promedioUltimasCalificaciones(int cantidad) {
-		return calificaciones.stream().skip(calificaciones.size() - cantidad)
-				.mapToDouble(calificacion -> calificacion.getPuntaje())
-				.average().getAsDouble();
-	}
-
-	public long getId() {
-		return id;
-	}
-
-	public void setId(long id) {
-		this.id = id;
-	}
+	// finder for model
 	
-	public static Finder<Long, Jugador> getFind() {
-		return find;
-	}
-
-	public static void setFind(Finder<Long, Jugador> find) {
-		Jugador.find = find;
-	}
-
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
-
-	public void setEdad(int edad) {
-		this.edad = edad;
-	}
-
-	public static Finder<Long, Jugador> find =
+	public static Finder<Long, Jugador> finder =
 			new Finder<Long, Jugador>(Long.class, Jugador.class);
 }
