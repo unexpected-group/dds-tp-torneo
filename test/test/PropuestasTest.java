@@ -2,9 +2,9 @@ package test;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
-import model.homes.PropuestasHome;
-import model.jugador.Jugador;
-import model.propuesta.Propuesta;
+import models.homes.PropuestasHome;
+import models.jugador.Jugador;
+import models.propuesta.Propuesta;
 
 import org.junit.Before;
 import org.junit.Test;

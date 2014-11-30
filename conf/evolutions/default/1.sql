@@ -3,18 +3,10 @@
 
 # --- !Ups
 
-create table Calificaciones (
-  id                        bigint auto_increment not null,
-  puntaje                   double,
-  descripcion               varchar(255),
-  constraint pk_Calificaciones primary key (id))
-;
-
-create table Infracciones (
-  id                        bigint auto_increment not null,
-  fecha                     datetime,
-  motivo                    varchar(255),
-  constraint pk_Infracciones primary key (id))
+create table armadores (
+  tipo                      varchar(31) not null,
+  id                        integer auto_increment not null,
+  constraint pk_armadores primary key (id))
 ;
 
 
@@ -24,9 +16,7 @@ create table Infracciones (
 
 SET FOREIGN_KEY_CHECKS=0;
 
-drop table Calificaciones;
-
-drop table Infracciones;
+drop table armadores;
 
 SET FOREIGN_KEY_CHECKS=1;
 

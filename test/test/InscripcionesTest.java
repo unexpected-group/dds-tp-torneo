@@ -6,15 +6,15 @@ import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
 
-import model.excepciones.CuposCompletosException;
-import model.excepciones.NoSeCumpleCondicionException;
-import model.inscripcion.Condicion;
-import model.inscripcion.Condicional;
-import model.inscripcion.Estandar;
-import model.inscripcion.Inscripcion;
-import model.inscripcion.Solidario;
-import model.jugador.Jugador;
-import model.partido.Partido;
+import models.excepciones.CuposCompletosException;
+import models.excepciones.NoSeCumpleCondicionException;
+import models.inscripcion.Condicion;
+import models.inscripcion.Condicional;
+import models.inscripcion.Estandar;
+import models.inscripcion.Inscripcion;
+import models.inscripcion.Solidario;
+import models.jugador.Jugador;
+import models.partido.Partido;
 
 import org.junit.Assert;
 import org.junit.Before;

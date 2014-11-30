@@ -17,3 +17,5 @@ GET		/listar-jugadores		controllers.Application.showJugadoresView()
 GET		/busqueda-jugadores		controllers.Application.showBusquedaJugadoresView()
 
 GET		/assets/*file			controllers.Assets.at(path="/public", file)
+
+GET		/armadores				controllers.Application.getArmadores()

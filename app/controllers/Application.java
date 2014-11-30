@@ -1,17 +1,17 @@
 package controllers;
 
 import static play.libs.Json.toJson;
-import model.armador.ParesImpares;
-import model.armador.PosicionesDadas;
-import model.homes.ArmadoresHome;
-import model.homes.JugadoresHome;
-import model.homes.OrdenadoresHome;
-import model.homes.PartidosHome;
-import model.ordenador.Handicap;
-import model.ordenador.PromedioUltimasCalificaciones;
-import model.ordenador.PromedioUltimoPartido;
-import model.partido.Configuracion;
-import model.partido.Partido;
+import models.armador.ParesImpares;
+import models.armador.PosicionesDadas;
+import models.homes.ArmadoresHome;
+import models.homes.JugadoresHome;
+import models.homes.OrdenadoresHome;
+import models.homes.PartidosHome;
+import models.ordenador.Handicap;
+import models.ordenador.PromedioUltimasCalificaciones;
+import models.ordenador.PromedioUltimoPartido;
+import models.partido.Configuracion;
+import models.partido.Partido;
 import play.mvc.Controller;
 import play.mvc.Result;
 import views.html.busqueda_jugadores;
@@ -115,5 +115,9 @@ public class Application extends Controller {
 	
 	public static Result showBusquedaJugadoresView() {
 		return ok(busqueda_jugadores.render());
+	}
+	
+	public static Result getArmadores() {
+		return ok(toJson(ArmadoresHome.getOpciones()));
 	}
 }
