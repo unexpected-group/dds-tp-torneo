@@ -1,5 +1,5 @@
-use torneo;
-
+use torneo_play;
+/*
 create table if not exists ordenadores (
 	cod_ordenador int primary key auto_increment,
 	descripcion varchar(50) not null
@@ -77,6 +77,7 @@ create table if not exists inscripciones (
 	foreign key (jugador) references jugadores (cod_jugador),
 	foreign key (partido) references partidos (cod_partido)
 );
+*/
 
 insert into ordenadores (descripcion)
 values

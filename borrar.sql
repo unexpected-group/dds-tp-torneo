@@ -1,4 +1,4 @@
-use torneo;
+use torneo_play;
 
 drop table if exists calificaciones;
 drop table if exists infracciones;

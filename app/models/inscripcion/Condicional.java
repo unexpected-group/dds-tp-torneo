@@ -1,5 +1,6 @@
 package models.inscripcion;
 
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.Transient;
 
@@ -7,8 +8,9 @@ import models.jugador.Jugador;
 import models.partido.Partido;
 
 @Entity
+@DiscriminatorValue("C")
 public class Condicional extends Inscripcion {
-	
+
 	@Transient
 	private Condicion condicion;
 

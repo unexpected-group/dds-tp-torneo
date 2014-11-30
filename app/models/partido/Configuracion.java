@@ -1,21 +1,24 @@
 package models.partido;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 import models.armador.ArmadorEquipos;
 import models.ordenador.OrdenadorEquipos;
 import play.db.ebean.Model;
 
-@Entity
-public class Configuracion extends Model{
+@Entity @Table(name = "configuraciones")
+public class Configuracion extends Model {
 	
-	@Id
+	@Id @GeneratedValue
 	private long id;
-	@OneToOne
+	
+	@ManyToOne
 	private OrdenadorEquipos ordenadorEquipos;
-	@OneToOne
+	@ManyToOne
 	private ArmadorEquipos armadorEquipos;
 	
 	public Configuracion(OrdenadorEquipos ordenadorEquipos, ArmadorEquipos armadorEquipos) {

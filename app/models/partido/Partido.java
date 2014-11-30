@@ -7,9 +7,12 @@ import java.util.Optional;
 import java.util.function.Predicate;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
+import javax.persistence.Table;
 import javax.persistence.Transient;
 
 import models.excepciones.CuposCompletosException;
@@ -22,18 +25,19 @@ import models.inscripcion.Prioridad;
 import models.jugador.Jugador;
 import play.db.ebean.Model;
 
-@Entity
+@Entity @Table(name = "partidos")
 public class Partido extends Model{
 
-	@Id
+	@Id @GeneratedValue
 	private long id;
+	
 	private Date fecha;
 	private String lugar;
-	@OneToOne
+	@ManyToOne
 	private Estado estado;
-	@OneToOne
+	@ManyToOne
 	private Configuracion configuracion;
-	@OneToMany
+	@OneToMany @JoinColumn(name = "partido_id")
 	private List<Inscripcion> inscripciones;
 	@Transient
 	private List<Jugador> jugadoresPartido;

@@ -3,16 +3,21 @@ package models.jugador;
 import java.util.Date;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 import play.data.format.Formats.DateTime;
 import play.db.ebean.Model;
 
-@Entity
+
+@Entity 
+@Table(name = "infracciones")
 public class Infraccion extends Model {
 	
-	@Id
+	@Id @GeneratedValue
 	private long id;
+	
 	@DateTime(pattern="dd/MM/yyyy")
 	private Date fecha;
 	private String motivo;

@@ -1,20 +1,27 @@
 package models.inscripcion;
 
+import javax.persistence.DiscriminatorColumn;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
-import play.db.ebean.Model;
 import models.jugador.Jugador;
 import models.partido.Partido;
+import play.db.ebean.Model;
 
-@Entity
+@Entity @Table(name = "inscripciones")
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "tipo")
 public abstract class Inscripcion extends Model {
 	
-	@Id
+	@Id @GeneratedValue
 	private long id;
 	
-	@OneToOne
+	@ManyToOne
 	private Jugador jugador;
 
 	public Inscripcion(Jugador jugador) {
@@ -44,6 +51,10 @@ public abstract class Inscripcion extends Model {
 	public Jugador getJugador() {
 		return jugador;
 	}
+	
+	public void setJugador(Jugador jugador) {
+		this.jugador = jugador;
+	}
 
 	public long getId() {
 		return id;
@@ -51,9 +62,5 @@ public abstract class Inscripcion extends Model {
 
 	public void setId(long id) {
 		this.id = id;
-	}
-
-	public void setJugador(Jugador jugador) {
-		this.jugador = jugador;
 	}
 }
