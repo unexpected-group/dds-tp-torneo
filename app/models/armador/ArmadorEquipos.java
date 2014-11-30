@@ -10,24 +10,31 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.Table;
 
-import play.db.ebean.Model;
 import models.jugador.Jugador;
+import play.db.ebean.Model;
 
-@Entity @Table(name = "armadores")
-@Inheritance(strategy= InheritanceType.SINGLE_TABLE)
+@Entity
+@Table(name = "armadores")
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "tipo")
 public abstract class ArmadorEquipos extends Model {
 
-	@Id @GeneratedValue
-	private long id;
-	
+	@Id
+	@GeneratedValue
+	private int id;
+
 	public abstract void armarEquipos(List<Jugador> jugadores);
 
-	public long getId() {
+	public int getId() {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(int id) {
 		this.id = id;
 	}
+
+	// finder for model
+
+	public static Finder<Long, ArmadorEquipos> finder = 
+			new Finder<Long, ArmadorEquipos>(Long.class, ArmadorEquipos.class);
 }

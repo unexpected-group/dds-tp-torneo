@@ -116,4 +116,8 @@ public class Application extends Controller {
 	public static Result showBusquedaJugadoresView() {
 		return ok(busqueda_jugadores.render());
 	}
+	
+	public static Result getArmadores() {
+		return ok(toJson(ArmadoresHome.getOpciones()));
+	}
 }
