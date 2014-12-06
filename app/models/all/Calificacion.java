@@ -6,7 +6,6 @@ import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-import models.all.Partido;
 import play.db.ebean.Model;
 
 @Entity @Table(name = "calificaciones")

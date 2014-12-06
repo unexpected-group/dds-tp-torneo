@@ -7,8 +7,6 @@ import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 
-import models.all.Jugador;
-
 @Entity
 @DiscriminatorValue("M")
 public class MultiplesCriterios extends OrdenadorEquipos {

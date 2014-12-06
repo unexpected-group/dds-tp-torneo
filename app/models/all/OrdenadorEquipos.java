@@ -12,7 +12,6 @@ import javax.persistence.InheritanceType;
 import javax.persistence.Table;
 
 import play.db.ebean.Model;
-import models.all.Jugador;
 
 @Entity @Table(name = "ordenadores")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)

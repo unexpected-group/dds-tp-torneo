@@ -9,7 +9,6 @@ import javax.persistence.InheritanceType;
 import javax.persistence.Table;
 
 import play.db.ebean.Model;
-import models.all.Inscripcion;
 
 @Entity @Table(name = "estados")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)

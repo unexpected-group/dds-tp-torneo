@@ -11,10 +11,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import models.all.NoEsAmigoException;
-import models.all.PropuestasHome;
-import models.all.Estandar;
-import models.all.Partido;
 import play.data.format.Formats.DateTime;
 import play.db.ebean.Model;
 

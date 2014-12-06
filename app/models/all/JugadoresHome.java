@@ -3,8 +3,6 @@ package models.all;
 import java.util.List;
 import java.util.Optional;
 
-import models.all.Jugador;
-
 public class JugadoresHome {
 
 	public static List<Jugador> getJugadores() {

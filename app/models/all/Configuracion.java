@@ -6,8 +6,6 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import models.all.ArmadorEquipos;
-import models.all.OrdenadorEquipos;
 import play.db.ebean.Model;
 
 @Entity @Table(name = "configuraciones")

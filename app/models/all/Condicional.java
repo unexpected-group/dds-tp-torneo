@@ -4,9 +4,6 @@ import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.Transient;
 
-import models.all.Jugador;
-import models.all.Partido;
-
 @Entity
 @DiscriminatorValue("C")
 public class Condicional extends Inscripcion {

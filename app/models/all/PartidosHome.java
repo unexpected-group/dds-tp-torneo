@@ -4,11 +4,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import models.all.Estandar;
-import models.all.Inscripcion;
-import models.all.Jugador;
-import models.all.Partido;
-
 public class PartidosHome {
 
 	private static List<Partido> partidos = new ArrayList<>();

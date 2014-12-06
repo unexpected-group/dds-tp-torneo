@@ -6,8 +6,6 @@ import java.util.List;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 
-import models.all.Jugador;
-
 @Entity
 @DiscriminatorValue("PD")
 public class PosicionesDadas extends ArmadorEquipos {

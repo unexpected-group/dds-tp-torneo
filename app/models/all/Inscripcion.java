@@ -9,8 +9,6 @@ import javax.persistence.InheritanceType;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import models.all.Jugador;
-import models.all.Partido;
 import play.db.ebean.Model;
 
 @Entity @Table(name = "inscripciones")
