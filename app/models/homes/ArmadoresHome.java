@@ -7,6 +7,7 @@ import models.armador.ArmadorEquipos;
 public class ArmadoresHome {
 
 	public static List<ArmadorEquipos> getOpciones() {
-		return ArmadorEquipos.finder.all();
+		// return ArmadorEquipos.finder.all();
+		return null;
 	}
 }
